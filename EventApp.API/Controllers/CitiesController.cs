@@ -2,12 +2,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EventApp.API.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace EventApp.API.Controllers
 {
     // http://localhost:5000/api/cities
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class CitiesController : ControllerBase
@@ -29,6 +31,7 @@ namespace EventApp.API.Controllers
         }
 
         // GET api/cities/5
+        [AllowAnonymous]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetCity(int id)
         {
