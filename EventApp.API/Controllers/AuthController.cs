@@ -36,7 +36,7 @@ namespace EventApp.API.Controllers
             userForRegisterDto.Username = userForRegisterDto.Username.ToLower();
 
             if(await _repo.UserExists(userForRegisterDto.Username))
-                return BadRequest("Username already exists");
+                return BadRequest("Ten login jest już zajęty.");
 
             Random r = new Random();
             var randomPhotoNumber = r.Next(1, 100);
