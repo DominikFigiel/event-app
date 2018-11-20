@@ -1,6 +1,6 @@
-import { AlertifyService } from './../../_services/alertify.service';
+import { AlertifyService } from './../../services/alertify.service';
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/_services/auth.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-nav',

@@ -9,9 +9,9 @@ import { CityComponent } from './components/cities/city/city.component';
 import { NavComponent } from './components/nav/nav.component';
 import { HomeComponent } from './components/home/home.component';
 import { RegisterComponent } from './components/register/register.component';
-import { AuthService } from './_services/auth.service';
-import { ErrorInterceptorProvider } from './_services/error.interceptor';
-import { AlertifyService } from './_services/alertify.service';
+import { AuthService } from './services/auth.service';
+import { ErrorInterceptorProvider } from './services/error.interceptor';
+import { AlertifyService } from './services/alertify.service';
 
 
 @NgModule({
