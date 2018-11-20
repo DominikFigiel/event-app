@@ -1,0 +1,35 @@
+<form #loginForm="ngForm" (ngSubmit)="login()">
+
+  <h2 class="text-center text-primary">Logowanie</h2>
+  
+  <hr>
+  <div class="form-group">
+    <input type="text" class="form-control" name="username" required minlength="5" maxlength="40" [(ngModel)]="model.username" #username="ngModel" placeholder="Login">
+    <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert alert-danger">
+      <div *ngIf="username?.errors.required">
+        Login jest wymagany.
+      </div>
+      <div *ngIf="username?.errors.minlength">
+        Login musi zawierać od 5 do 40 znaków.
+      </div>
+    </div>
+  </div>  
+
+  <div class="form-group">
+    <input type="password" class="form-control" name="password" required minlength="6" maxlength="40" [(ngModel)]="model.password" #password="ngModel" placeholder="Hasło">
+    <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+      <div *ngIf="password?.errors.required">
+        Hasło jest wymagane.
+      </div>
+      <div *ngIf="password?.errors.minlength">
+        Hasło musi zawierać od 6 do 40 znaków.
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group text-center">
+    <button class="btn btn-success mr-2" type="submit">Zaloguj się</button>
+    <button class="btn btn-default" type="button" (click)="cancel()">Anuluj</button>
+  </div>
+
+</form>

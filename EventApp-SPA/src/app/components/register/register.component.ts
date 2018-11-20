@@ -21,12 +21,25 @@ export class RegisterComponent implements OnInit {
       this.alertify.success('Rejestracja zakończona.');
       this.alertify.success('Teraz możesz się zalogować.');
     }, error => {
-      this.alertify.error(error);
+      this.showErrorNotificationsFromRequest(error);
     });
   }
 
   cancel() {
     this.cancelRegister.emit(false);
+  }
+
+  showErrorNotificationsFromRequest(errorString) {
+    const errors = errorString.split('\n');
+    for (let i = 0; i < errors.length; i++) {
+      if (errors[i] !== '') {
+        if (errors[i].charAt(0) === ',') {
+          this.alertify.error(errors[i].slice(1, errors[i].length));
+        } else {
+          this.alertify.error(errors[i]);
+        }
+      }
+    }
   }
 
 }

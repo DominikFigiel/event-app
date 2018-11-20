@@ -1,22 +1,18 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-primary">
   <div class="container">
-      <a class="navbar-brand" href="#">EventApp</a>
+      <a class="navbar-brand" [routerLink]="['/home']">
+        EventApp
+      </a>
 
       <ul *ngIf="loggedIn()" class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="#">Użytkownicy</a>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['/categories']">Kategorie</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Wiadomości</a>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['/cities']">Miasta</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Lista kursów</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Moje kursy</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Admin</a>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['/admin']">Admin</a>
         </li>
         
       </ul>
@@ -40,7 +36,7 @@
           placeholder="Login" required [(ngModel)]="model.username">
         <input class="form-control mr-sm-2" type="password" name="password"
           placeholder="Hasło" required [(ngModel)]="model.password">
-        <button [disabled]="!loginForm.valid" class="btn btn-success my-2 my-sm-0" type="submit">Zaloguj się</button>
+        <button [disabled]="!loginForm.valid" class="btn btn-secodary my-2 my-sm-0" type="submit">Zaloguj się</button>
       </form>
   </div>
 </nav>
