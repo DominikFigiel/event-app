@@ -22,6 +22,8 @@ import { appRoutes } from './routes';
 import { EventCategoryComponent } from './components/events/event-category/event-category.component';
 import { EventCategoryListComponent } from './components/events/event-category-list/event-category-list.component';
 import { AuthGuard } from './guards/auth.guard';
+import { FileUploaderService } from './services/fileUploader.service';
+import { UploadTestComponent } from './components/admin/upload-test/upload-test.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,8 @@ import { AuthGuard } from './guards/auth.guard';
     EventComponent,
     EventListComponent,
     EventCategoryComponent,
-    EventCategoryListComponent
+    EventCategoryListComponent,
+    UploadTestComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +52,8 @@ import { AuthGuard } from './guards/auth.guard';
     AuthService,
     ErrorInterceptorProvider,
     AlertifyService,
-    AuthGuard
+    AuthGuard,
+    FileUploaderService
   ],
   bootstrap: [AppComponent]
 })

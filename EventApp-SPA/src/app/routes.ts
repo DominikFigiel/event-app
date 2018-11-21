@@ -1,3 +1,4 @@
+import { UploadTestComponent } from './components/admin/upload-test/upload-test.component';
 import { Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
 import { AdminPanelComponent } from './components/admin/admin-panel/admin-panel.component';
@@ -26,6 +27,7 @@ export const appRoutes: Routes = [
             // { path: 'users/:id', component: UserDetailComponent},
             // { path: 'user/edit', component: UserEditComponent,
             // { path: 'user/orders', component: UserOrderListComponent},
+            { path: 'uploadtest', component: UploadTestComponent},
             { path: 'admin', component: AdminPanelComponent, data: {roles: ['Admin', 'Instructor']}}
 
         ]
