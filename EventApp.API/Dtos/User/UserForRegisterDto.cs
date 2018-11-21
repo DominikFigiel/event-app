@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace EventApp.API.Dtos.User
@@ -12,6 +13,7 @@ namespace EventApp.API.Dtos.User
         public string Password { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
+        public DateTime DateOfBirth { get; set; }
 
     }
 }

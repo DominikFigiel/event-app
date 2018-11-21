@@ -1,17 +1,16 @@
 using System;
 using System.Collections.Generic;
+using EventApp.API.Models;
 
-namespace EventApp.API.Models
+namespace EventApp.API.Dtos.User
 {
-    public class User
+    public class UserForDetailedDto
     {
         public int Id { get; set; }
         public string Username { get; set; }
-        public byte[] PasswordHash { get; set; }
-        public byte[] PasswordSalt { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-        public DateTime DateOfBirth { get; set; }
+        public int Age { get; set; }
         public string PhotoURL { get; set; }
         public DateTime RegistrationDate { get; set; }
         public ICollection<UserRole> UserRoles { get; set; }

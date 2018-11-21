@@ -59,11 +59,19 @@ namespace EventApp.API.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<bool>("Approved");
+
+                    b.Property<DateTime>("Created");
+
+                    b.Property<DateTime>("Date");
+
                     b.Property<string>("Description");
 
                     b.Property<string>("Name");
 
-                    b.Property<int?>("UserId");
+                    b.Property<string>("PhotoURL");
+
+                    b.Property<int>("UserId");
 
                     b.Property<int>("VenueId");
 
@@ -76,6 +84,26 @@ namespace EventApp.API.Migrations
                     b.ToTable("Events");
                 });
 
+            modelBuilder.Entity("EventApp.API.Models.Image", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("DateAdded");
+
+                    b.Property<string>("Description");
+
+                    b.Property<int>("EventId");
+
+                    b.Property<string>("Url");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EventId");
+
+                    b.ToTable("Images");
+                });
+
             modelBuilder.Entity("EventApp.API.Models.Order", b =>
                 {
                     b.Property<int>("Id")
@@ -83,7 +111,7 @@ namespace EventApp.API.Migrations
 
                     b.Property<int>("StatusId");
 
-                    b.Property<int?>("UserId");
+                    b.Property<int>("UserId");
 
                     b.HasKey("Id");
 
@@ -122,6 +150,8 @@ namespace EventApp.API.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("DateOfBirth");
 
                     b.Property<string>("Name");
 
@@ -206,13 +236,22 @@ namespace EventApp.API.Migrations
 
             modelBuilder.Entity("EventApp.API.Models.Event", b =>
                 {
-                    b.HasOne("EventApp.API.Models.User")
+                    b.HasOne("EventApp.API.Models.User", "User")
                         .WithMany("Events")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("EventApp.API.Models.Venue", "Venue")
                         .WithMany()
                         .HasForeignKey("VenueId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("EventApp.API.Models.Image", b =>
+                {
+                    b.HasOne("EventApp.API.Models.Event", "Event")
+                        .WithMany("Images")
+                        .HasForeignKey("EventId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
@@ -223,9 +262,10 @@ namespace EventApp.API.Migrations
                         .HasForeignKey("StatusId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("EventApp.API.Models.User")
+                    b.HasOne("EventApp.API.Models.User", "User")
                         .WithMany("Orders")
-                        .HasForeignKey("UserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("EventApp.API.Models.UserRole", b =>

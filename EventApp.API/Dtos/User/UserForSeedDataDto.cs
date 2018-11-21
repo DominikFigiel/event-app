@@ -1,12 +1,14 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using EventApp.API.Models;
 
-namespace EventApp.API.Models
+namespace EventApp.API.Dtos.User
 {
-    public class User
+    public class UserForSeedDataDto
     {
-        public int Id { get; set; }
         public string Username { get; set; }
+        public string Password { get; set; }
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
         public string Name { get; set; }
