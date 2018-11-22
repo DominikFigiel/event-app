@@ -2,15 +2,15 @@
   <div class="row">
     <div class="col-sm-4">
       <div class="card">
-        <img class="card-img-top img-thumbnail" src="{{user?.photoURL}}" alt="{{user?.username}}">
+        <img class="card-img-top img-thumbnail" src="{{user.photoURL}}" alt="{{user.username}}">
         <div class="card-body">
           <div>
             <strong>User:</strong>
-            <p>{{user?.name}} {{user?.surname}}</p>
+            <p>{{user.name}} {{user.surname}}</p>
           </div>
           <div>
             <strong>Data rejestracji:</strong>
-            <p>{{user?.registrationDate | date: 'dd/MM/yyyy'}}</p>
+            <p>{{user.registrationDate | date: 'dd/MM/yyyy'}}</p>
           </div>
         </div>
         <div class="card-footer">

@@ -1,3 +1,5 @@
+import { UserListResolver } from './resolvers/user-list.resolver';
+import { UserDetailResolver } from './resolvers/user-detail.resolver';
 import { UploadTestComponent } from './components/admin/upload-test/upload-test.component';
 import { Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
@@ -30,8 +32,8 @@ export const appRoutes: Routes = [
             // { path: 'user/edit', component: UserEditComponent,
             // { path: 'user/orders', component: UserOrderListComponent},
             { path: 'uploadtest', component: UploadTestComponent},
-            { path: 'userlisttest', component: UserListComponent},
-            { path: 'users/:id', component: UserDetailComponent},
+            { path: 'userlisttest', component: UserListComponent, resolve: {users: UserListResolver}},
+            { path: 'users/:id', component: UserDetailComponent, resolve: {user: UserDetailResolver}},
             { path: 'admin', component: AdminPanelComponent, data: {roles: ['Admin', 'Instructor']}}
 
         ]

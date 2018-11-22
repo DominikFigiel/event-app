@@ -1,3 +1,4 @@
+import { UserListResolver } from './resolvers/user-list.resolver';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
@@ -28,6 +29,7 @@ import { UploadTestComponent } from './components/admin/upload-test/upload-test.
 import { UserService } from './services/user.service';
 import { UserListComponent } from './components/users/user-list/user-list.component';
 import { UserDetailComponent } from './components/users/user-detail/user-detail.component';
+import { UserDetailResolver } from './resolvers/user-detail.resolver';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -72,7 +74,9 @@ export function tokenGetter() {
     AlertifyService,
     AuthGuard,
     UserService,
-    FileUploaderService
+    FileUploaderService,
+    UserDetailResolver,
+    UserListResolver
   ],
   bootstrap: [AppComponent]
 })

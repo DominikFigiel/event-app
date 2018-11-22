@@ -7,7 +7,7 @@ export interface User {
     name: string;
     surname: string;
     dateOfBirth: Date;
-    photoUrl: string;
+    photoURL: string;
     registrationDate: Date;
     roles?: string[];
     orders?: Order[];
