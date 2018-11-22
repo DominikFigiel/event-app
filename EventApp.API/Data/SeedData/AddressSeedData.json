@@ -1,0 +1,22 @@
+[
+    {
+        "CityId": 1,
+        "ZipCodeId": 1,
+        "Line1": "Adres 1"
+    },
+    {
+        "CityId": 2,
+        "ZipCodeId": 2,
+        "Line1": "Adres 2"
+    },
+    {
+        "CityId": 3,
+        "ZipCodeId": 3,
+        "Line1": "Adres 3"
+    },
+    {
+        "CityId": 4,
+        "ZipCodeId": 4,
+        "Line1": "Adres 4"
+    }
+]

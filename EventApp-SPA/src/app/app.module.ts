@@ -2,8 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { BsDropdownModule } from 'ngx-bootstrap';
+import { BsDropdownModule, TabsModule } from 'ngx-bootstrap';
 import { RouterModule } from '@angular/router';
+import { JwtModule } from '@auth0/angular-jwt';
 
 import { AppComponent } from './app.component';
 import { AdminPanelComponent } from './components/admin/admin-panel/admin-panel.component';
@@ -24,6 +25,13 @@ import { EventCategoryListComponent } from './components/events/event-category-l
 import { AuthGuard } from './guards/auth.guard';
 import { FileUploaderService } from './services/fileUploader.service';
 import { UploadTestComponent } from './components/admin/upload-test/upload-test.component';
+import { UserService } from './services/user.service';
+import { UserListComponent } from './components/users/user-list/user-list.component';
+import { UserDetailComponent } from './components/users/user-detail/user-detail.component';
+
+export function tokenGetter() {
+  return localStorage.getItem('token');
+}
 
 @NgModule({
   declarations: [
@@ -39,20 +47,31 @@ import { UploadTestComponent } from './components/admin/upload-test/upload-test.
     EventListComponent,
     EventCategoryComponent,
     EventCategoryListComponent,
-    UploadTestComponent
+    UploadTestComponent,
+    UserListComponent,
+    UserDetailComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
     BsDropdownModule.forRoot(),
-    RouterModule.forRoot(appRoutes)
+    TabsModule.forRoot(),
+    RouterModule.forRoot(appRoutes),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        whitelistedDomains: ['localhost:5000'],
+        blacklistedRoutes: ['localhost:5000/api/auth']
+      }
+    })
   ],
   providers: [
     AuthService,
     ErrorInterceptorProvider,
     AlertifyService,
     AuthGuard,
+    UserService,
     FileUploaderService
   ],
   bootstrap: [AppComponent]

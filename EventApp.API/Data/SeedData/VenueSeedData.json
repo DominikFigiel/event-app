@@ -1,0 +1,26 @@
+[
+    {
+        "Name": "Miejsce 1",
+        "Description": "Opis 1",
+        "PhotoUrl": "https://placeimg.com/640/480/arch",
+        "AddressId": 1
+    },
+    {
+        "Name": "Miejsce 2",
+        "Description": "Opis 2",
+        "PhotoUrl": "https://placeimg.com/640/480/arch",
+        "AddressId": 2
+    },
+    {
+        "Name": "Miejsce 3",
+        "Description": "Opis 3",
+        "PhotoUrl": "https://placeimg.com/640/480/arch",
+        "AddressId": 3
+    },
+    {
+        "Name": "Miejsce 4",
+        "Description": "Opis 4",
+        "PhotoUrl": "https://placeimg.com/640/480/arch",
+        "AddressId": 4
+    }
+]

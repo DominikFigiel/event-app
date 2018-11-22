@@ -9,6 +9,8 @@ import { CityListComponent } from './components/cities/city-list/city-list.compo
 import { CityComponent } from './components/cities/city/city.component';
 import { EventCategoryListComponent } from './components/events/event-category-list/event-category-list.component';
 import { EventCategoryComponent } from './components/events/event-category/event-category.component';
+import { UserListComponent } from './components/users/user-list/user-list.component';
+import { UserDetailComponent } from './components/users/user-detail/user-detail.component';
 
 export const appRoutes: Routes = [
     { path: '', component: HomeComponent},
@@ -28,6 +30,8 @@ export const appRoutes: Routes = [
             // { path: 'user/edit', component: UserEditComponent,
             // { path: 'user/orders', component: UserOrderListComponent},
             { path: 'uploadtest', component: UploadTestComponent},
+            { path: 'userlisttest', component: UserListComponent},
+            { path: 'users/:id', component: UserDetailComponent},
             { path: 'admin', component: AdminPanelComponent, data: {roles: ['Admin', 'Instructor']}}
 
         ]

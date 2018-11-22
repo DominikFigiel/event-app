@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
@@ -19,6 +20,16 @@ namespace EventApp.API.Data.SeedData
 
         public void SeedData()
         {
+            this.SeedUsers();
+            this.SeedCities();
+            this.SeedZipCodes();
+            this.SeedAddresses();
+            this.SeedVenues();
+            this.SeedEvents();
+        }
+
+        public void SeedUsers()
+        {
             // run only if table is empty
             if (_context.Users.Count() == 0) {
                 var userData = System.IO.File.ReadAllText("Data/SeedData/UserSeedData.json");
@@ -36,6 +47,83 @@ namespace EventApp.API.Data.SeedData
                     var userToAdd = _mapper.Map<User>(user);
 
                     _context.Users.Add(userToAdd);
+                }
+
+                _context.SaveChanges();
+            }
+        }
+
+        public void SeedCities()
+        {
+            // run only if table is empty
+            if (_context.Cities.Count() == 0) {
+                var data = System.IO.File.ReadAllText("Data/SeedData/CitySeedData.json");
+                var objects = JsonConvert.DeserializeObject<List<City>>(data);
+                foreach(var city in objects)
+                {
+                    _context.Cities.Add(city);
+                }
+
+                _context.SaveChanges();
+            }
+        }
+
+        public void SeedZipCodes()
+        {
+            // run only if table is empty
+            if (_context.ZipCodes.Count() == 0) {
+                var data = System.IO.File.ReadAllText("Data/SeedData/ZipCodeSeedData.json");
+                var objects = JsonConvert.DeserializeObject<List<ZipCode>>(data);
+                foreach(var zipCode in objects)
+                {
+                    _context.ZipCodes.Add(zipCode);
+                }
+
+                _context.SaveChanges();
+            }
+        }
+
+        public void SeedAddresses()
+        {
+            // run only if table is empty
+            if (_context.Addresses.Count() == 0) {
+                var data = System.IO.File.ReadAllText("Data/SeedData/AddressSeedData.json");
+                var objects = JsonConvert.DeserializeObject<List<Address>>(data);
+                foreach(var address in objects)
+                {
+                    _context.Addresses.Add(address);
+                }
+
+                _context.SaveChanges();
+            }
+        }
+
+        public void SeedVenues()
+        {
+            // run only if table is empty
+            if (_context.Venues.Count() == 0) {
+                var data = System.IO.File.ReadAllText("Data/SeedData/VenueSeedData.json");
+                var objects = JsonConvert.DeserializeObject<List<Venue>>(data);
+                foreach(var venue in objects)
+                {
+                    _context.Venues.Add(venue);
+                }
+
+                _context.SaveChanges();
+            }
+        }
+
+        public void SeedEvents()
+        {
+            // run only if table is empty
+            if (_context.Events.Count() == 0) {
+                var data = System.IO.File.ReadAllText("Data/SeedData/EventSeedData.json");
+                var objects = JsonConvert.DeserializeObject<List<Event>>(data);
+                foreach(var ev in objects)
+                {
+                    ev.Created = DateTime.Now;
+
+                    _context.Events.Add(ev);
                 }
 
                 _context.SaveChanges();

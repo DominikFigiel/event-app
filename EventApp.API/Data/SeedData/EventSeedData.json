@@ -1,0 +1,34 @@
+[
+    {
+        "Name": "Event 1",
+        "Description": "Opis 1",
+        "PhotoURL": "https://placeimg.com/640/480/people",
+        "Approved": true,
+        "VenueId": 1,
+        "UserId": 1
+    },
+    {
+        "Name": "Event 2",
+        "Description": "Opis 2",
+        "PhotoURL": "https://placeimg.com/640/480/people",
+        "Approved": true,
+        "VenueId": 1,
+        "UserId": 1
+    },
+    {
+        "Name": "Event 3",
+        "Description": "Opis 3",
+        "PhotoURL": "https://placeimg.com/640/480/people",
+        "Approved": true,
+        "VenueId": 2,
+        "UserId": 2
+    },
+    {
+        "Name": "Event 4",
+        "Description": "Opis 4",
+        "PhotoURL": "https://placeimg.com/640/480/people",
+        "Approved": false,
+        "VenueId": 3,
+        "UserId": 3
+    }
+]
