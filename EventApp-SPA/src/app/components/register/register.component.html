@@ -1,42 +1,113 @@
-<form #registerForm="ngForm" (ngSubmit)="register()">
+<form [formGroup]="registerForm" (ngSubmit)="register()">
 
     <h2 class="text-center text-primary">Rejestracja</h2>
   
     <hr>
     <div class="form-group">
-      <input type="text" class="form-control" required minlength="5" maxlength="40" name="username" [(ngModel)]="model.username" #username="ngModel" placeholder="Login">
-      <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert alert-danger">
-        <div *ngIf="username?.errors.required">
-          Login jest wymagany.
-        </div>
-        <div *ngIf="username?.errors.minlength">
-            Login musi zawierać od 5 do 40 znaków.
-        </div>
+      <input type="text" 
+      [ngClass]="{'is-invalid': registerForm.get('username').errors && registerForm.get('username').touched}" 
+      class="form-control" formControlName="username" placeholder="Login">
+      <div class="invalid-feedback">Login jest wymagany. Musi zawierać od 4 do 40 znaków.</div>
+    </div>
+
+    <div class="form-group">
+      <input type="email" 
+      [ngClass]="{'is-invalid': registerForm.get('email').errors && registerForm.get('email').touched}" 
+      class="form-control" formControlName="email" placeholder="email">
+      <div class="invalid-feedback">Wpisany email jest nieprawidłowy.</div>
+    </div>
+  
+    <div class="form-group">
+      <input type="password" 
+      [ngClass]="{'is-invalid': registerForm.get('password').errors 
+      && registerForm.get('password').touched}"
+      class="form-control" 
+      formControlName="password" 
+      placeholder="Hasło">
+      <div class="invalid-feedback" 
+        *ngIf="registerForm.get('password').hasError('required') 
+        && registerForm.get('password').touched">
+        Hasło jest wymagane.
+      </div>
+      <div class="invalid-feedback" 
+        *ngIf="registerForm.get('password').hasError('minlength')
+        && registerForm.get('password').touched">
+        Hasło musi składać się z co najmniej 6 znaków
+      </div>
+      <div class="invalid-feedback" 
+        *ngIf="registerForm.get('password').hasError('maxlength')
+        && registerForm.get('password').touched">
+        Hasło może zawierać maksymalnie 40 znaków
+      </div>
+    </div>
+
+    <div class="form-group">
+      <input type="password" 
+      [ngClass]="{'is-invalid': registerForm.get('confirmPassword').errors 
+      && registerForm.get('confirmPassword').touched}
+      || registerForm.hasError('mismatch')"
+      class="form-control"
+      formControlName="confirmPassword"
+      placeholder="Potwierdź hasło">
+      <div class="invalid-feedback" 
+        *ngIf="registerForm.get('confirmPassword').hasError('required') 
+        && registerForm.get('confirmPassword').touched">
+        Hasło jest wymagane.
+      </div>
+      <div class="invalid-feedback" 
+        *ngIf="registerForm.get('confirmPassword').hasError('minlength')
+        && registerForm.get('confirmPassword').touched">
+        Hasło musi składać się z co najmniej 6 znaków
+      </div>
+      <div class="invalid-feedback" 
+        *ngIf="registerForm.get('confirmPassword').hasError('maxlength')
+        && registerForm.get('confirmPassword').touched">
+        Hasło może zawierać maksymalnie 40 znaków
+      </div>
+      <div class="invalid-feedback" 
+        *ngIf="registerForm.hasError('mismatch')">
+        Wpisane hasła nie są takie same.
       </div>
     </div>
   
     <div class="form-group">
-      <input type="password" class="form-control" required minlength="6" maxlength="40" name="password" [(ngModel)]="model.password" #password="ngModel" placeholder="Hasło">
-      <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
-        <div *ngIf="password?.errors.required">
-          Hasło jest wymagane.
-        </div>
-        <div *ngIf="password?.errors.minlength">
-          Hasło musi zawierać od 6 do 40 znaków.
-        </div>
+      <input type="text" 
+      [ngClass]="{'is-invalid': registerForm.get('name').errors 
+      && registerForm.get('name').touched}"
+      class="form-control" formControlName="name" placeholder="Imię">
+      <div class="invalid-feedback" 
+        *ngIf="registerForm.get('name').hasError('required') 
+        && registerForm.get('name').touched">
+        Imię jest wymagane.
       </div>
     </div>
   
     <div class="form-group">
-      <input type="text" class="form-control" required name="name" [(ngModel)]="model.name" placeholder="Imię">
+      <input type="text" 
+      [ngClass]="{'is-invalid': registerForm.get('surname').errors 
+      && registerForm.get('surname').touched}"
+      class="form-control" formControlName="surname" placeholder="Nazwisko">
+      <div class="invalid-feedback" 
+        *ngIf="registerForm.get('surname').hasError('required') 
+        && registerForm.get('surname').touched">
+        Nazwisko jest wymagane.
+      </div>
     </div>
-  
+
     <div class="form-group">
-      <input type="text" class="form-control" required name="surname" [(ngModel)]="model.surname" placeholder="Nazwisko">
+      <input [ngClass]="{'is-invalid': registerForm.get('dateOfBirth').errors 
+        && registerForm.get('dateOfBirth').touched}" class="form-control"
+        placeholder="Date of Birth" formControlName="dateOfBirth" type="text" bsDatepicker [bsConfig]="bsConfig">
+      <div class="invalid-feedback" *ngIf="registerForm.get('dateOfBirth').touched 
+        && registerForm.get('dateOfBirth').hasError('required')">Data urodzenia jest wymagana.
+      </div>
     </div>
   
     <div class="form-group text-center">
-      <button class="btn btn-success mr-2" type="submit">Zarejestruj się</button>
+      <button class="btn btn-success mr-2" [disabled]="!registerForm.valid" type="submit">Zarejestruj się</button>
       <button class="btn btn-default" type="button" (click)="cancel()">Anuluj</button>
     </div>
   </form>
+
+  <p>Form value: {{registerForm.value | json}}</p>
+  <p>Form value: {{registerForm.status | json}}</p>

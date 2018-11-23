@@ -5,6 +5,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using EventApp.API.Data;
 using EventApp.API.Dtos.User;
 using EventApp.API.Models;
@@ -22,12 +23,14 @@ namespace EventApp.API.Controllers
         private readonly IAuthRepository _repo;
         private readonly IConfiguration _config;
         private readonly DataContext _context;
+        private readonly IMapper _mapper;
 
-        public AuthController(IAuthRepository repo, IConfiguration config, DataContext context)
+        public AuthController(IAuthRepository repo, IConfiguration config, DataContext context, IMapper mapper)
         {
             _repo = repo;
             _config = config;
             _context = context;
+            _mapper = mapper;
         }
 
         [HttpPost("register")]
@@ -38,21 +41,14 @@ namespace EventApp.API.Controllers
             if(await _repo.UserExists(userForRegisterDto.Username))
                 return BadRequest("Ten login jest już zajęty.");
 
-            Random r = new Random();
-            var randomPhotoNumber = r.Next(1, 100);
-
-            var userToCreate = new User
-            {
-                Username = userForRegisterDto.Username,
-                Name = userForRegisterDto.Name,
-                Surname = userForRegisterDto.Surname,
-                PhotoURL = "https://randomuser.me/api/portraits/men/" + randomPhotoNumber + ".jpg",
-                RegistrationDate = DateTime.Now
-            };
+            var userToCreate = _mapper.Map<User>(userForRegisterDto);
 
             var createdUser = await _repo.RegisterAsync(userToCreate, userForRegisterDto.Password);
 
-            return StatusCode(201);
+            var userToReturn = _mapper.Map<UserForDetailedDto>(createdUser);
+
+            return CreatedAtRoute("GetUser", 
+                new {controller= "Users", id = createdUser.Id}, userToReturn);
         }
 
         [HttpPost("login")]

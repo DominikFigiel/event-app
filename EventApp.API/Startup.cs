@@ -84,7 +84,7 @@ namespace EventApp.API
                 });
                 // app.UseHsts();
             }
-
+            
             // app.UseHttpsRedirection();
             seeder.SeedData();
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
