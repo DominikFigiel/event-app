@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using AutoMapper;
 using EventApp.API.Data;
@@ -41,20 +42,20 @@ namespace EventApp.API.Controllers
             return Ok(user);
         }
 
-        // [HttpPut("{id}")]
-        // public async Task<IActionResult> UpdateUser(int id, UserForUpdateDto userForUpdateDto)
-        // {
-        //     if(id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
-        //         return Unauthorized();
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateUser(int id, UserForUpdateDto userForUpdateDto)
+        {
+            if(id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+                return Unauthorized();
 
-        //     var userFromRepo = await _repo.GetUser(id);
+            var userFromRepo = await _repo.GetUser(id);
 
-        //     // _mapper.Map(userForUpdateDto, userFromRepo);
+            _mapper.Map(userForUpdateDto, userFromRepo);
 
-        //     if(await _repo.SaveAll())
-        //         return NoContent();
+            if(await _repo.SaveAll())
+                return NoContent();
 
-        //     throw new System.Exception($"Updating user {id} failed on save");
-        // }
+            throw new System.Exception($"Updating user {id} failed on save");
+        }
     } 
 }

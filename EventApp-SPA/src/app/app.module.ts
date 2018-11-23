@@ -1,4 +1,3 @@
-import { UserListResolver } from './resolvers/user-list.resolver';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
@@ -32,6 +31,9 @@ import { UserDetailComponent } from './components/users/user-detail/user-detail.
 import { UserDetailResolver } from './resolvers/user-detail.resolver';
 import { EventDetailResolver } from './resolvers/event-detail.resolver';
 import { EventCardComponent } from './components/events/event-card/event-card.component';
+import { UserEditComponent } from './components/users/user-edit/user-edit.component';
+import { UserListResolver } from './resolvers/user-list.resolver';
+import { UserEditResolver } from './resolvers/user-edit.resolver';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -54,6 +56,7 @@ export function tokenGetter() {
     UploadTestComponent,
     UserListComponent,
     UserDetailComponent,
+    UserEditComponent,
     EventCardComponent
   ],
   imports: [
@@ -80,6 +83,7 @@ export function tokenGetter() {
     FileUploaderService,
     UserDetailResolver,
     UserListResolver,
+    UserEditResolver,
     EventDetailResolver
   ],
   bootstrap: [AppComponent]

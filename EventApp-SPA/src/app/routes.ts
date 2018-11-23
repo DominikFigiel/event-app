@@ -14,6 +14,9 @@ import { EventCategoryComponent } from './components/events/event-category/event
 import { UserListComponent } from './components/users/user-list/user-list.component';
 import { UserDetailComponent } from './components/users/user-detail/user-detail.component';
 import { EventDetailResolver } from './resolvers/event-detail.resolver';
+import { UserEditComponent } from './components/users/user-edit/user-edit.component';
+import { UserEditResolver } from './resolvers/user-edit.resolver';
+import { PreventUnsavedChanges } from './guards/prevent-unsaved-changes';
 
 export const appRoutes: Routes = [
     { path: '', component: HomeComponent},
@@ -35,6 +38,8 @@ export const appRoutes: Routes = [
             { path: 'uploadtest', component: UploadTestComponent},
             { path: 'userlisttest', component: UserListComponent, resolve: {users: UserListResolver}},
             { path: 'users/:id', component: UserDetailComponent, resolve: {user: UserDetailResolver}},
+            { path: 'user/edit', component: UserEditComponent,
+                resolve: {user: UserEditResolver}, canDeactivate: [PreventUnsavedChanges]},
             { path: 'admin', component: AdminPanelComponent, data: {roles: ['Admin', 'Instructor']}}
 
         ]

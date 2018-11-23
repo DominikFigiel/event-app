@@ -1,0 +1,60 @@
+<div class="container mt-4">
+    <div class="row">
+      <div class="col-sm-4">
+        <h1>Twój profil</h1>
+      </div>
+      <div class="col-sm-8">
+        <div *ngIf="editForm.dirty" class="alert alert-info">
+          <strong>Informacja:</strong> Dokonałeś zmian. Niezapisane zmiany zostaną utracone!
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card">
+          <img class="card-img-top img-thumbnail" src="{{user.photoURL}}" alt="{{user.name}}">
+          <div class="card-body">
+            <div>
+              <strong>Użytkownik:</strong>
+              <p>{{user.name}} {{user.surname}}</p>
+            </div>
+            <div>
+              <strong>Data rejestracji:</strong>
+              <p>{{user.registrationDate | date: 'dd/MM/yyyy'}}</p>
+            </div>
+          </div>
+          <div class="card-footer">
+            <div class="btn-group d-flex">
+              <button [disabled]="!editForm.dirty" form="editForm" class="btn btn-success w-100">Zapisz zmiany</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-8">
+        <div class="tab-panel">
+          <tabset class="user-tabset">
+            <tab heading="Edycja profilu">
+              <div class="container mt-3">
+                <form #editForm="ngForm" id="editForm" (ngSubmit)="updateUser()">
+                  <div class="form-group">
+                    <label for="name">Imię</label>
+                    <input class="form-control" type="text" name="name" [(ngModel)]="user.name">
+                  </div>
+                  <div class="form-group">
+                    <label for="surname">Nazwisko</label>
+                    <input class="form-control" type="text" name="surname" [(ngModel)]="user.surname">  
+                  </div>
+                  <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input class="form-control" type="text" name="email" [(ngModel)]="user.email">  
+                  </div>
+                  <div class="form-group">
+                    <label for="photoURL">Adres obrazka</label>
+                    <input class="form-control" type="text" name="photoURL" [(ngModel)]="user.photoURL">  
+                  </div>
+                </form>
+              </div>
+            </tab>
+          </tabset>
+        </div>
+      </div>
+    </div>
+  </div>

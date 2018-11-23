@@ -6,9 +6,11 @@ export interface User {
     username: string;
     name: string;
     surname: string;
+    email: string;
     dateOfBirth: Date;
     photoURL: string;
     registrationDate: Date;
+    companyName?: string;
     roles?: string[];
     orders?: Order[];
     events?: Event[];
