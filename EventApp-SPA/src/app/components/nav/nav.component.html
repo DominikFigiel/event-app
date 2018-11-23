@@ -6,6 +6,9 @@
 
       <ul *ngIf="loggedIn()" class="navbar-nav mr-auto">
         <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['/events']">Wydarzenia</a>
+        </li>
+        <li class="nav-item" routerLinkActive="active">
           <a class="nav-link" [routerLink]="['/categories']">Kategorie</a>
         </li>
         <li class="nav-item" routerLinkActive="active">

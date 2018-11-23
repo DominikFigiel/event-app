@@ -6,13 +6,14 @@ import { AuthGuard } from './guards/auth.guard';
 import { AdminPanelComponent } from './components/admin/admin-panel/admin-panel.component';
 import { HomeComponent } from './components/home/home.component';
 import { EventListComponent } from './components/events/event-list/event-list.component';
-import { EventComponent } from './components/events/event/event.component';
+import { EventDetailComponent } from './components/events/event-detail/event-detail.component';
 import { CityListComponent } from './components/cities/city-list/city-list.component';
 import { CityComponent } from './components/cities/city/city.component';
 import { EventCategoryListComponent } from './components/events/event-category-list/event-category-list.component';
 import { EventCategoryComponent } from './components/events/event-category/event-category.component';
 import { UserListComponent } from './components/users/user-list/user-list.component';
 import { UserDetailComponent } from './components/users/user-detail/user-detail.component';
+import { EventDetailResolver } from './resolvers/event-detail.resolver';
 
 export const appRoutes: Routes = [
     { path: '', component: HomeComponent},
@@ -23,7 +24,7 @@ export const appRoutes: Routes = [
         children: [
             // { path: 'welcome', component: WelcomeComponent},
             { path: 'events', component: EventListComponent},
-            { path: 'events/:id', component: EventComponent},
+            { path: 'events/:id', component: EventDetailComponent, resolve: {event: EventDetailResolver}},
             { path: 'categories', component: EventCategoryListComponent},
             { path: 'categories/:id', component: EventCategoryComponent},
             { path: 'cities', component: CityListComponent},

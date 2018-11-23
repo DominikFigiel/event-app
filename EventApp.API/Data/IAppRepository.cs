@@ -11,5 +11,7 @@ namespace EventApp.API.Data
         Task<bool> SaveAll();
         Task<IEnumerable<User>> GetUsers();
         Task<User> GetUser(int id);
+        Task<IEnumerable<Event>> GetEvents();
+        Task<Event> GetEvent(int id);
     }
 }

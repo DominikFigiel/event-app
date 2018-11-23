@@ -67,6 +67,8 @@ namespace EventApp.API.Migrations
 
                     b.Property<string>("Description");
 
+                    b.Property<string>("Headline");
+
                     b.Property<string>("Name");
 
                     b.Property<string>("PhotoURL");

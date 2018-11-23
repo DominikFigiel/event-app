@@ -2,25 +2,25 @@
     {
         "Name": "Miejsce 1",
         "Description": "Opis 1",
-        "PhotoUrl": "https://placeimg.com/640/480/arch",
+        "PhotoUrl": "https://loremflickr.com/600/600/architecture",
         "AddressId": 1
     },
     {
         "Name": "Miejsce 2",
         "Description": "Opis 2",
-        "PhotoUrl": "https://placeimg.com/640/480/arch",
+        "PhotoUrl": "https://loremflickr.com/600/600/architecture",
         "AddressId": 2
     },
     {
-        "Name": "Miejsce 3",
-        "Description": "Opis 3",
-        "PhotoUrl": "https://placeimg.com/640/480/arch",
+        "Name": "Hala Stulecia",
+        "Description": "Hala Stulecia to unikatowe miejsce na mapie Polski, gdzie historia w pełni współgra ze współczesnością. Zaprojektowana przez wybitnego miejskiego architekta Maksa Berga, została uznana za jedno z największych dzieł architektury XX wieku. W założeniu projektanta miała służyć mieszkańcom Wrocławia i gościom odwiedzającym stolicę Dolnego Śląska i tak jest do dziś. ",
+        "PhotoUrl": "https://loremflickr.com/600/600/architecture",
         "AddressId": 3
     },
     {
-        "Name": "Miejsce 4",
-        "Description": "Opis 4",
-        "PhotoUrl": "https://placeimg.com/640/480/arch",
+        "Name": "PGE Narodowy",
+        "Description": "Chcemy, żeby PGE Narodowy był otwarty i dostępny dla wszystkich. Chcemy, żebyście przychodzili na niego jak najczęściej i żeby każdy mógł znaleźć na nim coś dla siebie.",
+        "PhotoUrl": "https://loremflickr.com/600/600/architecture",
         "AddressId": 4
     }
 ]

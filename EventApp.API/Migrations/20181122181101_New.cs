@@ -188,6 +188,7 @@ namespace EventApp.API.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     Name = table.Column<string>(nullable: true),
+                    Headline = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     VenueId = table.Column<int>(nullable: false),
                     Date = table.Column<DateTime>(nullable: false),

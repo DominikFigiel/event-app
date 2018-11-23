@@ -1,34 +1,38 @@
 [
     {
-        "Name": "Event 1",
-        "Description": "Opis 1",
-        "PhotoURL": "https://placeimg.com/640/480/people",
+        "Name": "ACID DRINKERS - Verses Of Milk Reprise ",
+        "Headline": "Verses Of Milk Reprise - wyjątkowa trasa Acid Drinkers",
+        "Description": "2018 rok to rocznice dwóch ważnych płyt w historii Acid Drinkers. 20 lat temu ukazał się album High Proof Cosmic Milk, a 10 lat później - Smarujcie gardła i załóżcie ciężkie buty... w najbliższym czasie nie bierzemy jeńców!",
+        "PhotoURL": "https://picsum.photos/600/600/?random",
         "Approved": true,
-        "VenueId": 1,
+        "VenueId": 3,
         "UserId": 1
     },
     {
-        "Name": "Event 2",
-        "Description": "Opis 2",
-        "PhotoURL": "https://placeimg.com/640/480/people",
+        "Name": "Balonowe Show czyli Funny Balls Show",
+        "Headline": "Interaktywne widowisko balonowe dla całej rodziny, czyli FUNNY BALLS SHOW",
+        "Description": "Rodzice doskonale wiedzą, że dmuchany balonik wywoła uśmiech na buzi każdego dziecka! A jaka będzie reakcja maluchów, gdy w jednej chwili zobaczą setki, a nawet tysiące balonów we wszystkich kolorach tęczy? ",
+        "PhotoURL": "https://picsum.photos/601/601/?random",
         "Approved": true,
-        "VenueId": 1,
+        "VenueId": 3,
         "UserId": 1
     },
     {
-        "Name": "Event 3",
-        "Description": "Opis 3",
-        "PhotoURL": "https://placeimg.com/640/480/people",
+        "Name": "Dużo kobiet, bo aż trzy",
+        "Headline": "„Dużo kobiet, bo aż trzy”",
+        "Description": "Artur Andrus w towarzystwie wyjątkowych kobiet: Magdy Umer, Hanny Śleszyńskiej i Joanny Kołaczkowskiej. Genialne dialogi satyryczne i piosenki autorstwa wybitnych tekściarzy. Całość tworząca niepowtarzalny klimat kabaretu literackiego, rozrywki „inteligentnie zaangażowanej”. Zapraszamy do Sali Koncertowej Radia Wrocław 12  grudnia o godz. 19.00.",
+        "PhotoURL": "https://picsum.photos/602/602/?random",
         "Approved": true,
-        "VenueId": 2,
+        "VenueId": 3,
         "UserId": 2
     },
     {
-        "Name": "Event 4",
-        "Description": "Opis 4",
-        "PhotoURL": "https://placeimg.com/640/480/people",
+        "Name": "GAELFORCE DANCE",
+        "Headline": "GAELFORCE DANCE",
+        "Description": "Gaelforce Dance wracają, aby zaspokoić niedosyt polskiej publiczności, która wprost uwielbia ich szalone, pełne energii, spektakularne występy, dzięki którym do grupy przylgnęło określenie „ferrari tańca irlandzkiego”. Tak oszałamiającym sukcesem jaki odnoszą na świecie niewiele grup może się pochwalić – ich perfekcjonizm, który prezentują na scenie, stał się już legendą. W listopadzie i grudniu 2018 roku wystąpią w największych polskich miastach, aby po raz kolejny udowodnić, że są najlepszym zespołem tańca irlandzkiego na świecie! Gaelforce Dance to zespół składający się z najlepszych tancerzy i muzyków, którzy swoim spektaklem taneczno-muzycznym opartym na irlandzkim folklorze od lat podbijają serca widzów na całym świecie. W genialny sposób ukazują oni kulturę Zielonej Wyspy. Łączą taniec nowoczesny z celtyckimi rytmami, balet ze stepowaniem, muzykę z grą świateł, tradycję ze współczesnością. ",
+        "PhotoURL": "https://picsum.photos/603/603/?random",
         "Approved": false,
-        "VenueId": 3,
-        "UserId": 3
+        "VenueId": 2,
+        "UserId": 2
     }
 ]

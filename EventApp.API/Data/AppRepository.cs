@@ -23,6 +23,11 @@ namespace EventApp.API.Data
             _context.Remove(entity);
         }
 
+        public async Task<bool> SaveAll()
+        {
+            return await _context.SaveChangesAsync() > 0;
+        }
+
         public async Task<IEnumerable<User>> GetUsers()
         {
             var users = await _context.Users.ToListAsync();
@@ -37,9 +42,19 @@ namespace EventApp.API.Data
             return user;
         }
 
-        public async Task<bool> SaveAll()
+        public async Task<IEnumerable<Event>> GetEvents()
         {
-            return await _context.SaveChangesAsync() > 0;
+            var events = await _context.Events.Include(e => e.Venue).ToListAsync();
+
+            return events;
         }
+
+        public async Task<Event> GetEvent(int id)
+        {
+            var ev = await _context.Events.Include(e => e.Images).Include(e => e.Venue).FirstOrDefaultAsync(u => u.Id == id);
+
+            return ev;
+        }
+ 
     }
 }

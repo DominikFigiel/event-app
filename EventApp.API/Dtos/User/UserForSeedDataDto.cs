@@ -18,6 +18,6 @@ namespace EventApp.API.Dtos.User
         public DateTime RegistrationDate { get; set; }
         public ICollection<UserRole> UserRoles { get; set; }
         public ICollection<Order> Orders { get; set; }
-        public ICollection<Event> Events { get; set; }
+        public ICollection<Models.Event> Events { get; set; }
     }
 }

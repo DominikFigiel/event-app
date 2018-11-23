@@ -18,7 +18,7 @@ import { LoginComponent } from './components/login/login.component';
 import { AuthService } from './services/auth.service';
 import { ErrorInterceptorProvider } from './services/error.interceptor';
 import { AlertifyService } from './services/alertify.service';
-import { EventComponent } from './components/events/event/event.component';
+import { EventDetailComponent } from './components/events/event-detail/event-detail.component';
 import { EventListComponent } from './components/events/event-list/event-list.component';
 import { appRoutes } from './routes';
 import { EventCategoryComponent } from './components/events/event-category/event-category.component';
@@ -30,6 +30,8 @@ import { UserService } from './services/user.service';
 import { UserListComponent } from './components/users/user-list/user-list.component';
 import { UserDetailComponent } from './components/users/user-detail/user-detail.component';
 import { UserDetailResolver } from './resolvers/user-detail.resolver';
+import { EventDetailResolver } from './resolvers/event-detail.resolver';
+import { EventCardComponent } from './components/events/event-card/event-card.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -45,13 +47,14 @@ export function tokenGetter() {
     HomeComponent,
     RegisterComponent,
     LoginComponent,
-    EventComponent,
+    EventDetailComponent,
     EventListComponent,
     EventCategoryComponent,
     EventCategoryListComponent,
     UploadTestComponent,
     UserListComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    EventCardComponent
   ],
   imports: [
     BrowserModule,
@@ -76,7 +79,8 @@ export function tokenGetter() {
     UserService,
     FileUploaderService,
     UserDetailResolver,
-    UserListResolver
+    UserListResolver,
+    EventDetailResolver
   ],
   bootstrap: [AppComponent]
 })
