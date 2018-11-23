@@ -6,6 +6,7 @@ import { BsLocaleService, defineLocale, BsDatepickerModule, BsDatepickerConfig }
 import { plLocale } from 'ngx-bootstrap/locale';
 import { User } from 'src/app/models/user';
 import { Router } from '@angular/router';
+import { getLocaleDateTimeFormat } from '@angular/common';
 defineLocale('pl', plLocale);
 
 @Component({
@@ -24,10 +25,18 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit() {
     this.bsConfig = {
-      containerClass: 'theme-default'
+      containerClass: 'theme-default',
+      maxDate: this.getMaxDate(18)
     };
     this.bsLocale.use('pl');
     this.createRegisterForm();
+  }
+
+  getMaxDate(minAge: number) {
+    const maxDate = new Date();
+    const maxYear = maxDate.getFullYear() - minAge;
+    maxDate.setFullYear(maxYear);
+    return maxDate;
   }
 
   createRegisterForm() {
