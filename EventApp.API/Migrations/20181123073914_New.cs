@@ -58,6 +58,8 @@ namespace EventApp.API.Migrations
                     PasswordSalt = table.Column<byte[]>(nullable: true),
                     Name = table.Column<string>(nullable: true),
                     Surname = table.Column<string>(nullable: true),
+                    Email = table.Column<string>(nullable: true),
+                    CompanyName = table.Column<string>(nullable: true),
                     DateOfBirth = table.Column<DateTime>(nullable: false),
                     PhotoURL = table.Column<string>(nullable: true),
                     RegistrationDate = table.Column<DateTime>(nullable: false)

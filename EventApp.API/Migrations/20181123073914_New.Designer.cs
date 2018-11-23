@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EventApp.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20181122181101_New")]
+    [Migration("20181123073914_New")]
     partial class New
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -155,7 +155,11 @@ namespace EventApp.API.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("CompanyName");
+
                     b.Property<DateTime>("DateOfBirth");
+
+                    b.Property<string>("Email");
 
                     b.Property<string>("Name");
 

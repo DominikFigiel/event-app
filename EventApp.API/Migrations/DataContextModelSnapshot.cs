@@ -153,7 +153,11 @@ namespace EventApp.API.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<string>("CompanyName");
+
                     b.Property<DateTime>("DateOfBirth");
+
+                    b.Property<string>("Email");
 
                     b.Property<string>("Name");
 

@@ -8,6 +8,7 @@ namespace EventApp.API.Dtos.User
         public string Username { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
+        public string CompanyName { get; set; }
         public DateTime DateOfBirth { get; set; }
         public string PhotoURL { get; set; }
         public DateTime RegistrationDate { get; set; }

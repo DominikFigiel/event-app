@@ -4,6 +4,7 @@
         "Password": "dominik",
         "Name": "Dominik",
         "Surname": "Figiel",
+        "Email": "dominik@email.com",
         "PhotoURL": "https://randomuser.me/api/portraits/men/3.jpg"
     },
     {
@@ -11,6 +12,7 @@
         "Password": "martin",
         "Name": "Martin",
         "Surname": "Haładyn",
+        "Email": "martin@1email.com",
         "PhotoURL": "https://randomuser.me/api/portraits/men/29.jpg"
     },
     {
@@ -18,6 +20,7 @@
         "Password": "marcin",
         "Name": "Marcin",
         "Surname": "Rubach",
+        "Email": "marcin@ema1il.com",
         "PhotoURL": "https://randomuser.me/api/portraits/men/83.jpg"
     },
     {
@@ -25,6 +28,7 @@
         "Password": "radek",
         "Name": "Radosław",
         "Surname": "Ziemniak",
+        "Email": "radek@em2ail.com",
         "PhotoURL": "https://randomuser.me/api/portraits/men/85.jpg"
     }
   ]
