@@ -17,6 +17,7 @@ import { EventDetailResolver } from './resolvers/event-detail.resolver';
 import { UserEditComponent } from './components/users/user-edit/user-edit.component';
 import { UserEditResolver } from './resolvers/user-edit.resolver';
 import { PreventUnsavedChanges } from './guards/prevent-unsaved-changes';
+import { EventListResolver } from './resolvers/event-list.resolver';
 
 export const appRoutes: Routes = [
     { path: '', component: HomeComponent},
@@ -26,8 +27,8 @@ export const appRoutes: Routes = [
         canActivate: [AuthGuard],
         children: [
             // { path: 'welcome', component: WelcomeComponent},
-            { path: 'events', component: EventListComponent},
-            { path: 'events/:id', component: EventDetailComponent, resolve: {event: EventDetailResolver}},
+            { path: 'events', component: EventListComponent, resolve: {events: EventListResolver}},
+            { path: 'events/:id', component: EventDetailComponent,  resolve: {event: EventDetailResolver}},
             { path: 'categories', component: EventCategoryListComponent},
             { path: 'categories/:id', component: EventCategoryComponent},
             { path: 'cities', component: CityListComponent},

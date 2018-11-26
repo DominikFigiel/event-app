@@ -1,6 +1,9 @@
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { EventService } from 'src/app/services/event.service';
 import { AlertifyService } from 'src/app/services/alertify.service';
+import { Event } from 'src/app/models/event';
+import { EventService } from 'src/app/services/event.service';
+import { Pagination, PaginatedResult } from 'src/app/models/pagination';
 
 @Component({
   selector: 'app-event-list',
@@ -9,16 +12,33 @@ import { AlertifyService } from 'src/app/services/alertify.service';
 })
 export class EventListComponent implements OnInit {
   events: Event[];
+  eventParams: any = {};
+  pagination: Pagination;
 
-  constructor(private eventService: EventService, private alertify: AlertifyService) { }
+  constructor(private eventService: EventService, private alertify: AlertifyService,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.data.subscribe(data => {
+      this.events = data['events'].result;
+      this.pagination = data['events'].pagination;
+    });
+
+    this.eventParams.orderBy = 'created';
+  }
+
+  pageChanged(event: any): void {
+    this.pagination.currentPage = event.page;
     this.loadEvents();
   }
 
   loadEvents() {
-    this.eventService.getEvents().subscribe((events: Event[]) => {
-      this.events = events;
+    this.eventService
+      .getEvents(this.pagination.currentPage, this.pagination.itemsPerPage, this.eventParams)
+      .subscribe(
+        (res: PaginatedResult<Event[]>) => {
+          this.events = res.result;
+          this.pagination = res.pagination;
     }, error => {
       this.alertify.error(error);
     });

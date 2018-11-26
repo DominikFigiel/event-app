@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using EventApp.API.Helpers;
 using EventApp.API.Models;
 
 namespace EventApp.API.Data
@@ -11,7 +12,7 @@ namespace EventApp.API.Data
         Task<bool> SaveAll();
         Task<IEnumerable<User>> GetUsers();
         Task<User> GetUser(int id);
-        Task<IEnumerable<Event>> GetEvents();
+        Task<PagedList<Event>> GetEvents(EventParams eventParams);
         Task<Event> GetEvent(int id);
     }
 }

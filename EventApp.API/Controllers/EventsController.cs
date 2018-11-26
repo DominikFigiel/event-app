@@ -4,6 +4,7 @@ using AutoMapper;
 using EventApp.API.Data;
 using EventApp.API.Dtos.Event;
 using EventApp.API.Dtos.User;
+using EventApp.API.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,11 +24,13 @@ namespace EventApp.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetEvents()
+        public async Task<IActionResult> GetEvents([FromQuery]EventParams eventParams)
         {
-            var events = await _repo.GetEvents();
+            var events = await _repo.GetEvents(eventParams);
 
             var eventsToReturn = _mapper.Map<IEnumerable<EventForListDto>>(events);
+
+            Response.AddPagination(events.CurrentPage, events.PageSize, events.TotalCount, events.TotalPages);
 
             return Ok(eventsToReturn);
         }

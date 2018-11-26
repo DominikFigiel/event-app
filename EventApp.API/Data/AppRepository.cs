@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using EventApp.API.Helpers;
 using EventApp.API.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -42,11 +44,26 @@ namespace EventApp.API.Data
             return user;
         }
 
-        public async Task<IEnumerable<Event>> GetEvents()
+        public async Task<PagedList<Event>> GetEvents(EventParams eventParams)
         {
-            var events = await _context.Events.Include(e => e.Venue).ToListAsync();
+            var events = _context.Events.Include(e => e.Venue)
+                    .OrderByDescending(e => e.Created).AsQueryable();
 
-            return events;
+            if (!string.IsNullOrEmpty(eventParams.OrderBy))
+            {
+                switch (eventParams.OrderBy)
+                {
+                    case "date":
+                        events = events.OrderBy(e => e.Date);
+                        break;
+                    default:
+                        events = events.OrderByDescending(e => e.Created);
+                        break;
+
+                }
+            }
+
+            return await PagedList<Event>.CreateAsync(events, eventParams.PageNumber, eventParams.PageSize);
         }
 
         public async Task<Event> GetEvent(int id)
