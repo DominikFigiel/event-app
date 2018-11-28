@@ -5,8 +5,10 @@
       <div class="col">
         <div class="btn-group float-right">
           <button type="button" name="orderBy" class="btn btn-primary"
+          [class.not-active-button]="eventParams.orderBy === 'date'"
           [(ngModel)]="eventParams.orderBy" (click)="loadEvents()" btnRadio="created">Najnowsze</button>
           <button type="button" name="orderBy" class="btn btn-primary"
+          [class.not-active-button]="eventParams.orderBy === 'created'"
           [(ngModel)]="eventParams.orderBy" (click)="loadEvents()" btnRadio="date">Nadchodzące wydarzenia</button>
         </div>
       </div>

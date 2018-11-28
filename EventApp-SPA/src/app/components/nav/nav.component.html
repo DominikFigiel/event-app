@@ -28,9 +28,9 @@
         <div class="dropdown-menu mt-3" *dropdownMenu>
           <a class="dropdown-item" [routerLink]="['/user/edit']"><i class="fa fa-user"></i> Edytuj profil</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" ><i class="fa fa-book"></i> Moje kursy</a>
+          <a class="dropdown-item" [routerLink]="['/user/orders']"><i class="fa fa-shopping-basket"></i> Moje zamówienia</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" (click)="logout()"><i class="fa fa-sign-out"></i> Wyloguj</a>
+          <a class="dropdown-item logout-link" (click)="logout()"><i class="fa fa-sign-out"></i> Wyloguj</a>
         </div>
       </div>
   
@@ -39,7 +39,7 @@
           placeholder="Login" required [(ngModel)]="model.username">
         <input class="form-control mr-sm-2" type="password" name="password"
           placeholder="Hasło" required [(ngModel)]="model.password">
-        <button [disabled]="!loginForm.valid" class="btn btn-secodary my-2 my-sm-0" type="submit">Zaloguj się</button>
+        <button [disabled]="!loginForm.valid" class="btn btn-secodary my-2 my-sm-0 login-button" type="submit">Zaloguj się</button>
       </form>
   </div>
 </nav>

@@ -1,3 +1,20 @@
 .dropdown-toggle, .dropdown-item {
     cursor: pointer;
 }
+
+.login-button {
+    padding: 0.591em 3em;
+}
+
+.logout-link {
+    display: block;
+    width: 100%;
+    padding: 0.25rem 1.5rem;
+    clear: both;
+    font-weight: 400;
+    color: #1a1a1a !important;
+    text-align: inherit;
+    white-space: nowrap;
+    background-color: transparent;
+    border: 0;
+}
