@@ -45,6 +45,13 @@ namespace EventApp.API.Controllers
 
             var createdUser = await _repo.RegisterAsync(userToCreate, userForRegisterDto.Password);
 
+            var role = _context.Roles.FirstOrDefault(x => x.Name == "Client");
+            var userRole = new UserRole { User = createdUser, Role = role };
+
+            _context.UserRoles.AddAsync(userRole).Wait();
+
+            await _context.SaveChangesAsync();
+
             var userToReturn = _mapper.Map<UserForDetailedDto>(createdUser);
 
             return CreatedAtRoute("GetUser", 
@@ -54,7 +61,7 @@ namespace EventApp.API.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> StudentLogin(UserForLoginDto userForLoginDto)
         {
-            var userFromRepo = await _repo.LoginAsync(userForLoginDto.Username, userForLoginDto.Password);
+            var userFromRepo = await _repo.LoginAsync(userForLoginDto.Username.ToLower(), userForLoginDto.Password);
 
             if(userFromRepo == null)
                 return Unauthorized();

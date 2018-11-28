@@ -44,6 +44,21 @@ namespace EventApp.API.Data
             return user;
         }
 
+        public User GetUserByUsername(string username)
+        {
+            username = username.ToLower();
+            var user = _context.Users.FirstOrDefault(u => u.Username == username);
+
+            return user;
+        }
+
+        public List<Role> GetUserRoles(int userId)
+        {
+            var userRoles = _context.Roles.Include(r => r.UserRoles).Where(r => r.UserRoles.Any(ur => ur.UserId == userId)).ToList();
+
+            return userRoles;
+        }
+
         public async Task<PagedList<Event>> GetEvents(EventParams eventParams)
         {
             var events = _context.Events.Include(e => e.Venue)

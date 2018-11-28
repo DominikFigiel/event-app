@@ -20,12 +20,31 @@ namespace EventApp.API.Data.SeedData
 
         public void SeedData()
         {
+            this.SeedUserRoles();
             this.SeedUsers();
             this.SeedCities();
             this.SeedZipCodes();
             this.SeedAddresses();
             this.SeedVenues();
             this.SeedEvents();
+        }
+
+        public void SeedUserRoles()
+        {
+            if (_context.Roles.Count() == 0) {
+                var roles = new List<Role>
+                {
+                    new Role{Name = "Client"},
+                    new Role{Name = "Promoter"},
+                    new Role{Name = "Administrator"}
+                };
+
+                foreach(var role in roles)
+                {
+                    _context.Roles.AddAsync(role).Wait();
+                    _context.SaveChanges();
+                }
+            }
         }
 
         public void SeedUsers()
@@ -47,6 +66,11 @@ namespace EventApp.API.Data.SeedData
                     var userToAdd = _mapper.Map<User>(user);
 
                     _context.Users.Add(userToAdd);
+
+                    var role = _context.Roles.FirstOrDefault(x => x.Name == "Client");
+                    var userRole = new UserRole { User = userToAdd, Role = role };
+
+                    _context.UserRoles.AddAsync(userRole).Wait();
                 }
 
                 _context.SaveChanges();

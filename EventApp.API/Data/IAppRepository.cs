@@ -12,6 +12,8 @@ namespace EventApp.API.Data
         Task<bool> SaveAll();
         Task<IEnumerable<User>> GetUsers();
         Task<User> GetUser(int id);
+        User GetUserByUsername(string username);
+        List<Role> GetUserRoles(int userId);
         Task<PagedList<Event>> GetEvents(EventParams eventParams);
         Task<Event> GetEvent(int id);
     }
