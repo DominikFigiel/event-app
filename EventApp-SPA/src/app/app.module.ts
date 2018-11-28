@@ -35,6 +35,9 @@ import { UserEditComponent } from './components/users/user-edit/user-edit.compon
 import { UserListResolver } from './resolvers/user-list.resolver';
 import { UserEditResolver } from './resolvers/user-edit.resolver';
 import { EventListResolver } from './resolvers/event-list.resolver';
+import { HasRoleDirective } from './directives/hasRole.directive';
+import { UserManagementComponent } from './components/admin/user-management/user-management.component';
+import { AdminService } from './services/admin.service';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -58,7 +61,9 @@ export function tokenGetter() {
     UserListComponent,
     UserDetailComponent,
     UserEditComponent,
-    EventCardComponent
+    EventCardComponent,
+    HasRoleDirective,
+    UserManagementComponent
   ],
   imports: [
     BrowserModule,
@@ -90,7 +95,8 @@ export function tokenGetter() {
     UserListResolver,
     UserEditResolver,
     EventListResolver,
-    EventDetailResolver
+    EventDetailResolver,
+    AdminService
   ],
   bootstrap: [AppComponent]
 })
