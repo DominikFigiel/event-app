@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BsDropdownModule, TabsModule, BsDatepickerModule, PaginationModule, ButtonsModule } from 'ngx-bootstrap';
+import { BsDropdownModule, TabsModule, BsDatepickerModule, PaginationModule, ButtonsModule, ModalModule } from 'ngx-bootstrap';
 import { RouterModule } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
 
@@ -38,6 +38,7 @@ import { EventListResolver } from './resolvers/event-list.resolver';
 import { HasRoleDirective } from './directives/hasRole.directive';
 import { UserManagementComponent } from './components/admin/user-management/user-management.component';
 import { AdminService } from './services/admin.service';
+import { RolesModalComponent } from './components/admin/roles-modal/roles-modal.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -63,7 +64,8 @@ export function tokenGetter() {
     UserEditComponent,
     EventCardComponent,
     HasRoleDirective,
-    UserManagementComponent
+    UserManagementComponent,
+    RolesModalComponent
   ],
   imports: [
     BrowserModule,
@@ -76,6 +78,7 @@ export function tokenGetter() {
     TabsModule.forRoot(),
     ButtonsModule.forRoot(),
     RouterModule.forRoot(appRoutes),
+    ModalModule.forRoot(),
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
@@ -97,6 +100,9 @@ export function tokenGetter() {
     EventListResolver,
     EventDetailResolver,
     AdminService
+  ],
+  entryComponents: [
+     RolesModalComponent
   ],
   bootstrap: [AppComponent]
 })

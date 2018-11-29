@@ -34,8 +34,8 @@ namespace EventApp.API.Data.SeedData
             if (_context.Roles.Count() == 0) {
                 var roles = new List<Role>
                 {
-                    new Role{Name = "Client"},
-                    new Role{Name = "Promoter"},
+                    new Role{Name = "Klient"},
+                    new Role{Name = "Organizator"},
                     new Role{Name = "Administrator"}
                 };
 
