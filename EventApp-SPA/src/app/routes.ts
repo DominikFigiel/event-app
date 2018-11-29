@@ -41,7 +41,7 @@ export const appRoutes: Routes = [
             { path: 'users/:id', component: UserDetailComponent, resolve: {user: UserDetailResolver}},
             { path: 'user/edit', component: UserEditComponent,
                 resolve: {user: UserEditResolver}, canDeactivate: [PreventUnsavedChanges]},
-            { path: 'admin', component: AdminPanelComponent, data: {roles: ['Admin', 'Instructor']}}
+            { path: 'admin', component: AdminPanelComponent, data: {roles: ['Administrator']}}
 
         ]
     },
