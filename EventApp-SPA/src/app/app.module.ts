@@ -39,6 +39,8 @@ import { HasRoleDirective } from './directives/hasRole.directive';
 import { UserManagementComponent } from './components/admin/user-management/user-management.component';
 import { AdminService } from './services/admin.service';
 import { RolesModalComponent } from './components/admin/roles-modal/roles-modal.component';
+import { CategoryManagementComponent } from './components/admin/category-management/category-management.component';
+import { CategoryAddNewComponent } from './components/admin/category-add-new/category-add-new.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -65,7 +67,9 @@ export function tokenGetter() {
     EventCardComponent,
     HasRoleDirective,
     UserManagementComponent,
-    RolesModalComponent
+    RolesModalComponent,
+    CategoryManagementComponent,
+    CategoryAddNewComponent
   ],
   imports: [
     BrowserModule,
