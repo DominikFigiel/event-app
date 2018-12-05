@@ -1,27 +1,54 @@
 <div class="container mt-5 mb-5">
-  <h2>Panel administracyjny</h2>
-  <div class="tab-panel">
-    <tabset class="user-tabset">
-      <tab heading="Uprawnienia">
-        <div class="container mt-2">
-          <app-user-management></app-user-management>
-        </div>
-      </tab>
-      <tab heading="Kategorie wydarzeń">
-        <div class="container mt-2">
-          <app-category-management></app-category-management>
-        </div>
-      </tab>
-      <tab heading="Obiekty">
-        <div class="container mt-2">
-          Obiekty
-        </div>
-      </tab>
-      <tab heading="Miasta">
-        <div class="container mt-2">
-          Miasta
-        </div>
-      </tab>
-    </tabset>
+  <div class="row mb-5">
+    <!-- <div class="col-6">
+      <h2>Panel administracyjny</h2>
+    </div> -->
+    <div class="col-4">
+      <button type="button" 
+      [ngClass]="{ 'btn-primary active-option border-primary': managementMode(), 'btn-outline-primary': !managementMode() }"
+      class="btn btn-lg btn-block option-button"
+      [routerLink]="['/admin/management']"
+      (click)="setManagementMode()">Zarządzanie</button>
+    </div>
+    <div class="col-4">
+      <button type="button" 
+      [ngClass]="{ 'btn-success active-option border-success': approvalMode(), 'btn-outline-success': !approvalMode() }"
+      class="btn btn-lg btn-block option-button"
+      [routerLink]="['/admin/approval']"
+      (click)="setApprovalMode()">Zatwierdzanie</button>
+    </div>
+    <div class="col-4">
+      <button type="button" 
+      [ngClass]="{ 'btn-info active-option border-info': promotionMode(), 'btn-outline-info': !promotionMode() }"
+      class="btn btn-lg btn-block option-button"
+      [routerLink]="['/admin/promotion']"
+      (click)="setPromotionMode()">Promowanie</button>
+    </div>
+  </div>
+  <div *ngIf="managementMode()">
+    <div class="tab-panel">
+      <tabset class="user-tabset">
+        <tab heading="Uprawnienia">
+          <div class="container mt-2">
+            <app-user-management></app-user-management>
+          </div>
+        </tab>
+        <tab heading="Kategorie wydarzeń">
+          <div class="container mt-2">
+            <app-category-management></app-category-management>
+          </div>
+        </tab>
+        <tab heading="Obiekty">
+          <div class="container mt-2">
+            Obiekty
+          </div>
+        </tab>
+        <tab heading="Miasta">
+          <div class="container mt-2">
+            Miasta
+          </div>
+        </tab>
+      </tabset>
+    </div>
   </div>
 </div>
