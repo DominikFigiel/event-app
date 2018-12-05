@@ -1,3 +1,5 @@
+import { CityManagementComponent } from './components/admin/city-management/city-management.component';
+import { VenueManagementComponent } from './components/admin/venue-management/venue-management.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
@@ -69,7 +71,9 @@ export function tokenGetter() {
     UserManagementComponent,
     RolesModalComponent,
     CategoryManagementComponent,
-    CategoryAddNewComponent
+    CategoryAddNewComponent,
+    VenueManagementComponent,
+    CityManagementComponent
   ],
   imports: [
     BrowserModule,
