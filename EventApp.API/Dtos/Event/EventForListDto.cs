@@ -14,5 +14,6 @@ namespace EventApp.API.Dtos.Event
         public DateTime Created { get; set; }
         public string PhotoURL { get; set; }
         public bool Approved { get; set; }
+        public Subcategory Subcategory { get; set; }
     }
 }

@@ -18,5 +18,7 @@ namespace EventApp.API.Models
         public ICollection<Image> Images { get; set; }
         public User User { get; set; }
         public int UserId { get; set; }
+        public Subcategory Subcategory { get; set; }
+        public int SubcategoryId { get; set; }
     }
 }

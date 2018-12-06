@@ -11,6 +11,8 @@ namespace EventApp.API.Data
         public DbSet<ZipCode> ZipCodes { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Venue> Venues { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Subcategory> Subcategories { get; set; } 
         public DbSet<Event> Events { get; set; }
         public DbSet<Status> Statuses { get; set; }
         public DbSet<Order> Orders { get; set; }

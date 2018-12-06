@@ -6,7 +6,8 @@
         "PhotoURL": "https://picsum.photos/600/600/?random",
         "Approved": true,
         "VenueId": 3,
-        "UserId": 1
+        "UserId": 1,
+        "SubcategoryId": 1
     },
     {
         "Name": "Balonowe Show czyli Funny Balls Show",
@@ -15,7 +16,8 @@
         "PhotoURL": "https://picsum.photos/601/601/?random",
         "Approved": true,
         "VenueId": 3,
-        "UserId": 1
+        "UserId": 1,
+        "SubcategoryId": 1
     },
     {
         "Name": "Dużo kobiet, bo aż trzy",
@@ -24,7 +26,8 @@
         "PhotoURL": "https://picsum.photos/602/602/?random",
         "Approved": true,
         "VenueId": 3,
-        "UserId": 2
+        "UserId": 2,
+        "SubcategoryId": 1
     },
     {
         "Name": "GAELFORCE DANCE",
@@ -33,6 +36,7 @@
         "PhotoURL": "https://picsum.photos/603/603/?random",
         "Approved": false,
         "VenueId": 2,
-        "UserId": 2
+        "UserId": 2,
+        "SubcategoryId": 1
     }
 ]

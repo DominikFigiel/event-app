@@ -26,6 +26,8 @@ namespace EventApp.API.Data.SeedData
             this.SeedZipCodes();
             this.SeedAddresses();
             this.SeedVenues();
+            this.SeedCategories();
+            this.SeedSubcategories();
             this.SeedEvents();
         }
 
@@ -50,9 +52,12 @@ namespace EventApp.API.Data.SeedData
         public void SeedUsers()
         {
             // run only if table is empty
-            if (_context.Users.Count() == 0) {
+            if (_context.Users.Count() == 0 && _context.Roles.FirstOrDefault(x => x.Name == "Klient") != null) {
                 var userData = System.IO.File.ReadAllText("Data/SeedData/UserSeedData.json");
                 var users = JsonConvert.DeserializeObject<List<UserForSeedDataDto>>(userData);
+                var role = _context.Roles.FirstOrDefault(x => x.Name == "Klient");
+                var roleAdmin = _context.Roles.FirstOrDefault(x => x.Name == "Administrator");
+                
                 foreach(var user in users)
                 {
                     byte[] passwordHash, passwordSalt;
@@ -67,10 +72,16 @@ namespace EventApp.API.Data.SeedData
 
                     _context.Users.Add(userToAdd);
 
-                    var role = _context.Roles.FirstOrDefault(x => x.Name == "Client");
                     var userRole = new UserRole { User = userToAdd, Role = role };
 
                     _context.UserRoles.AddAsync(userRole).Wait();
+
+                    // Role: Admin
+                    if(user.Username == "dominik" && _context.Roles.FirstOrDefault(x => x.Name == "Administrator") != null)
+                    {
+                        var userRoleAdmin = new UserRole { User = userToAdd, Role = roleAdmin };
+                        _context.UserRoles.AddAsync(userRoleAdmin).Wait();
+                    }
                 }
 
                 _context.SaveChanges();
@@ -131,6 +142,36 @@ namespace EventApp.API.Data.SeedData
                 foreach(var venue in objects)
                 {
                     _context.Venues.Add(venue);
+                }
+
+                _context.SaveChanges();
+            }
+        }
+
+        public void SeedCategories()
+        {
+            // run only if table is empty
+            if (_context.Categories.Count() == 0) {
+                var data = System.IO.File.ReadAllText("Data/SeedData/CategorySeedData.json");
+                var objects = JsonConvert.DeserializeObject<List<Category>>(data);
+                foreach(var category in objects)
+                {
+                    _context.Categories.Add(category);
+                }
+
+                _context.SaveChanges();
+            }
+        }
+
+        public void SeedSubcategories()
+        {
+            // run only if table is empty
+            if (_context.Subcategories.Count() == 0) {
+                var data = System.IO.File.ReadAllText("Data/SeedData/SubcategorySeedData.json");
+                var objects = JsonConvert.DeserializeObject<List<Subcategory>>(data);
+                foreach(var subcategory in objects)
+                {
+                    _context.Subcategories.Add(subcategory);
                 }
 
                 _context.SaveChanges();

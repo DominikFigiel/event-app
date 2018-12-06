@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EventApp.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20181123073914_New")]
+    [Migration("20181206114053_New")]
     partial class New
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -38,6 +38,18 @@ namespace EventApp.API.Migrations
                     b.HasIndex("ZipCodeId");
 
                     b.ToTable("Addresses");
+                });
+
+            modelBuilder.Entity("EventApp.API.Models.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("EventApp.API.Models.City", b =>
@@ -75,11 +87,15 @@ namespace EventApp.API.Migrations
 
                     b.Property<string>("PhotoURL");
 
+                    b.Property<int>("SubcategoryId");
+
                     b.Property<int>("UserId");
 
                     b.Property<int>("VenueId");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("SubcategoryId");
 
                     b.HasIndex("UserId");
 
@@ -148,6 +164,22 @@ namespace EventApp.API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Statuses");
+                });
+
+            modelBuilder.Entity("EventApp.API.Models.Subcategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("CategoryId");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.ToTable("Subcategories");
                 });
 
             modelBuilder.Entity("EventApp.API.Models.User", b =>
@@ -244,6 +276,11 @@ namespace EventApp.API.Migrations
 
             modelBuilder.Entity("EventApp.API.Models.Event", b =>
                 {
+                    b.HasOne("EventApp.API.Models.Subcategory", "Subcategory")
+                        .WithMany()
+                        .HasForeignKey("SubcategoryId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("EventApp.API.Models.User", "User")
                         .WithMany("Events")
                         .HasForeignKey("UserId")
@@ -273,6 +310,14 @@ namespace EventApp.API.Migrations
                     b.HasOne("EventApp.API.Models.User", "User")
                         .WithMany("Orders")
                         .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("EventApp.API.Models.Subcategory", b =>
+                {
+                    b.HasOne("EventApp.API.Models.Category", "Category")
+                        .WithMany("Subcategories")
+                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

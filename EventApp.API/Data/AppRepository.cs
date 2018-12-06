@@ -83,10 +83,10 @@ namespace EventApp.API.Data
 
         public async Task<Event> GetEvent(int id)
         {
-            var ev = await _context.Events.Include(e => e.Images).Include(e => e.Venue).FirstOrDefaultAsync(u => u.Id == id);
+            var ev = await _context.Events.Include(e => e.Images).Include(e => e.Venue).Include(e => e.Subcategory).ThenInclude(sc => sc.Category).FirstOrDefaultAsync(u => u.Id == id);
 
             return ev;
         }
- 
+        
     }
 }

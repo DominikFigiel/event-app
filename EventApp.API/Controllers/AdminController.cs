@@ -60,10 +60,9 @@ namespace EventApp.API.Controllers
                 if(check == null)
                 {
                     var ur = new UserRole { User = user, Role = r };
-                    _context.UserRoles.AddAsync(ur).Wait();
-                    _context.SaveChangesAsync().Wait();
+                    await _context.UserRoles.AddAsync(ur);
+                    await _context.SaveChangesAsync();
                     
-
                     // return Ok(selectedRoles);
                 }
                 
