@@ -1,0 +1,24 @@
+<div class="card text-center">
+  <div class="card-body">
+    <h3 class="card-title">{{category.name}}</h3>
+    <div>
+      <button type="button" class="btn btn-outline-secondary btn-block"
+      (click)="isCollapsed = !isCollapsed"
+      [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic">
+      Pokaż podkategorie
+      </button>
+    </div>
+
+    <div id="collapseBasic" [collapse]="isCollapsed">
+      <div class="list-group d-flex flex-row flex-wrap mt-3">
+        <a *ngFor="let subcategory of category?.subcategories" href="#" class="list-group-item col-lg-6 list-group-item-action">
+          {{subcategory.name}}
+        </a>
+      </div>
+    </div>
+
+  </div>
+  <div class="card-header">
+    <a href="#" class="btn btn-info btn-block">Wszystkie wydarzenia z tej kategorii</a>
+  </div>
+</div>

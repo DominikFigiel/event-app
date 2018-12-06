@@ -1,3 +1,8 @@
-<p>
-  event-category-list works!
-</p>
+<div class="container mt-5">  
+  <h2>Kategorie wydarzeń</h2>  
+  <div class="row mt-5">
+    <div *ngFor="let category of categories" class="col-lg-6 col-md-12 col-sm-12 mb-5">
+      <app-event-category-card [category]="category"></app-event-category-card>
+    </div>
+  </div>
+</div>

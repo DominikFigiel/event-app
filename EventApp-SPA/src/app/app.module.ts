@@ -1,10 +1,12 @@
+import { EventCategoryCardComponent } from './components/events/event-category-card/event-category-card.component';
 import { CityManagementComponent } from './components/admin/city-management/city-management.component';
 import { VenueManagementComponent } from './components/admin/venue-management/venue-management.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { BsDropdownModule, TabsModule, BsDatepickerModule, PaginationModule, ButtonsModule, ModalModule } from 'ngx-bootstrap';
+import { BsDropdownModule, TabsModule, BsDatepickerModule, PaginationModule,
+  ButtonsModule, ModalModule, CollapseModule } from 'ngx-bootstrap';
 import { RouterModule } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
 
@@ -61,6 +63,7 @@ export function tokenGetter() {
     EventDetailComponent,
     EventListComponent,
     EventCategoryComponent,
+    EventCategoryCardComponent,
     EventCategoryListComponent,
     UploadTestComponent,
     UserListComponent,
@@ -87,6 +90,7 @@ export function tokenGetter() {
     ButtonsModule.forRoot(),
     RouterModule.forRoot(appRoutes),
     ModalModule.forRoot(),
+    CollapseModule.forRoot(),
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
