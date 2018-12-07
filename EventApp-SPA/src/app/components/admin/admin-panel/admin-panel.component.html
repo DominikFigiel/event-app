@@ -3,21 +3,21 @@
     <!-- <div class="col-6">
       <h2>Panel administracyjny</h2>
     </div> -->
-    <div class="col-4">
+    <div class="col-12 col-lg-4 mb-2 mb-lg-0">
       <button type="button" 
       [ngClass]="{ 'btn-primary active-option border-primary': managementMode(), 'btn-outline-primary': !managementMode() }"
       class="btn btn-lg btn-block option-button"
       [routerLink]="['/admin/management']"
       (click)="setManagementMode()">Zarządzanie</button>
     </div>
-    <div class="col-4">
+    <div class="col-12 col-lg-4 mb-2 mb-lg-0">
       <button type="button" 
       [ngClass]="{ 'btn-success active-option border-success': approvalMode(), 'btn-outline-success': !approvalMode() }"
       class="btn btn-lg btn-block option-button"
       [routerLink]="['/admin/approval']"
       (click)="setApprovalMode()">Zatwierdzanie</button>
     </div>
-    <div class="col-4">
+    <div class="col-12 col-lg-4 mb-2 mb-lg-0">
       <button type="button" 
       [ngClass]="{ 'btn-info active-option border-info': promotionMode(), 'btn-outline-info': !promotionMode() }"
       class="btn btn-lg btn-block option-button"

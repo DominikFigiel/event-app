@@ -6,20 +6,26 @@ using EventApp.API.Data;
 using EventApp.API.Models;
 using EventApp.API.Dtos;
 using EventApp.API.Dtos.Role;
+using Microsoft.AspNetCore.Authorization;
+using EventApp.API.Dtos.Category;
+using AutoMapper;
 
 namespace EventApp.API.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class AdminController : ControllerBase
     {
         private readonly DataContext _context;
-        public IAppRepository _repo { get; }
+        public readonly IAppRepository _repo;
+        private readonly IMapper _mapper;
 
-        public AdminController(DataContext context, IAppRepository repo)
+        public AdminController(DataContext context, IAppRepository repo, IMapper mapper)
         {
             _context = context;
             _repo = repo;
+            _mapper = mapper;
         }
 
         [HttpGet("usersWithRoles")]
@@ -87,6 +93,19 @@ namespace EventApp.API.Controllers
 
             return Ok(selectedRoles);
             //return BadRequest("User already has that roles.");
+        }
+
+        [HttpPut("editCategory/{id}")]
+        public async Task<IActionResult> EditCategory(int id, CategoryForUpdateDto catForUpdateDto)
+        {
+            var category = _repo.GetCategory(id);
+
+            _mapper.Map(catForUpdateDto, category);
+
+            if(await _repo.SaveAll())
+                return NoContent();
+
+            throw new System.Exception($"Updating user {id} failed on save");
         }
 
     }

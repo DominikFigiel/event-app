@@ -87,6 +87,13 @@ namespace EventApp.API.Data
 
             return ev;
         }
+
+        public Category GetCategory(int id)
+        {
+            var category = _context.Categories.FirstOrDefault(u => u.Id == id);
+
+            return category;
+        }
         
     }
 }

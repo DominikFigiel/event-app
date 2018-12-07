@@ -16,5 +16,6 @@ namespace EventApp.API.Data
         List<Role> GetUserRoles(int userId);
         Task<PagedList<Event>> GetEvents(EventParams eventParams);
         Task<Event> GetEvent(int id);
+        Category GetCategory(int id);
     }
 }

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../models/user';
+import { Category } from '../models/category';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,10 @@ export class AdminService {
 
   updateUserRoles(user: User, roles: {}) {
     return this.http.post(this.baseUrl + 'admin/editRoles/' + user.username, roles);
+  }
+
+  updateCategory(id: number, category: Category) {
+    return this.http.put(this.baseUrl + 'admin/editCategory/' + category.id, category);
   }
 
 }

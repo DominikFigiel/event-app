@@ -1,3 +1,5 @@
+import { CategoryEditModalComponent } from './components/admin/category-edit-modal/category-edit-modal.component';
+import { CategoryListComponent } from './components/admin/category-list/category-list.component';
 import { EventCategoryCardComponent } from './components/events/event-category-card/event-category-card.component';
 import { CityManagementComponent } from './components/admin/city-management/city-management.component';
 import { VenueManagementComponent } from './components/admin/venue-management/venue-management.component';
@@ -73,8 +75,10 @@ export function tokenGetter() {
     HasRoleDirective,
     UserManagementComponent,
     RolesModalComponent,
+    CategoryEditModalComponent,
     CategoryManagementComponent,
     CategoryAddNewComponent,
+    CategoryListComponent,
     VenueManagementComponent,
     CityManagementComponent
   ],
@@ -114,7 +118,8 @@ export function tokenGetter() {
     AdminService
   ],
   entryComponents: [
-     RolesModalComponent
+     RolesModalComponent,
+     CategoryEditModalComponent
   ],
   bootstrap: [AppComponent]
 })

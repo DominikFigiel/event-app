@@ -13,7 +13,7 @@ export class UserManagementComponent implements OnInit {
   users: User[];
   bsModalRef: BsModalRef;
 
-  constructor(private adminSerivce: AdminService,
+  constructor(private adminService: AdminService,
     private modalService: BsModalService) { }
 
   ngOnInit() {
@@ -21,7 +21,7 @@ export class UserManagementComponent implements OnInit {
   }
 
   getUsersWithRoles() {
-    this.adminSerivce.getUsersWithRoles().subscribe((users: User[]) => {
+    this.adminService.getUsersWithRoles().subscribe((users: User[]) => {
       this.users = users;
     }, error => {
       console.log(error);
@@ -39,7 +39,7 @@ export class UserManagementComponent implements OnInit {
         roleNames: [...values.filter(el => el.checked === true).map(el => el.name)]
       };
       if (rolesToUpdate) {
-        this.adminSerivce.updateUserRoles(user, rolesToUpdate).subscribe(() => {
+        this.adminService.updateUserRoles(user, rolesToUpdate).subscribe(() => {
           user.roles = [...rolesToUpdate.roleNames];
         }, error => {
           console.log(error);

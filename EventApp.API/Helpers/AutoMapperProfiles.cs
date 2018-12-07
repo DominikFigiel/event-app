@@ -1,5 +1,6 @@
 using System.Linq;
 using AutoMapper;
+using EventApp.API.Dtos.Category;
 using EventApp.API.Dtos.Event;
 using EventApp.API.Dtos.Image;
 using EventApp.API.Dtos.User;
@@ -22,6 +23,7 @@ namespace EventApp.API.Helpers
             CreateMap<Image, ImagesForDetailedDto>();
             CreateMap<Event, EventForListDto>();
             CreateMap<Event, EventForDetailedDto>();
+            CreateMap<CategoryForUpdateDto, Category>();
         }
     }
 }
