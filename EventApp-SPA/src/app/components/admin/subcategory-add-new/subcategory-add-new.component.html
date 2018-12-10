@@ -8,7 +8,7 @@
 
     <select class="form-control" name="categoryId" 
     formControlName="categoryId">
-      <option *ngFor="let category of categories" [ngValue]="category" [selected]="category">
+      <option *ngFor="let category of categories" [ngValue]="category.id" [selected]="category.id">
         {{category.name}}
       </option>
     </select>
@@ -18,11 +18,11 @@
     <label for="name">Kategoria</label>
     <input type="text" 
     [ngClass]="{'is-invalid': addForm.get('name').errors && addForm.get('name').touched}" 
-    class="form-control" formControlName="name" placeholder="Nazwa kategorii">
+    class="form-control" formControlName="name" placeholder="Nazwa podkategorii">
     <div class="invalid-feedback">Nazwa podkategorii jest wymagana.</div>
   </div>
 
   <div class="form-group text-center">
-    <button class="btn btn-success mr-2" [disabled]="!addForm.valid" type="submit">Zapisz kategorię</button>
+    <button class="btn btn-success mr-2" [disabled]="!addForm.valid" type="submit">Zapisz podkategorię</button>
   </div>
 </form>

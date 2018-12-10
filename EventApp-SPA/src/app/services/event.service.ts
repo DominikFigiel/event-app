@@ -54,6 +54,10 @@ export class EventService {
     return this.http.get<Category[]>(this.baseUrl + 'categories/');
   }
 
+  getCategoriesLength(): Observable<number> {
+    return this.http.get<number>(this.baseUrl + 'categories/counter');
+  }
+
   getCategory(id): Observable<Category> {
     return this.http.get<Category>(this.baseUrl + 'categories/' + id);
   }

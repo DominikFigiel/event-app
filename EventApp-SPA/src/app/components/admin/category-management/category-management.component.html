@@ -24,7 +24,7 @@
     </tab>
     <tab heading="Dodaj podkategorię" (select)="onSelectAddNewSubcat($event)">
       <div class="container mt-5 mb-5">
-        <app-subcategory-add-new></app-subcategory-add-new>
+        <app-subcategory-add-new [reloadCategoriesForSelect]="reloadCategoriesForSelect"></app-subcategory-add-new>
       </div>
     </tab>
   </tabset>

@@ -1,27 +1,50 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges, Input } from '@angular/core';
 import { Subcategory } from 'src/app/models/subcategory';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AdminService } from 'src/app/services/admin.service';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { Category } from 'src/app/models/category';
 import { EventService } from 'src/app/services/event.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-subcategory-add-new',
   templateUrl: './subcategory-add-new.component.html',
   styleUrls: ['./subcategory-add-new.component.css']
 })
-export class SubcategoryAddNewComponent implements OnInit {
+export class SubcategoryAddNewComponent implements OnInit, OnChanges {
+  @Input() reloadCategoriesForSelect: any;
   categories: Category[];
+  categoriesLength: number;
   subcategory: Subcategory;
   addForm: FormGroup;
   constructor(private adminService: AdminService, private eventService: EventService,
-    private alertify: AlertifyService, private fb: FormBuilder) { }
+    private alertify: AlertifyService, private fb: FormBuilder, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.createAddForm();
+    this.reloadCategoriesForSelect = false;
+    this.loadCategoriesLength();
     this.loadCategories();
-    this.addForm.controls['categoryId'].setValue(1, {onlySelf: true});
+    this.createAddForm();
+    this.addForm.controls['categoryId'].setValue(this.categories[(this.categories.length - 1)].id, {onlySelf: true});
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    this.loadCategoriesLength();
+    this.eventService.getCategories().subscribe((categories: Category[]) => {
+      this.categories = categories;
+      this.addForm.controls['categoryId'].setValue(this.categories[(this.categories.length - 1)].id, {onlySelf: true});
+    }, error => {
+      this.alertify.error(error);
+    });
+  }
+
+  loadCategoriesLength() {
+    this.eventService.getCategoriesLength().subscribe((number: number) => {
+        this.categoriesLength = number - 1;
+      }, error => {
+        this.alertify.error(error);
+      });
   }
 
   createAddForm() {
@@ -32,11 +55,15 @@ export class SubcategoryAddNewComponent implements OnInit {
   }
 
   loadCategories() {
-    this.eventService.getCategories().subscribe((categories: Category[]) => {
-      this.categories = categories;
-    }, error => {
-      this.alertify.error(error);
+    this.route.data.subscribe(data => {
+      this.categories = data['categories'];
     });
+
+    // this.eventService.getCategories().subscribe((categories: Category[]) => {
+    //   this.categories = categories;
+    // }, error => {
+    //   this.alertify.error(error);
+    // });
   }
 
   addNewSubcategory() {
@@ -44,7 +71,7 @@ export class SubcategoryAddNewComponent implements OnInit {
       this.subcategory = Object.assign({}, this.addForm.value);
       this.adminService.addSubcategory(this.subcategory).subscribe(() => {
         this.alertify.success('Podkategoria została zapisana w bazie.');
-        this.addForm.reset();
+        this.addForm.controls['name'].reset();
       }, error => {
         this.showErrorNotificationsFromRequest(error);
       });

@@ -9,12 +9,14 @@ import { TabDirective } from 'ngx-bootstrap/tabs';
 export class CategoryManagementComponent implements OnInit {
   reloadCategories: boolean;
   reloadSubcategories: boolean;
+  reloadCategoriesForSelect: boolean;
 
   constructor() { }
 
   ngOnInit() {
     this.reloadCategories = false;
     this.reloadSubcategories = false;
+    this.reloadCategoriesForSelect = false;
   }
 
   onSelectCatList(data: TabDirective): void {
@@ -23,6 +25,7 @@ export class CategoryManagementComponent implements OnInit {
 
   onSelectAddNewCat(data: TabDirective): void {
     this.reloadCategories = false;
+    this.reloadCategoriesForSelect = true;
   }
 
   onSelectSubcatList(data: TabDirective): void {
@@ -31,5 +34,6 @@ export class CategoryManagementComponent implements OnInit {
 
   onSelectAddNewSubcat(data: TabDirective): void {
     this.reloadSubcategories = false;
+    this.reloadCategoriesForSelect = false;
   }
 }

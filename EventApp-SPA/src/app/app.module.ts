@@ -49,6 +49,7 @@ import { CategoryEditModalComponent } from './components/admin/category-edit-mod
 import { CategoryListComponent } from './components/admin/category-list/category-list.component';
 import { SubcategoryListComponent } from './components/admin/subcategory-list/subcategory-list.component';
 import { SubcategoryAddNewComponent } from './components/admin/subcategory-add-new/subcategory-add-new.component';
+import { CategoryListResolver } from './resolvers/category-list.resolver';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -119,7 +120,8 @@ export function tokenGetter() {
     UserEditResolver,
     EventListResolver,
     EventDetailResolver,
-    AdminService
+    AdminService,
+    CategoryListResolver
   ],
   entryComponents: [
      RolesModalComponent,

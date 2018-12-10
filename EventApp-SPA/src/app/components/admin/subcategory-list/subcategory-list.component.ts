@@ -14,6 +14,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class SubcategoryListComponent implements OnInit, OnChanges {
   @Input() reloadSubcategories: any;
+  @Input() reloadCategories: any;
   categoryId: number;
   categories: Category[];
   subcategories: Subcategory[];
@@ -28,6 +29,7 @@ export class SubcategoryListComponent implements OnInit, OnChanges {
     this.loadCategories();
     this.loadSubcategories();
     this.reloadSubcategories = false;
+    this.reloadCategories = false;
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -57,12 +59,12 @@ export class SubcategoryListComponent implements OnInit, OnChanges {
   }
 
   deleteSubcategoryOnConfirm(subcategoryId: number) {
-    this.alertify.confirm('Usuwanie kategorii', 'Chcesz usunąć tę kategorię?', () => this.deleteSubcategory(subcategoryId));
+    this.alertify.confirm('Usuwanie podkategorii', 'Chcesz usunąć tę podkategorię?', () => this.deleteSubcategory(subcategoryId));
   }
 
   deleteSubcategory(subcategoryId: number) {
     this.adminService.deleteSubcategory(subcategoryId).subscribe(next => {
-      this.alertify.message('Kategoria została usunięta.');
+      this.alertify.message('Podategoria została usunięta.');
       this.loadSubcategories();
     }, error => {
       this.alertify.error('Wystąpił błąd. Zmiany nie zostały zapisane.');

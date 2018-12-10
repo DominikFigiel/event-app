@@ -36,6 +36,15 @@ namespace EventApp.API.Controllers
             return categories;
         }
 
+        [AllowAnonymous]
+        [HttpGet("counter")]
+        public async Task<int> GetCategoriesCount()
+        {
+            var categoriesCount = await _context.Categories.CountAsync();
+
+            return categoriesCount;
+        }
+
         // GET api/categories/5
         [AllowAnonymous]
         [HttpGet("{id}")]

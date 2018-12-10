@@ -18,6 +18,7 @@ import { UserEditComponent } from './components/users/user-edit/user-edit.compon
 import { UserEditResolver } from './resolvers/user-edit.resolver';
 import { PreventUnsavedChanges } from './guards/prevent-unsaved-changes';
 import { EventListResolver } from './resolvers/event-list.resolver';
+import { CategoryListResolver } from './resolvers/category-list.resolver';
 
 export const appRoutes: Routes = [
     { path: '', component: HomeComponent},
@@ -41,7 +42,8 @@ export const appRoutes: Routes = [
             { path: 'users/:id', component: UserDetailComponent, resolve: {user: UserDetailResolver}},
             { path: 'user/edit', component: UserEditComponent,
                 resolve: {user: UserEditResolver}, canDeactivate: [PreventUnsavedChanges]},
-            { path: 'admin', component: AdminPanelComponent, data: {roles: ['Administrator']}},
+            { path: 'admin', component: AdminPanelComponent, data: {roles: ['Administrator']},
+                resolve: {categories: CategoryListResolver} },
             { path: 'admin/:option', component: AdminPanelComponent, data: {roles: ['Administrator']}}
 
         ]
