@@ -110,6 +110,22 @@ namespace EventApp.API.Data
 
             return false;
         }
+
+        public async Task<Subcategory> AddSubcategoryAsync(Subcategory subcategory)
+        {
+            await _context.Subcategories.AddAsync(subcategory);
+            await _context.SaveChangesAsync();
+
+            return subcategory;
+        }
+
+        public async Task<bool> SubcategoryExists(string name)
+        {
+            if(await _context.Subcategories.AnyAsync(x => x.Name == name))
+                return true;
+
+            return false;
+        }
         
     }
 }

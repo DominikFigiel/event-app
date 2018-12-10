@@ -3,6 +3,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../models/user';
 import { Category } from '../models/category';
+import { Subcategory } from '../models/subcategory';
 
 @Injectable({
   providedIn: 'root'
@@ -32,5 +33,12 @@ export class AdminService {
     return this.http.put(this.baseUrl + 'admin/editCategory/' + category.id, category);
   }
 
+  addSubcategory(subcategory: Subcategory) {
+    return this.http.post(this.baseUrl + 'admin/addSubcategory', subcategory);
+  }
+
+  deleteSubcategory(id: number) {
+    return this.http.delete(this.baseUrl + 'admin/deleteSubcategory/' + id);
+  }
 
 }

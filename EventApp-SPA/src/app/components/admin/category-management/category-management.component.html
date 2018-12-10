@@ -8,7 +8,7 @@
         <app-category-list [reloadCategories]="reloadCategories"></app-category-list>
       </div>
     </tab>
-    <tab heading="Dodaj nową kategorię" (select)="onSelectAddNewCat($event)">
+    <tab heading="Dodaj kategorię" (select)="onSelectAddNewCat($event)">
       <div class="container mt-3 mb-5">
         <div class="row justify-content-center">
           <div class="col-8 mt-3">
@@ -17,9 +17,14 @@
         </div>
       </div>
     </tab>
-    <tab heading="Lista podkategorii">
+    <tab heading="Lista podkategorii" (select)="onSelectSubcatList($event)">
       <div class="container mt-5 mb-5">
-        <app-subcategory-list></app-subcategory-list>
+        <app-subcategory-list [reloadSubcategories]="reloadSubcategories"></app-subcategory-list>
+      </div>
+    </tab>
+    <tab heading="Dodaj podkategorię" (select)="onSelectAddNewSubcat($event)">
+      <div class="container mt-5 mb-5">
+        <app-subcategory-add-new></app-subcategory-add-new>
       </div>
     </tab>
   </tabset>

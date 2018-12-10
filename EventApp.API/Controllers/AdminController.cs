@@ -143,5 +143,40 @@ namespace EventApp.API.Controllers
             throw new System.Exception($"Updating user {id} failed on save");
         }
 
+        [HttpPost("addSubcategory")]
+        public async Task<IActionResult> AddSubcategory(SubcategoryForAddDto subcategoryForAddDto)
+        {
+
+            if(await _repo.SubcategoryExists(subcategoryForAddDto.Name))
+                return BadRequest("Podkategoria o takiej nazwie już istnieje.");
+
+            var subcategoryToCreate = _mapper.Map<Subcategory>(subcategoryForAddDto);
+
+            var createdSubcategory = await _repo.AddSubcategoryAsync(subcategoryToCreate);
+
+            return NoContent();
+        }
+
+        [HttpDelete("deleteSubcategory/{id}")]
+        public async Task<IActionResult> DeleteSubcategory(int? id)
+        {
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var subcategory = await _context.Subcategories
+                .FirstOrDefaultAsync(sc => sc.Id == id);
+            if (subcategory == null)
+            {
+                return NotFound();
+            } else {
+                _context.Subcategories.Remove(subcategory);
+                await _context.SaveChangesAsync();
+                return NoContent();
+            }
+        }
+
     }
 }

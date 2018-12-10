@@ -1,5 +1,5 @@
 import { Subcategory } from './../../../models/subcategory';
-import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges, Input } from '@angular/core';
 import { EventService } from 'src/app/services/event.service';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap';
@@ -12,7 +12,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   templateUrl: './subcategory-list.component.html',
   styleUrls: ['./subcategory-list.component.css']
 })
-export class SubcategoryListComponent implements OnInit {
+export class SubcategoryListComponent implements OnInit, OnChanges {
+  @Input() reloadSubcategories: any;
   categoryId: number;
   categories: Category[];
   subcategories: Subcategory[];
@@ -26,10 +27,16 @@ export class SubcategoryListComponent implements OnInit {
     this.categoryId = 1;
     this.loadCategories();
     this.loadSubcategories();
+    this.reloadSubcategories = false;
   }
 
-  test() {
-    console.log('test, categoryId: ' + this.categoryId);
+  ngOnChanges(changes: SimpleChanges) {
+    this.loadCategories();
+    this.categoryId = 1;
+    this.loadSubcategories();
+  }
+
+  onCategoryChange() {
     this.loadSubcategories();
   }
 
@@ -42,7 +49,6 @@ export class SubcategoryListComponent implements OnInit {
   }
 
   loadSubcategories() {
-    console.log('eeee');
     this.eventService.getSubcategories(this.categoryId).subscribe((subcategories: Subcategory[]) => {
       this.subcategories = subcategories;
     }, error => {
@@ -55,7 +61,7 @@ export class SubcategoryListComponent implements OnInit {
   }
 
   deleteSubcategory(subcategoryId: number) {
-    this.adminService.deleteCategory(subcategoryId).subscribe(next => {
+    this.adminService.deleteSubcategory(subcategoryId).subscribe(next => {
       this.alertify.message('Kategoria została usunięta.');
       this.loadSubcategories();
     }, error => {
