@@ -13,7 +13,7 @@ export class AlertifyService {
       if (e) {
         okCallback();
       } else {}
-    }).set('title', title).set('labels', {ok: 'Potwierdź', cancel: 'Anuluj'});
+    }).set('title', title).set('labels', {ok: 'Potwierdź', cancel: 'Anuluj'}).set({transition: 'fade'});
   }
 
   success(message: string) {

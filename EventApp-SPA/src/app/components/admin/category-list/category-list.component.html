@@ -16,7 +16,7 @@
             <td>{{category.name}}</td>
             <td class="text-xs-right">
               <button class="btn btn-info mr-2" (click)="editCategory(category)">Edytuj</button>
-              <button class="btn btn-danger">Usuń</button></td>
+              <button class="btn btn-danger" (click)="deleteCategoryOnConfirm(category.id)">Usuń</button></td>
           </tr>
         </tbody>
       </table> 

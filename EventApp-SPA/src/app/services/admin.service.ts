@@ -24,8 +24,13 @@ export class AdminService {
     return this.http.post(this.baseUrl + 'admin/addCategory', category);
   }
 
-  updateCategory(id: number, category: Category) {
+  deleteCategory(id: number) {
+    return this.http.delete(this.baseUrl + 'admin/deleteCategory/' + id);
+  }
+
+  updateCategory(category: Category) {
     return this.http.put(this.baseUrl + 'admin/editCategory/' + category.id, category);
   }
+
 
 }

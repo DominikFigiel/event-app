@@ -46,6 +46,15 @@ namespace EventApp.API.Controllers
             return Ok(category);
         }
 
+        [AllowAnonymous]
+        [HttpGet("{id}/subcategories")]
+        public async Task<IEnumerable<Subcategory>> GetSubcategories(int id)
+        {
+            var subcategories = await _context.Subcategories.Where(s => s.CategoryId == id).ToListAsync();
+
+            return subcategories;
+        }
+
         // POST api/categories
         [HttpPost]
         public void Post([FromBody] string value)

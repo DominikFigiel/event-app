@@ -109,6 +109,27 @@ namespace EventApp.API.Controllers
             return NoContent();
         }
 
+        [HttpDelete("deleteCategory/{id}")]
+        public async Task<IActionResult> DeleteCategory(int? id)
+        {
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var category = await _context.Categories
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (category == null)
+            {
+                return NotFound();
+            } else {
+                _context.Categories.Remove(category);
+                await _context.SaveChangesAsync();
+                return NoContent();
+            }
+        }
+
         [HttpPut("editCategory/{id}")]
         public async Task<IActionResult> EditCategory(int id, CategoryForUpdateDto catForUpdateDto)
         {

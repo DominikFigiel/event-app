@@ -6,6 +6,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Event } from '../models/event';
 import { Category } from '../models/category';
+import { Subcategory } from '../models/subcategory';
 
 @Injectable({
   providedIn: 'root'
@@ -55,6 +56,10 @@ export class EventService {
 
   getCategory(id): Observable<Category> {
     return this.http.get<Category>(this.baseUrl + 'categories/' + id);
+  }
+
+  getSubcategories(id): Observable<Subcategory[]> {
+    return this.http.get<Subcategory[]>(this.baseUrl + 'categories/' + id + '/subcategories');
   }
 
 }

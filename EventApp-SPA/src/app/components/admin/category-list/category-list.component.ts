@@ -46,12 +46,25 @@ export class CategoryListComponent implements OnInit, OnChanges {
       const newCategoryName = categoryName;
       if (newCategoryName && newCategoryName !== '' && newCategoryName !== category.name) {
         category.name = categoryName;
-        this.adminService.updateCategory(category.id, category).subscribe(next => {
+        this.adminService.updateCategory(category).subscribe(next => {
           this.alertify.success('Zmiany zostały zapisane.');
         }, error => {
           this.alertify.error('Wystąpił błąd. Zmiany nie zostały zapisane.');
         });
       }
+    });
+  }
+
+  deleteCategoryOnConfirm(categoryId: number) {
+    this.alertify.confirm('Usuwanie kategorii', 'Chcesz usunąć tę kategorię?', () => this.deleteCategory(categoryId));
+  }
+
+  deleteCategory(categoryId: number) {
+    this.adminService.deleteCategory(categoryId).subscribe(next => {
+      this.alertify.message('Kategoria została usunięta.');
+      this.loadCategories();
+    }, error => {
+      this.alertify.error('Wystąpił błąd. Zmiany nie zostały zapisane.');
     });
   }
 

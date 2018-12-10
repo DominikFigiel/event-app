@@ -1,8 +1,3 @@
-import { CategoryEditModalComponent } from './components/admin/category-edit-modal/category-edit-modal.component';
-import { CategoryListComponent } from './components/admin/category-list/category-list.component';
-import { EventCategoryCardComponent } from './components/events/event-category-card/event-category-card.component';
-import { CityManagementComponent } from './components/admin/city-management/city-management.component';
-import { VenueManagementComponent } from './components/admin/venue-management/venue-management.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
@@ -45,8 +40,14 @@ import { HasRoleDirective } from './directives/hasRole.directive';
 import { UserManagementComponent } from './components/admin/user-management/user-management.component';
 import { AdminService } from './services/admin.service';
 import { RolesModalComponent } from './components/admin/roles-modal/roles-modal.component';
+import { CityManagementComponent } from './components/admin/city-management/city-management.component';
+import { VenueManagementComponent } from './components/admin/venue-management/venue-management.component';
+import { EventCategoryCardComponent } from './components/events/event-category-card/event-category-card.component';
 import { CategoryManagementComponent } from './components/admin/category-management/category-management.component';
 import { CategoryAddNewComponent } from './components/admin/category-add-new/category-add-new.component';
+import { CategoryEditModalComponent } from './components/admin/category-edit-modal/category-edit-modal.component';
+import { CategoryListComponent } from './components/admin/category-list/category-list.component';
+import { SubcategoryListComponent } from './components/admin/subcategory-list/subcategory-list.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -79,6 +80,7 @@ export function tokenGetter() {
     CategoryManagementComponent,
     CategoryAddNewComponent,
     CategoryListComponent,
+    SubcategoryListComponent,
     VenueManagementComponent,
     CityManagementComponent
   ],
