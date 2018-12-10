@@ -1,5 +1,5 @@
 import { AdminService } from './../../../services/admin.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Category } from 'src/app/models/category';
 import { EventService } from 'src/app/services/event.service';
 import { AlertifyService } from 'src/app/services/alertify.service';
@@ -11,7 +11,8 @@ import { CategoryEditModalComponent } from '../category-edit-modal/category-edit
   templateUrl: './category-list.component.html',
   styleUrls: ['./category-list.component.css']
 })
-export class CategoryListComponent implements OnInit {
+export class CategoryListComponent implements OnInit, OnChanges {
+  @Input() reloadCategories: any;
   categories: Category[];
   bsModalRef: BsModalRef;
 
@@ -20,6 +21,11 @@ export class CategoryListComponent implements OnInit {
 
 
   ngOnInit() {
+    this.loadCategories();
+    this.reloadCategories = false;
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
     this.loadCategories();
   }
 

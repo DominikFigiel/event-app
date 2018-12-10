@@ -17,5 +17,7 @@ namespace EventApp.API.Data
         Task<PagedList<Event>> GetEvents(EventParams eventParams);
         Task<Event> GetEvent(int id);
         Category GetCategory(int id);
+        Task<Category> AddCategoryAsync(Category category);
+        Task<bool> CategoryExists(string name);
     }
 }

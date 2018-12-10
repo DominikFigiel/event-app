@@ -94,6 +94,22 @@ namespace EventApp.API.Data
 
             return category;
         }
+
+        public async Task<Category> AddCategoryAsync(Category category)
+        {
+            await _context.Categories.AddAsync(category);
+            await _context.SaveChangesAsync();
+
+            return category;
+        }
+
+        public async Task<bool> CategoryExists(string name)
+        {
+            if(await _context.Categories.AnyAsync(x => x.Name == name))
+                return true;
+
+            return false;
+        }
         
     }
 }

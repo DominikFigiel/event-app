@@ -1,27 +1,19 @@
-<!-- <form class="mt-5">
+<form [formGroup]="addForm" (ngSubmit)="addNewCategory()">
 
-    <h2 class="text-center text-primary">Dodawanie nowej kategorii</h2>
-  
-    <hr>
-    <div class="form-group">
-      <input type="text" 
-      [ngClass]="{'is-invalid': registerForm.get('username').errors && registerForm.get('username').touched}" 
-      class="form-control" formControlName="username" placeholder="Nazwa kategorii">
-      <div class="invalid-feedback">Login jest wymagany. Musi zawierać od 4 do 40 znaków.</div>
-    </div>
+  <h2 class="text-center text-primary">Dodawanie nowej kategorii</h2>
 
-    <div class="form-group">
-      <input type="email" 
-      [ngClass]="{'is-invalid': registerForm.get('email').errors && registerForm.get('email').touched}" 
-      class="form-control" formControlName="email" placeholder="Logo kategorii">
-      <div class="invalid-feedback">Wpisany email jest nieprawidłowy.</div>
-    </div>
-  
-    <div class="form-group text-center">
-      <button class="btn btn-success mr-2" [disabled]="!registerForm.valid" type="submit">Dodaj kategorię</button>
-      <button class="btn btn-default" type="button">Anuluj</button>
-    </div>
-  </form> -->
+  <hr>
+  <div class="form-group">
+    <input type="text" 
+    [ngClass]="{'is-invalid': addForm.get('name').errors && addForm.get('name').touched}" 
+    class="form-control" formControlName="name" placeholder="Nazwa kategorii">
+    <div class="invalid-feedback">Nazwa kategorii jest wymagana.</div>
+  </div>
 
-  <!-- <p>Form value: {{registerForm.value | json}}</p> -->
-  <!-- <p>Form value: {{registerForm.status | json}}</p> -->
+  <div class="form-group text-center">
+    <button class="btn btn-success mr-2" [disabled]="!addForm.valid" type="submit">Zapisz kategorię</button>
+  </div>
+</form>
+
+<!-- <p>Form value: {{addForm.value | json}}</p>
+<p>Form value: {{addForm.status | json}}</p> -->

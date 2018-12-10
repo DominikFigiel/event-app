@@ -3,14 +3,18 @@
 </div>
 <div class="container mt-3 mb-5">
   <tabset [justified]="true">
-    <tab heading="Lista kategorii">
+    <tab heading="Lista kategorii" (select)="onSelectCatList($event)">
         <div class="container mt-5 mb-5">
-          <app-category-list></app-category-list>
+          <app-category-list [reloadCategories]="reloadCategories"></app-category-list>
         </div>
     </tab>
-    <tab heading="Dodaj nową kategorię">
+    <tab heading="Dodaj nową kategorię" (select)="onSelectAddNewCat($event)">
       <div class="container mt-3 mb-5">
-        <app-category-add-new></app-category-add-new>
+        <div class="row justify-content-center">
+          <div class="col-8">
+            <app-category-add-new></app-category-add-new>
+          </div>
+        </div>
       </div>
     </tab>
   </tabset>

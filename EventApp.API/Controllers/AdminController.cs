@@ -95,6 +95,20 @@ namespace EventApp.API.Controllers
             //return BadRequest("User already has that roles.");
         }
 
+        [HttpPost("addCategory")]
+        public async Task<IActionResult> AddCategory(CategoryForAddDto categoryForAddDto)
+        {
+
+            if(await _repo.CategoryExists(categoryForAddDto.Name))
+                return BadRequest("Kategoria o takiej nazwie już istnieje.");
+
+            var categoryToCreate = _mapper.Map<Category>(categoryForAddDto);
+
+            var createdCategory = await _repo.AddCategoryAsync(categoryToCreate);
+
+            return NoContent();
+        }
+
         [HttpPut("editCategory/{id}")]
         public async Task<IActionResult> EditCategory(int id, CategoryForUpdateDto catForUpdateDto)
         {

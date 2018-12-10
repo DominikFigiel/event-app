@@ -20,6 +20,10 @@ export class AdminService {
     return this.http.post(this.baseUrl + 'admin/editRoles/' + user.username, roles);
   }
 
+  addCategory(category: Category) {
+    return this.http.post(this.baseUrl + 'admin/addCategory', category);
+  }
+
   updateCategory(id: number, category: Category) {
     return this.http.put(this.baseUrl + 'admin/editCategory/' + category.id, category);
   }

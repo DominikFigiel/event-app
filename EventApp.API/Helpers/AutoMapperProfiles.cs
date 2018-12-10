@@ -23,6 +23,7 @@ namespace EventApp.API.Helpers
             CreateMap<Image, ImagesForDetailedDto>();
             CreateMap<Event, EventForListDto>();
             CreateMap<Event, EventForDetailedDto>();
+            CreateMap<CategoryForAddDto, Category>();
             CreateMap<CategoryForUpdateDto, Category>();
         }
     }
