@@ -6,6 +6,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap';
 import { AdminService } from 'src/app/services/admin.service';
 import { Category } from 'src/app/models/category';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { SubcategoryEditModalComponent } from '../subcategory-edit-modal/subcategory-edit-modal.component';
 
 @Component({
   selector: 'app-subcategory-list',
@@ -52,6 +53,24 @@ export class SubcategoryListComponent implements OnInit, OnChanges {
       this.subcategories = subcategories;
     }, error => {
       this.alertify.error(error);
+    });
+  }
+
+  editSubcategory(subcategory: Subcategory) {
+    const initialState = {
+      subcategory
+    };
+    this.bsModalRef = this.modalService.show(SubcategoryEditModalComponent, {initialState});
+    this.bsModalRef.content.updateSubcategory.subscribe((subcategoryName) => {
+      const newSubcategoryName = subcategoryName;
+      if (newSubcategoryName && newSubcategoryName !== '' && newSubcategoryName !== subcategory.name) {
+        subcategory.name = subcategoryName;
+        this.adminService.updateSubcategory(subcategory).subscribe(next => {
+          this.alertify.success('Zmiany zostały zapisane.');
+        }, error => {
+          this.alertify.error('Wystąpił błąd. Zmiany nie zostały zapisane.');
+        });
+      }
     });
   }
 

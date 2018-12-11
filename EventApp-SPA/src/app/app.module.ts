@@ -47,6 +47,7 @@ import { CategoryManagementComponent } from './components/admin/category-managem
 import { CategoryAddNewComponent } from './components/admin/category-add-new/category-add-new.component';
 import { CategoryEditModalComponent } from './components/admin/category-edit-modal/category-edit-modal.component';
 import { CategoryListComponent } from './components/admin/category-list/category-list.component';
+import { SubcategoryEditModalComponent } from './components/admin/subcategory-edit-modal/subcategory-edit-modal.component';
 import { SubcategoryListComponent } from './components/admin/subcategory-list/subcategory-list.component';
 import { SubcategoryAddNewComponent } from './components/admin/subcategory-add-new/subcategory-add-new.component';
 import { CategoryListResolver } from './resolvers/category-list.resolver';
@@ -82,6 +83,7 @@ export function tokenGetter() {
     CategoryManagementComponent,
     CategoryAddNewComponent,
     CategoryListComponent,
+    SubcategoryEditModalComponent,
     SubcategoryListComponent,
     SubcategoryAddNewComponent,
     VenueManagementComponent,
@@ -125,7 +127,8 @@ export function tokenGetter() {
   ],
   entryComponents: [
      RolesModalComponent,
-     CategoryEditModalComponent
+     CategoryEditModalComponent,
+     SubcategoryEditModalComponent
   ],
   bootstrap: [AppComponent]
 })

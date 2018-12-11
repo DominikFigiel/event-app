@@ -111,6 +111,13 @@ namespace EventApp.API.Data
             return false;
         }
 
+        public Subcategory GetSubcategory(int id)
+        {
+            var subcategory = _context.Subcategories.FirstOrDefault(u => u.Id == id);
+
+            return subcategory;
+        }
+
         public async Task<Subcategory> AddSubcategoryAsync(Subcategory subcategory)
         {
             await _context.Subcategories.AddAsync(subcategory);

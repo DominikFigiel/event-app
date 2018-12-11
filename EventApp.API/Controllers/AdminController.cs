@@ -178,5 +178,18 @@ namespace EventApp.API.Controllers
             }
         }
 
+        [HttpPut("editSubcategory/{id}")]
+        public async Task<IActionResult> EditSubcategory(int id, SubcategoryForUpdateDto subcatForUpdateDto)
+        {
+            var subcategory = _repo.GetSubcategory(id);
+
+            _mapper.Map(subcatForUpdateDto, subcategory);
+
+            if(await _repo.SaveAll())
+                return NoContent();
+
+            throw new System.Exception($"Updating subcategory {id} failed on save");
+        }
+
     }
 }

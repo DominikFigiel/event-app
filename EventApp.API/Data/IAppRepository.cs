@@ -19,6 +19,7 @@ namespace EventApp.API.Data
         Category GetCategory(int id);
         Task<Category> AddCategoryAsync(Category category);
         Task<bool> CategoryExists(string name);
+        Subcategory GetSubcategory(int id);
         Task<Subcategory> AddSubcategoryAsync(Subcategory subcategory);
         Task<bool> SubcategoryExists(string name);
     }

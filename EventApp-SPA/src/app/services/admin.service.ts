@@ -41,4 +41,8 @@ export class AdminService {
     return this.http.delete(this.baseUrl + 'admin/deleteSubcategory/' + id);
   }
 
+  updateSubcategory(subcategory: Subcategory) {
+    return this.http.put(this.baseUrl + 'admin/editSubcategory/' + subcategory.id, subcategory);
+  }
+
 }

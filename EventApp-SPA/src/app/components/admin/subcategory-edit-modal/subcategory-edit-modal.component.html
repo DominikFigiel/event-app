@@ -1,0 +1,19 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">Edycja podkategorii: {{subcategory.name}}</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form #subcategoryEditForm="ngForm" id="subcategoryEditForm">
+    <div class="form-group">
+      <label for="{{subcategoryName}}">Nazwa kategorii:</label>
+      <input type="text" class="form-control" id="{{subcategoryName}}" 
+        name="{{subcategoryName}}" value="{{subcategoryName}}" [(ngModel)]="subcategoryName">
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Anuluj</button>
+  <button type="button" class="btn btn-success" (click)="update()" form="subcategoryEditForm">Zapisz</button>
+</div>

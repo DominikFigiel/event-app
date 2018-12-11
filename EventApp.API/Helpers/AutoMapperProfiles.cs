@@ -26,6 +26,7 @@ namespace EventApp.API.Helpers
             CreateMap<CategoryForAddDto, Category>();
             CreateMap<CategoryForUpdateDto, Category>();
             CreateMap<SubcategoryForAddDto, Subcategory>();
+            CreateMap<SubcategoryForUpdateDto, Subcategory>();
         }
     }
 }
