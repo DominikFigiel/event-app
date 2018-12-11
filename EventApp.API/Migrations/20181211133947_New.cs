@@ -26,12 +26,11 @@ namespace EventApp.API.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(nullable: false)
+                    Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Cities", x => x.Id);
-                    table.UniqueConstraint("AlternateKey_Name", x => x.Name);
                 });
 
             migrationBuilder.CreateTable(
@@ -88,12 +87,11 @@ namespace EventApp.API.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Code = table.Column<string>(nullable: false)
+                    Code = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ZipCodes", x => x.Id);
-                    table.UniqueConstraint("AlternateKey_Code", x => x.Code);
                 });
 
             migrationBuilder.CreateTable(
@@ -289,6 +287,12 @@ namespace EventApp.API.Migrations
                 column: "ZipCodeId");
 
             migrationBuilder.CreateIndex(
+                name: "City_Name",
+                table: "Cities",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Events_SubcategoryId",
                 table: "Events",
                 column: "SubcategoryId");
@@ -332,6 +336,12 @@ namespace EventApp.API.Migrations
                 name: "IX_Venues_AddressId",
                 table: "Venues",
                 column: "AddressId");
+
+            migrationBuilder.CreateIndex(
+                name: "ZipCode_Code",
+                table: "ZipCodes",
+                column: "Code",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

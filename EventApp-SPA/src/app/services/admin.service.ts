@@ -54,4 +54,8 @@ export class AdminService {
     return this.http.delete(this.baseUrl + 'admin/deleteCity/' + id);
   }
 
+  updateCity(city: City) {
+    return this.http.put(this.baseUrl + 'admin/editCity/' + city.id, city);
+  }
+
 }

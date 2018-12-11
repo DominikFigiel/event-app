@@ -1,0 +1,19 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">Edycja miasta: {{city.name}}</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form #cityEditForm="ngForm" id="cityEditForm">
+    <div class="form-group">
+      <label for="{{cityName}}">Nazwa miasta:</label>
+      <input type="text" class="form-control" id="{{cityName}}" 
+        name="{{cityName}}" value="{{cityName}}" [(ngModel)]="cityName">
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Anuluj</button>
+  <button type="button" class="btn btn-success" (click)="update()" form="cityEditForm">Zapisz</button>
+</div>

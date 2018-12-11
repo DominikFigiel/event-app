@@ -15,7 +15,7 @@
             <td scope="row">{{city.id}}</td>
             <td>{{city.name}}</td>
             <td class="text-xs-right">
-              <button class="btn btn-info mr-2">Edytuj</button>
+              <button class="btn btn-info mr-2" (click)="editCity(city)">Edytuj</button>
               <button class="btn btn-danger" (click)="deleteCityOnConfirm(city.id)">Usuń</button></td>
           </tr>
         </tbody>

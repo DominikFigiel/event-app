@@ -24,12 +24,12 @@ namespace EventApp.API.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<City>()
-                .HasAlternateKey(c => c.Name)
-                .HasName("AlternateKey_Name");   
+                .HasIndex(c => c.Name).IsUnique()
+                .HasName("City_Name");
 
             modelBuilder.Entity<ZipCode>()
-                .HasAlternateKey(zc => zc.Code)
-                .HasName("AlternateKey_Code");
+                .HasIndex(zc => zc.Code).IsUnique()
+                .HasName("ZipCode_Code");
 
             modelBuilder.Entity<UserRole>(userRole =>
             {

@@ -227,5 +227,18 @@ namespace EventApp.API.Controllers
             }
         }
 
+        [HttpPut("editCity/{id}")]
+        public async Task<IActionResult> EditCity(int id, CityForUpdateDto cityForUpdateDto)
+        {
+            var city = _repo.GetCity(id);
+
+            _mapper.Map(cityForUpdateDto, city);
+
+            if(await _repo.SaveAll())
+                return NoContent();
+
+            throw new System.Exception($"Updating city {id} failed on save");
+        }
+
     }
 }

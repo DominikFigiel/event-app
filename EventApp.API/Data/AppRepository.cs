@@ -134,6 +134,13 @@ namespace EventApp.API.Data
             return false;
         }
 
+        public City GetCity(int id)
+        {
+            var city = _context.Cities.FirstOrDefault(c => c.Id == id);
+
+            return city;
+        }
+
         public async Task<City> AddCityAsync(City city)
         {
             await _context.Cities.AddAsync(city);

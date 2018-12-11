@@ -55,13 +55,13 @@ namespace EventApp.API.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Name")
-                        .IsRequired();
+                    b.Property<string>("Name");
 
                     b.HasKey("Id");
 
-                    b.HasAlternateKey("Name")
-                        .HasName("AlternateKey_Name");
+                    b.HasIndex("Name")
+                        .IsUnique()
+                        .HasName("City_Name");
 
                     b.ToTable("Cities");
                 });
@@ -248,13 +248,13 @@ namespace EventApp.API.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Code")
-                        .IsRequired();
+                    b.Property<string>("Code");
 
                     b.HasKey("Id");
 
-                    b.HasAlternateKey("Code")
-                        .HasName("AlternateKey_Code");
+                    b.HasIndex("Code")
+                        .IsUnique()
+                        .HasName("ZipCode_Code");
 
                     b.ToTable("ZipCodes");
                 });
