@@ -12,7 +12,7 @@ import { CategoryEditModalComponent } from '../category-edit-modal/category-edit
   styleUrls: ['./category-list.component.css']
 })
 export class CategoryListComponent implements OnInit, OnChanges {
-  @Input() reloadCategories: any;
+  @Input() categoryManagementActiveTab: string;
   categories: Category[];
   bsModalRef: BsModalRef;
 
@@ -22,7 +22,6 @@ export class CategoryListComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.loadCategories();
-    this.reloadCategories = false;
   }
 
   ngOnChanges(changes: SimpleChanges) {

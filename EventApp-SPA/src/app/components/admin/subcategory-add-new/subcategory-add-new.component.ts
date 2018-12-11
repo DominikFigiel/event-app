@@ -13,7 +13,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./subcategory-add-new.component.css']
 })
 export class SubcategoryAddNewComponent implements OnInit, OnChanges {
-  @Input() reloadCategoriesForSelect: any;
+  @Input() categoryManagementActiveTab: any;
   categories: Category[];
   categoriesLength: number;
   subcategory: Subcategory;
@@ -22,18 +22,15 @@ export class SubcategoryAddNewComponent implements OnInit, OnChanges {
     private alertify: AlertifyService, private fb: FormBuilder, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.reloadCategoriesForSelect = false;
     this.loadCategoriesLength();
     this.loadCategories();
     this.createAddForm();
-    this.addForm.controls['categoryId'].setValue(this.categories[(this.categories.length - 1)].id, {onlySelf: true});
   }
 
   ngOnChanges(changes: SimpleChanges) {
     this.loadCategoriesLength();
     this.eventService.getCategories().subscribe((categories: Category[]) => {
       this.categories = categories;
-      this.addForm.controls['categoryId'].setValue(this.categories[(this.categories.length - 1)].id, {onlySelf: true});
     }, error => {
       this.alertify.error(error);
     });

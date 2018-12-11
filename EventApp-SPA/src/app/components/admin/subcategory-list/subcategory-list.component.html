@@ -9,7 +9,7 @@
 
       <select class="form-control" name="categoryIdSelect" 
           [(ngModel)]="categoryId" 
-          (ngModelChange)="onCategoryChange()">
+          (ngModelChange)="onCategoryChange($event)">
         <option *ngFor="let category of categories" [ngValue]="category.id">
           {{category.name}}
         </option>

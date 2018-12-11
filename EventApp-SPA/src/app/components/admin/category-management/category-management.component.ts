@@ -7,33 +7,28 @@ import { TabDirective } from 'ngx-bootstrap/tabs';
   styleUrls: ['./category-management.component.css']
 })
 export class CategoryManagementComponent implements OnInit {
-  reloadCategories: boolean;
-  reloadSubcategories: boolean;
-  reloadCategoriesForSelect: boolean;
+  categoryManagementActiveTab: string;
+
 
   constructor() { }
 
   ngOnInit() {
-    this.reloadCategories = false;
-    this.reloadSubcategories = false;
-    this.reloadCategoriesForSelect = false;
+    this.categoryManagementActiveTab = 'category-list';
   }
 
   onSelectCatList(data: TabDirective): void {
-    this.reloadCategories = true;
+    this.categoryManagementActiveTab = 'category-list';
   }
 
   onSelectAddNewCat(data: TabDirective): void {
-    this.reloadCategories = false;
-    this.reloadCategoriesForSelect = true;
+    this.categoryManagementActiveTab = 'category-add-new';
   }
 
   onSelectSubcatList(data: TabDirective): void {
-    this.reloadSubcategories = true;
+    this.categoryManagementActiveTab = 'subcategory-list';
   }
 
   onSelectAddNewSubcat(data: TabDirective): void {
-    this.reloadSubcategories = false;
-    this.reloadCategoriesForSelect = false;
+    this.categoryManagementActiveTab = 'subcategory-add-new';
   }
 }

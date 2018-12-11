@@ -13,8 +13,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./subcategory-list.component.css']
 })
 export class SubcategoryListComponent implements OnInit, OnChanges {
-  @Input() reloadSubcategories: any;
-  @Input() reloadCategories: any;
+  @Input() categoryManagementActiveTab: any;
   categoryId: number;
   categories: Category[];
   subcategories: Subcategory[];
@@ -25,20 +24,18 @@ export class SubcategoryListComponent implements OnInit, OnChanges {
     private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.categoryId = 1;
+    // this.categoryId = 1;
     this.loadCategories();
-    this.loadSubcategories();
-    this.reloadSubcategories = false;
-    this.reloadCategories = false;
+    // this.loadSubcategories();
   }
 
   ngOnChanges(changes: SimpleChanges) {
     this.loadCategories();
-    this.categoryId = 1;
-    this.loadSubcategories();
+    // this.categoryId = 1;
+    // this.loadSubcategories();
   }
 
-  onCategoryChange() {
+  onCategoryChange($event) {
     this.loadSubcategories();
   }
 
