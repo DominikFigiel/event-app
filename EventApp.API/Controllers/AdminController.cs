@@ -9,6 +9,7 @@ using EventApp.API.Dtos.Role;
 using Microsoft.AspNetCore.Authorization;
 using EventApp.API.Dtos.Category;
 using AutoMapper;
+using EventApp.API.Dtos.City;
 
 namespace EventApp.API.Controllers
 {
@@ -189,6 +190,41 @@ namespace EventApp.API.Controllers
                 return NoContent();
 
             throw new System.Exception($"Updating subcategory {id} failed on save");
+        }
+
+        [HttpPost("addCity")]
+        public async Task<IActionResult> AddCity(CityForAddDto cityForAddDto)
+        {
+
+            if(await _repo.CityExists(cityForAddDto.Name))
+                return BadRequest("Miasto o takiej nazwie już istnieje.");
+
+            var cityToCreate = _mapper.Map<City>(cityForAddDto);
+
+            var createdCity = await _repo.AddCityAsync(cityToCreate);
+
+            return NoContent();
+        }
+
+        [HttpDelete("deleteCity/{id}")]
+        public async Task<IActionResult> DeleteCity(int? id)
+        {
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var city = await _context.Cities
+                .FirstOrDefaultAsync(c => c.Id == id);
+            if (city == null)
+            {
+                return NotFound();
+            } else {
+                _context.Cities.Remove(city);
+                await _context.SaveChangesAsync();
+                return NoContent();
+            }
         }
 
     }

@@ -41,6 +41,8 @@ import { UserManagementComponent } from './components/admin/user-management/user
 import { AdminService } from './services/admin.service';
 import { RolesModalComponent } from './components/admin/roles-modal/roles-modal.component';
 import { CityManagementComponent } from './components/admin/city-management/city-management.component';
+import { CityManagementListComponent } from './components/admin/city-management-list/city-management-list.component';
+import { CityAddNewComponent } from './components/admin/city-add-new/city-add-new.component';
 import { VenueManagementComponent } from './components/admin/venue-management/venue-management.component';
 import { EventCategoryCardComponent } from './components/events/event-category-card/event-category-card.component';
 import { CategoryManagementComponent } from './components/admin/category-management/category-management.component';
@@ -87,7 +89,9 @@ export function tokenGetter() {
     SubcategoryListComponent,
     SubcategoryAddNewComponent,
     VenueManagementComponent,
-    CityManagementComponent
+    CityManagementComponent,
+    CityManagementListComponent,
+    CityAddNewComponent
   ],
   imports: [
     BrowserModule,

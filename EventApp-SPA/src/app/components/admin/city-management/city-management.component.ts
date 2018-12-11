@@ -6,10 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./city-management.component.css']
 })
 export class CityManagementComponent implements OnInit {
+  reloadCityList: boolean;
 
   constructor() { }
 
   ngOnInit() {
+    this.reloadCityList = false;
+  }
+
+  onSelectCityList() {
+    this.reloadCityList = !this.reloadCityList;
   }
 
 }

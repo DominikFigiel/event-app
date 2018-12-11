@@ -1,0 +1,17 @@
+<form [formGroup]="addForm" (ngSubmit)="addNewCity()">
+
+  <hr>
+  <div class="form-group">
+    <input type="text" 
+    [ngClass]="{'is-invalid': addForm.get('name').errors && addForm.get('name').touched}" 
+    class="form-control" formControlName="name" placeholder="Nazwa miasta">
+    <div class="invalid-feedback">Nazwa miasta jest wymagana.</div>
+  </div>
+
+  <div class="form-group text-center">
+    <button class="btn btn-success mr-2" [disabled]="!addForm.valid" type="submit">Zapisz miasto</button>
+  </div>
+</form>
+
+<!-- <p>Form value: {{addForm.value | json}}</p>
+<p>Form value: {{addForm.status | json}}</p> -->

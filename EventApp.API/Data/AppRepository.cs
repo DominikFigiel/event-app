@@ -133,6 +133,22 @@ namespace EventApp.API.Data
 
             return false;
         }
+
+        public async Task<City> AddCityAsync(City city)
+        {
+            await _context.Cities.AddAsync(city);
+            await _context.SaveChangesAsync();
+
+            return city;
+        }
+
+        public async Task<bool> CityExists(string name)
+        {
+            if(await _context.Cities.AnyAsync(c => c.Name == name))
+                return true;
+
+            return false;
+        }
         
     }
 }
