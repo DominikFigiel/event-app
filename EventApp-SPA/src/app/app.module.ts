@@ -45,6 +45,10 @@ import { CityManagementListComponent } from './components/admin/city-management-
 import { CityAddNewComponent } from './components/admin/city-add-new/city-add-new.component';
 import { CityEditModalComponent } from './components/admin/city-edit-modal/city-edit-modal.component';
 import { VenueManagementComponent } from './components/admin/venue-management/venue-management.component';
+import { VenueEditModalComponent } from './components/admin/venue-edit-modal/venue-edit-modal.component';
+import { VenueAddNewComponent } from './components/admin/venue-add-new/venue-add-new.component';
+import { VenueListComponent } from './components/admin/venue-list/venue-list.component';
+import { VenueListResolver } from './resolvers/venue-list.resolver';
 import { EventCategoryCardComponent } from './components/events/event-category-card/event-category-card.component';
 import { CategoryManagementComponent } from './components/admin/category-management/category-management.component';
 import { CategoryAddNewComponent } from './components/admin/category-add-new/category-add-new.component';
@@ -90,6 +94,9 @@ export function tokenGetter() {
     SubcategoryListComponent,
     SubcategoryAddNewComponent,
     VenueManagementComponent,
+    VenueListComponent,
+    VenueAddNewComponent,
+    VenueEditModalComponent,
     CityManagementComponent,
     CityManagementListComponent,
     CityAddNewComponent,
@@ -129,13 +136,15 @@ export function tokenGetter() {
     EventListResolver,
     EventDetailResolver,
     AdminService,
-    CategoryListResolver
+    CategoryListResolver,
+    VenueListResolver
   ],
   entryComponents: [
      RolesModalComponent,
      CategoryEditModalComponent,
      SubcategoryEditModalComponent,
-     CityEditModalComponent
+     CityEditModalComponent,
+     VenueEditModalComponent
   ],
   bootstrap: [AppComponent]
 })

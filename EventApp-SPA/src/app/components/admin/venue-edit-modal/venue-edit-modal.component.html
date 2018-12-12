@@ -1,0 +1,49 @@
+<div class="modal-header">
+  <h4 class="modal-title pull-left">Edycja obiektu: {{venue.name}}</h4>
+  <button type="button" class="close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form #venueEditForm="ngForm" id="venueEditForm">
+    <div class="form-group">
+      <label for="name">Nazwa obiektu:</label>
+      <input type="text" class="form-control" id="name" 
+        name="name" value="{{venueName}}" [(ngModel)]="venueName">
+    </div>
+    <div class="form-group">
+      <label for="description">Opis obiektu:</label>
+      <input type="text" class="form-control" id="description" 
+        name="description" value="{{venueDescription}}" [(ngModel)]="venueDescription">
+    </div>
+    <div class="form-group">
+      <label for="photoUrl">Zdjęcie obiektu:</label>
+      <input type="text" class="form-control" id="photoUrl" 
+        name="photoUrl" value="{{venuePhotoUrl}}" [(ngModel)]="venuePhotoUrl">
+    </div>
+    <div class="form-group">
+      <label for="city">Miasto:</label>
+      <input type="text" class="form-control" id="city" 
+        name="city" value="{{venueCity}}" [(ngModel)]="venueCity">
+    </div>
+    <div class="form-group">
+      <label for="zipCode">Kod pocztowy:</label>
+      <input type="text" class="form-control" id="zipCode" 
+        name="zipCode" value="{{venueZipCode}}" [(ngModel)]="venueZipCode">
+    </div>
+    <div class="form-group">
+      <label for="line1">Linia adresu 1:</label>
+      <input type="text" class="form-control" id="line1" 
+        name="line1" value="{{venueLine1}}" [(ngModel)]="venueLine1">
+    </div>
+    <div class="form-group">
+      <label for="line2">Linia adresu 2:</label>
+      <input type="text" class="form-control" id="line2" 
+        name="line2" value="{{venueLine2}}" [(ngModel)]="venueLine2">
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Anuluj</button>
+  <button type="button" class="btn btn-success" (click)="update()" form="venueEditForm">Zapisz</button>
+</div>

@@ -156,6 +156,26 @@ namespace EventApp.API.Data
 
             return false;
         }
+
+        public Venue GetVenue(int id)
+        {
+            var venue = _context.Venues
+            .Include(v => v.Address)
+                .ThenInclude(a => a.City)
+            .Include(v => v.Address)
+                .ThenInclude(a => a.ZipCode)
+            .FirstOrDefault(c => c.Id == id);
+
+            return venue;
+        }
+
+        public async Task<Venue> AddVenueAsync(Venue venue)
+        {
+            await _context.Venues.AddAsync(venue);
+            await _context.SaveChangesAsync();
+
+            return venue;
+        }
         
     }
 }

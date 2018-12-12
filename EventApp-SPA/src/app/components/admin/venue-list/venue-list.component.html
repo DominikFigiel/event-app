@@ -1,0 +1,32 @@
+<div class="container mt-5">  
+  <!-- <h2>Obiekty</h2>   -->
+  <div class="row mt-5">
+    <div class="col-lg-12 col-md-12 col-sm-12 mb-5">
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nazwa</th>
+            <th scope="col">Opis</th>
+            <th scope="col">Zdjęcie</th>
+            <th scope="col">Adres</th>
+            <th scope="col">Akcje</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let venue of venues">
+            <td scope="row">{{venue.id}}</td>
+            <td>{{venue.name}}</td>
+            <td>{{venue.description}}</td>
+            <td><img src="{{venue.photoUrl}}" alt="{{venue.name}}" width="192px" height="108px"></td>
+            <td>{{venue.address.line1}} {{venue.address.line2}} {{venue.address.city.name}} {{venue.address.zipCode.code}}</td>
+            <td class="text-xs-right">
+              <button class="btn btn-info mr-2" (click)="editVenue(venue)">Edytuj</button>
+              <button class="btn btn-danger" (click)="deleteVenueOnConfirm(venue.id)">Usuń</button></td>
+          </tr>
+        </tbody>
+      </table> 
+      <!-- <app-event-category-card [category]="category"></app-event-category-card> -->
+    </div>
+  </div>
+</div>

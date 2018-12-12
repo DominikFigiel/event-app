@@ -25,5 +25,7 @@ namespace EventApp.API.Data
         City GetCity(int id);
         Task<City> AddCityAsync(City city);
         Task<bool> CityExists(string name);
+        Venue GetVenue(int id);
+        Task<Venue> AddVenueAsync(Venue venue);
     }
 }

@@ -9,7 +9,7 @@ namespace EventApp.API.Dtos.Event
         public string Name { get; set; }
         public string Headline { get; set; }
         public string Description { get; set; }
-        public Venue Venue { get; set; }
+        public Models.Venue Venue { get; set; }
         public DateTime Date { get; set; }
         public DateTime Created { get; set; }
         public string PhotoURL { get; set; }

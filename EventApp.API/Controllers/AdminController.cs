@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 using EventApp.API.Dtos.Category;
 using AutoMapper;
 using EventApp.API.Dtos.City;
+using EventApp.API.Dtos.Venue;
 
 namespace EventApp.API.Controllers
 {
@@ -238,6 +239,19 @@ namespace EventApp.API.Controllers
                 return NoContent();
 
             throw new System.Exception($"Updating city {id} failed on save");
+        }
+
+        [HttpPut("editVenue/{id}")]
+        public async Task<IActionResult> EditVenue(int id, VenueForUpdateDto venueForUpdateDto)
+        {
+            var venue = _repo.GetVenue(id);
+
+            _mapper.Map(venueForUpdateDto, venue);
+
+            if(await _repo.SaveAll())
+                return NoContent();
+
+            throw new System.Exception($"Updating venue {id} failed on save");
         }
 
     }

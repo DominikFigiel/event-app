@@ -5,6 +5,7 @@ using EventApp.API.Dtos.City;
 using EventApp.API.Dtos.Event;
 using EventApp.API.Dtos.Image;
 using EventApp.API.Dtos.User;
+using EventApp.API.Dtos.Venue;
 using EventApp.API.Models;
 
 namespace EventApp.API.Helpers
@@ -30,6 +31,8 @@ namespace EventApp.API.Helpers
             CreateMap<SubcategoryForUpdateDto, Subcategory>();
             CreateMap<CityForAddDto, City>();
             CreateMap<CityForUpdateDto, City>();
+            CreateMap<VenueForAddDto, Venue>();
+            CreateMap<VenueForUpdateDto, Venue>();
         }
     }
 }

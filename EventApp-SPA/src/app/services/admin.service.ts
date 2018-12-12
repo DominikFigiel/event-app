@@ -5,6 +5,7 @@ import { User } from '../models/user';
 import { Category } from '../models/category';
 import { Subcategory } from '../models/subcategory';
 import { City } from '../models/city';
+import { Venue } from '../models/venue';
 
 @Injectable({
   providedIn: 'root'
@@ -56,6 +57,14 @@ export class AdminService {
 
   updateCity(city: City) {
     return this.http.put(this.baseUrl + 'admin/editCity/' + city.id, city);
+  }
+
+  deleteVenue(id: number) {
+    return this.http.delete(this.baseUrl + 'admin/deleteVenue/' + id);
+  }
+
+  updateVenue(venue: Venue) {
+    return this.http.put(this.baseUrl + 'admin/editVenue/' + venue.id, venue);
   }
 
 }

@@ -19,6 +19,7 @@ import { UserEditResolver } from './resolvers/user-edit.resolver';
 import { PreventUnsavedChanges } from './guards/prevent-unsaved-changes';
 import { EventListResolver } from './resolvers/event-list.resolver';
 import { CategoryListResolver } from './resolvers/category-list.resolver';
+import { VenueListResolver } from './resolvers/venue-list.resolver';
 
 export const appRoutes: Routes = [
     { path: '', component: HomeComponent},
@@ -43,7 +44,7 @@ export const appRoutes: Routes = [
             { path: 'user/edit', component: UserEditComponent,
                 resolve: {user: UserEditResolver}, canDeactivate: [PreventUnsavedChanges]},
             { path: 'admin', component: AdminPanelComponent, data: {roles: ['Administrator']},
-                resolve: {categories: CategoryListResolver} },
+                resolve: {categories: CategoryListResolver, venues: VenueListResolver}},
             { path: 'admin/:option', component: AdminPanelComponent, data: {roles: ['Administrator']}}
 
         ]
