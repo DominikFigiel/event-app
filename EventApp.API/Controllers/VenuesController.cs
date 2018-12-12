@@ -34,7 +34,12 @@ namespace EventApp.API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetVenue(int id)
         {
-            var venue = await _context.Venues.FirstOrDefaultAsync(v => v.Id == id);
+            var venue = await _context.Venues
+            .Include(v => v.Address)
+                .ThenInclude(a => a.City)
+            .Include(v => v.Address)
+                .ThenInclude(a => a.ZipCode)
+            .FirstOrDefaultAsync(v => v.Id == id);
 
             return Ok(venue);
         }

@@ -41,8 +41,9 @@ export class VenueEditModalComponent implements OnInit {
   }
 
   update() {
-    console.log('Edit modal' + JSON.stringify(this.updatedVenue.address));
+    // console.log('Edit modal' + JSON.stringify(this.updatedVenue.address));
     this.updatedVenue.address.cityId = this.cityId;
+    this.updatedVenue.address.city.id = this.cityId;
     this.updatedVenue.address.city.name = this.getCityName(this.cityId);
     this.updateVenue.emit(this.updatedVenue);
     this.bsModalRef.hide();
