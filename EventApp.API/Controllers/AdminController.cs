@@ -255,6 +255,27 @@ namespace EventApp.API.Controllers
             throw new System.Exception($"Updating venue {id} failed on save");
         }
 
+        [HttpDelete("deleteVenue/{id}")]
+        public async Task<IActionResult> DeleteVenue(int? id)
+        {
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var venue = await _context.Venues
+                .FirstOrDefaultAsync(v => v.Id == id);
+            if (venue == null)
+            {
+                return NotFound();
+            } else {
+                _context.Venues.Remove(venue);
+                await _context.SaveChangesAsync();
+                return NoContent();
+            }
+        }
+
         [HttpPut("editAddress/{id}")]
         public async Task<IActionResult> EditAddress(int id, AddressForUpdateDto addressForUpdateDto)
         {

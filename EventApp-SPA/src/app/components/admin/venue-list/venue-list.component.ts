@@ -76,7 +76,7 @@ export class VenueListComponent implements OnInit, OnChanges {
     }
 
     deleteVenueOnConfirm(venueId: number) {
-      this.alertify.confirm('Usuwanie miasta', 'Chcesz usunąć ten obiekt?', () => this.deleteVenue(venueId));
+      this.alertify.confirm('Usuwanie obiektu', 'Chcesz usunąć ten obiekt?', () => this.deleteVenue(venueId));
     }
 
     deleteVenue(venueId: number) {
