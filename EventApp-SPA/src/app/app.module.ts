@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BsDropdownModule, TabsModule, BsDatepickerModule, PaginationModule,
-  ButtonsModule, ModalModule, CollapseModule } from 'ngx-bootstrap';
+  ButtonsModule, ModalModule, CollapseModule, TypeaheadModule } from 'ngx-bootstrap';
 import { RouterModule } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
 
@@ -115,13 +115,15 @@ export function tokenGetter() {
     RouterModule.forRoot(appRoutes),
     ModalModule.forRoot(),
     CollapseModule.forRoot(),
+    TypeaheadModule.forRoot(),
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
         whitelistedDomains: ['localhost:5000'],
         blacklistedRoutes: ['localhost:5000/api/auth']
       }
-    })
+    }),
+    TypeaheadModule.forRoot()
   ],
   providers: [
     AuthService,

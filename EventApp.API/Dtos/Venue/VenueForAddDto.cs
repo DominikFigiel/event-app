@@ -8,6 +8,6 @@ namespace EventApp.API.Dtos.Venue
         public string Description { get; set; }
         public string PhotoUrl { get; set; }
         public int AddressId { get; set; }
-        public Address Address { get; set; }
+        public Models.Address Address { get; set; }
     }
 }

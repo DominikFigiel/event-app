@@ -176,6 +176,16 @@ namespace EventApp.API.Data
 
             return venue;
         }
+
+        public Address GetAddress(int id)
+        {
+            var address = _context.Addresses
+            .Include(a => a.City)
+            .Include(a => a.ZipCode)
+            .FirstOrDefault(a => a.Id == id);
+
+            return address;
+        }
         
     }
 }

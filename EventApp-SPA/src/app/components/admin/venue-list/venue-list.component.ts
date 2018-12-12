@@ -1,3 +1,4 @@
+import { Address } from './../../../models/address';
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Venue } from 'src/app/models/venue';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
@@ -6,6 +7,7 @@ import { AlertifyService } from 'src/app/services/alertify.service';
 import { AdminService } from 'src/app/services/admin.service';
 import { VenueEditModalComponent } from '../venue-edit-modal/venue-edit-modal.component';
 import { ActivatedRoute } from '@angular/router';
+import { validateConfig } from '@angular/router/src/config';
 
 @Component({
   selector: 'app-venue-list',
@@ -39,20 +41,35 @@ export class VenueListComponent implements OnInit, OnChanges {
     }
 
     editVenue(venue: Venue) {
+      const venueBeforeChanges = Object.assign({}, venue);
+      const addressBeforeChanges = Object.assign({}, venue.address);
+      // const cityBeforeChanges = Object.assign({}, venue.address.city);
+      const zipCodeBeforeChanges = Object.assign({}, venue.address.zipCode);
+
       const initialState = {
         venue
       };
+
       this.bsModalRef = this.modalService.show(VenueEditModalComponent, {initialState});
-      this.bsModalRef.content.updateVenue.subscribe((venueName) => {
-        const newVenueName = venueName;
-        if (newVenueName && newVenueName !== '' && newVenueName !== venue.name) {
-          venue.name = venueName;
+      this.bsModalRef.content.updateVenue.subscribe((updatedVenue) => {
+        console.log('Before:' + JSON.stringify(addressBeforeChanges));
+        console.log('After:' + JSON.stringify(venue.address));
+        if (venue.name !== venueBeforeChanges.name) {
           this.adminService.updateVenue(venue).subscribe(next => {
-            this.alertify.success('Zmiany zostały zapisane.');
+            this.alertify.success('Dane obiektu zostały zapisane.');
           }, error => {
             this.alertify.error('Wystąpił błąd. Zmiany nie zostały zapisane.');
           });
         }
+
+        if (venue.address.line1 !== addressBeforeChanges.line1 || venue.address.line2 !== addressBeforeChanges.line2) {
+          this.adminService.updateAddress(venue.address).subscribe(next => {
+            this.alertify.success('Nowy adres został zapisany.');
+          }, error => {
+            this.alertify.error('Wystąpił błąd. Zmiany nie zostały zapisane.');
+          });
+        }
+
       });
     }
 

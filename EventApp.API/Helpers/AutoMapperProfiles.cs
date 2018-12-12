@@ -1,5 +1,6 @@
 using System.Linq;
 using AutoMapper;
+using EventApp.API.Dtos.Address;
 using EventApp.API.Dtos.Category;
 using EventApp.API.Dtos.City;
 using EventApp.API.Dtos.Event;
@@ -33,6 +34,7 @@ namespace EventApp.API.Helpers
             CreateMap<CityForUpdateDto, City>();
             CreateMap<VenueForAddDto, Venue>();
             CreateMap<VenueForUpdateDto, Venue>();
+            CreateMap<AddressForUpdateDto, Address>();
         }
     }
 }

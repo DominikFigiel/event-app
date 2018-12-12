@@ -9,37 +9,48 @@
     <div class="form-group">
       <label for="name">Nazwa obiektu:</label>
       <input type="text" class="form-control" id="name" 
-        name="name" value="{{venueName}}" [(ngModel)]="venueName">
+        name="name" value="{{updatedVenue.name}}" [(ngModel)]="updatedVenue.name">
     </div>
     <div class="form-group">
       <label for="description">Opis obiektu:</label>
       <input type="text" class="form-control" id="description" 
-        name="description" value="{{venueDescription}}" [(ngModel)]="venueDescription">
+        name="description" value="{{updatedVenue.description}}" [(ngModel)]="updatedVenue.description">
     </div>
     <div class="form-group">
       <label for="photoUrl">Zdjęcie obiektu:</label>
       <input type="text" class="form-control" id="photoUrl" 
-        name="photoUrl" value="{{venuePhotoUrl}}" [(ngModel)]="venuePhotoUrl">
+        name="photoUrl" value="{{updatedVenue.photoUrl}}" [(ngModel)]="updatedVenue.photoUrl">
     </div>
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label for="city">Miasto:</label>
       <input type="text" class="form-control" id="city" 
-        name="city" value="{{venueCity}}" [(ngModel)]="venueCity">
+        name="city" value="{{updatedVenue.address.city.name}}" [(ngModel)]="updatedVenue.address.city.name">
+    </div> -->
+
+    <div class="form-group">
+      <label for="cityId">Miasto</label>
+  
+      <select [(ngModel)]="cityId" class="form-control" name="cityId">
+        <option *ngFor="let city of cities" [ngValue]="city.id">
+          {{city.name}}
+        </option>
+      </select>
     </div>
+
     <div class="form-group">
       <label for="zipCode">Kod pocztowy:</label>
       <input type="text" class="form-control" id="zipCode" 
-        name="zipCode" value="{{venueZipCode}}" [(ngModel)]="venueZipCode">
+        name="zipCode" value="{{updatedVenue.address.zipCode.code}}" [(ngModel)]="updatedVenue.address.zipCode.code">
     </div>
     <div class="form-group">
       <label for="line1">Linia adresu 1:</label>
       <input type="text" class="form-control" id="line1" 
-        name="line1" value="{{venueLine1}}" [(ngModel)]="venueLine1">
+        name="line1" value="{{updatedVenue.address.line1}}" [(ngModel)]="updatedVenue.address.line1">
     </div>
     <div class="form-group">
       <label for="line2">Linia adresu 2:</label>
       <input type="text" class="form-control" id="line2" 
-        name="line2" value="{{venueLine2}}" [(ngModel)]="venueLine2">
+        name="line2" value="{{updatedVenue.address.line2}}" [(ngModel)]="updatedVenue.address.line2">
     </div>
   </form>
 </div>
@@ -47,3 +58,6 @@
   <button type="button" class="btn btn-default" (click)="bsModalRef.hide()">Anuluj</button>
   <button type="button" class="btn btn-success" (click)="update()" form="venueEditForm">Zapisz</button>
 </div>
+
+<p>Form value: {{venueEditForm.value | json}}</p>
+<p>Form value: {{venueEditForm.status | json}}</p>

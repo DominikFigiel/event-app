@@ -1,3 +1,4 @@
+import { Address } from './../models/address';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
@@ -65,6 +66,10 @@ export class AdminService {
 
   updateVenue(venue: Venue) {
     return this.http.put(this.baseUrl + 'admin/editVenue/' + venue.id, venue);
+  }
+
+  updateAddress(address: Address) {
+    return this.http.put(this.baseUrl + 'admin/editAddress/' + address.id, address);
   }
 
 }

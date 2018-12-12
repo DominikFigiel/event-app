@@ -11,6 +11,7 @@ using EventApp.API.Dtos.Category;
 using AutoMapper;
 using EventApp.API.Dtos.City;
 using EventApp.API.Dtos.Venue;
+using EventApp.API.Dtos.Address;
 
 namespace EventApp.API.Controllers
 {
@@ -252,6 +253,19 @@ namespace EventApp.API.Controllers
                 return NoContent();
 
             throw new System.Exception($"Updating venue {id} failed on save");
+        }
+
+        [HttpPut("editAddress/{id}")]
+        public async Task<IActionResult> EditAddress(int id, AddressForUpdateDto addressForUpdateDto)
+        {
+            var address = _repo.GetAddress(id);
+
+            _mapper.Map(addressForUpdateDto, address);
+
+            if(await _repo.SaveAll())
+                return NoContent();
+
+            throw new System.Exception($"Updating address {id} failed on save");
         }
 
     }
