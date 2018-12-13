@@ -186,6 +186,22 @@ namespace EventApp.API.Data
 
             return address;
         }
+
+        public ZipCode GetZipCode(int id)
+        {
+            var zipcode = _context.ZipCodes
+            .FirstOrDefault(a => a.Id == id);
+
+            return zipcode;
+        }
+
+        public async Task<bool> ZipCodeExists(string code)
+        {
+            if(await _context.ZipCodes.AnyAsync(c => c.Code == code))
+                return true;
+
+            return false;
+        }
         
     }
 }

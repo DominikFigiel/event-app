@@ -1,3 +1,5 @@
+import { AddressForUpdate } from 'src/app/models/addressForUpdate';
+import { ZipCode } from './../models/zipCode';
 import { Address } from './../models/address';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
@@ -7,6 +9,7 @@ import { Category } from '../models/category';
 import { Subcategory } from '../models/subcategory';
 import { City } from '../models/city';
 import { Venue } from '../models/venue';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -68,8 +71,12 @@ export class AdminService {
     return this.http.put(this.baseUrl + 'admin/editVenue/' + venue.id, venue);
   }
 
-  updateAddress(address: Address) {
+  updateAddress(address: any) {
     return this.http.put(this.baseUrl + 'admin/editAddress/' + address.id, address);
+  }
+
+  getZipCode(code: string): Observable<ZipCode> {
+    return this.http.get<ZipCode>(this.baseUrl + 'admin/getZipCode/' + code);
   }
 
 }

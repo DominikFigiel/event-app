@@ -289,5 +289,13 @@ namespace EventApp.API.Controllers
             throw new System.Exception($"Updating address {id} failed on save");
         }
 
+        [HttpGet("getZipCode/{code}")]
+        public async Task<IActionResult> getZipCode(string code)
+        {
+            var zipCode =  await _context.ZipCodes.FirstOrDefaultAsync(z => z.Code == code);
+
+            return Ok(zipCode);
+        }
+
     }
 }

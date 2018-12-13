@@ -1,3 +1,4 @@
+import { ZipCode } from './../../../models/zipCode';
 import { Address } from './../../../models/address';
 import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Venue } from 'src/app/models/venue';
@@ -18,6 +19,7 @@ export class VenueListComponent implements OnInit, OnChanges {
   @Input() reloadVenueList;
   venues: Venue[];
   bsModalRef: BsModalRef;
+  addressForUpdate: any;
 
   constructor(private eventService: EventService, private alertify: AlertifyService, private adminService: AdminService,
     private modalService: BsModalService, private route: ActivatedRoute) { }
@@ -49,7 +51,7 @@ export class VenueListComponent implements OnInit, OnChanges {
       const initialState = {
         venue
       };
-
+      console.log(JSON.stringify(venue.address));
       this.bsModalRef = this.modalService.show(VenueEditModalComponent, {initialState});
       this.bsModalRef.content.updateVenue.subscribe((updatedVenue) => {
         // console.log('Before:' + JSON.stringify(addressBeforeChanges));
@@ -64,10 +66,17 @@ export class VenueListComponent implements OnInit, OnChanges {
         }
 
         if (venue.address.line1 !== addressBeforeChanges.line1 || venue.address.line2 !== addressBeforeChanges.line2
-              || venue.address.city.id !== cityBeforeChanges.id ) {
-          this.adminService.updateAddress(venue.address).subscribe(next => {
+              || venue.address.city.id !== cityBeforeChanges.id || venue.address.zipCode.code !== zipCodeBeforeChanges.code) {
+
+          console.log('venue.address:' + JSON.stringify(venue.address));
+          console.log('venue.address.id:' + JSON.stringify(venue.address.id));
+          this.addressForUpdate = venue.address;
+
+          this.adminService.updateAddress(this.addressForUpdate).subscribe(next => {
+            console.log('venue.addressSukces:' + JSON.stringify(venue.address));
             this.alertify.success('Nowy adres został zapisany.');
           }, error => {
+            console.log('venue.addressError:' + JSON.stringify(venue.address));
             this.alertify.error('Wystąpił błąd. Zmiany nie zostały zapisane.');
           });
         }

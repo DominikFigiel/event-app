@@ -1,9 +1,12 @@
+import { AddressForUpdate } from './../../../models/addressForUpdate';
+import { AdminService } from './../../../services/admin.service';
 import { AlertifyService } from './../../../services/alertify.service';
 import { EventService } from 'src/app/services/event.service';
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Venue } from 'src/app/models/venue';
 import { BsModalRef } from 'ngx-bootstrap';
 import { City } from 'src/app/models/city';
+import { ZipCode } from 'src/app/models/zipCode';
 
 @Component({
   selector: 'app-venue-edit-modal',
@@ -24,8 +27,10 @@ export class VenueEditModalComponent implements OnInit {
   cities: City[];
   selectedCity: string;
   cityId: number;
+  zipCodeId: number;
 
-  constructor(public bsModalRef: BsModalRef, public eventService: EventService, public alertify: AlertifyService) { }
+  constructor(public bsModalRef: BsModalRef, public eventService: EventService,
+    public adminService: AdminService, public alertify: AlertifyService) { }
 
   ngOnInit() {
     this.updatedVenue = this.venue;
@@ -45,6 +50,24 @@ export class VenueEditModalComponent implements OnInit {
     this.updatedVenue.address.cityId = this.cityId;
     this.updatedVenue.address.city.id = this.cityId;
     this.updatedVenue.address.city.name = this.getCityName(this.cityId);
+    //
+      // Sprawdzam czy dany kod pocztowy istnieje w bazie
+      this.adminService.getZipCode(this.updatedVenue.address.zipCode.code).subscribe((zipCode: ZipCode) => {
+        if (zipCode !== null) {
+          console.log(zipCode.code);
+          console.log(zipCode.id);
+          this.updatedVenue.address.zipCodeId = zipCode.id;
+          this.updatedVenue.address.zipCode.id = zipCode.id;
+          this.updatedVenue.address.zipCode.code = zipCode.code;
+          console.log(JSON.stringify(this.updatedVenue.address));
+        } else {
+          console.log('null');
+          this.alertify.error('Nie ma takiego kodu w bazie');
+        }
+      }, error => {
+        this.alertify.error('Nie ma takiego kodu w bazie');
+      });
+    //
     this.updateVenue.emit(this.updatedVenue);
     this.bsModalRef.hide();
   }
