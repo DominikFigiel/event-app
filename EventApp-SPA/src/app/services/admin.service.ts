@@ -1,3 +1,4 @@
+import { Event } from 'src/app/models/event';
 import { AddressForUpdate } from 'src/app/models/addressForUpdate';
 import { ZipCode } from './../models/zipCode';
 import { Address } from './../models/address';
@@ -77,6 +78,10 @@ export class AdminService {
 
   getZipCode(code: string): Observable<ZipCode> {
     return this.http.get<ZipCode>(this.baseUrl + 'admin/getZipCode/' + code);
+  }
+
+  addEvent(event: any) {
+    return this.http.post(this.baseUrl + 'admin/addEvent', event);
   }
 
 }

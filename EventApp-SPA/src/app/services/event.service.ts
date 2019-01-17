@@ -1,3 +1,4 @@
+import { TicketCategory } from './../models/ticketCategory';
 import { PaginatedResult } from './../models/pagination';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -64,6 +65,10 @@ export class EventService {
     return this.http.get<Category>(this.baseUrl + 'categories/' + id);
   }
 
+  getAllSubcategories(): Observable<Subcategory[]> {
+    return this.http.get<Subcategory[]>(this.baseUrl + 'categories/allSubcategories');
+  }
+
   getSubcategories(id): Observable<Subcategory[]> {
     return this.http.get<Subcategory[]>(this.baseUrl + 'categories/' + id + '/subcategories');
   }
@@ -78,6 +83,18 @@ export class EventService {
 
   getVenues(): Observable<Venue[]> {
     return this.http.get<Venue[]>(this.baseUrl + 'venues/');
+  }
+
+  getEventsByPromoter(promoterId): Observable<Event[]> {
+    return this.http.get<Event[]>(this.baseUrl + 'events/eventsByPromoter/' + promoterId);
+  }
+
+  getEndedEventsByPromoter(promoterId): Observable<Event[]> {
+    return this.http.get<Event[]>(this.baseUrl + 'events/endedEventsByPromoter/' + promoterId);
+  }
+
+  GetEventTicketCategories(eventId): Observable<TicketCategory[]> {
+    return this.http.get<TicketCategory[]>(this.baseUrl + 'events/eventTicketCategories/' + eventId);
   }
 
 }

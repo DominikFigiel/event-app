@@ -59,6 +59,9 @@ import { SubcategoryListComponent } from './components/admin/subcategory-list/su
 import { SubcategoryAddNewComponent } from './components/admin/subcategory-add-new/subcategory-add-new.component';
 import { CategoryListResolver } from './resolvers/category-list.resolver';
 import { PromoterPanelComponent } from './components/promoter/promoter-panel/promoter-panel.component';
+import { PromoterEventListComponent } from './components/promoter/promoter-event-list/promoter-event-list.component';
+import { PromoterEndedEventListComponent } from './components/promoter/promoter-ended-event-list/promoter-ended-event-list.component';
+import { PromoterEventAddComponent } from './components/promoter/promoter-event-add/promoter-event-add.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -102,7 +105,10 @@ export function tokenGetter() {
     CityManagementListComponent,
     CityAddNewComponent,
     CityEditModalComponent,
-    PromoterPanelComponent
+    PromoterPanelComponent,
+    PromoterEventListComponent,
+    PromoterEndedEventListComponent,
+    PromoterEventAddComponent
   ],
   imports: [
     BrowserModule,

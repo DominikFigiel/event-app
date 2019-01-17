@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -200,6 +201,44 @@ namespace EventApp.API.Data
 
         //     return false;
         // }
+        public async Task<List<Event>> GetEventsByPromoter(int promoterId)
+        {
+            var events = await _context.Events.Include(e => e.Venue).Include(e => e.Subcategory)
+                    .Where(e => e.Date > DateTime.Now)
+                    .OrderByDescending(e => e.Created).ToListAsync();
+
+            return events;
+        }
+
+        public async Task<List<Event>> GetEndedEventsByPromoter(int promoterId)
+        {
+            var events = await _context.Events
+                .Include(e => e.Venue)
+                .Include(e => e.Subcategory)
+                .Include(e => e.TicketCategories)
+                    .Where(e => e.Date < DateTime.Now)
+                        .OrderByDescending(e => e.Created).ToListAsync();
+
+            return events;
+        }
+
+        public async Task<Event> AddEventAsync(Event ev)
+        {
+            await _context.Events.AddAsync(ev);
+            await _context.SaveChangesAsync();
+
+            return ev;
+        }
+
+        public async Task<List<TicketCategory>> GetEventTicketCategories(int eventId)
+        {
+            var ticketCategories = await _context.TicketCategories.Include(tc => tc.Event)
+                    .Where(tc => tc.EventId == eventId)
+                        .ToListAsync();
+
+            return ticketCategories;
+        }
+
         
     }
 }

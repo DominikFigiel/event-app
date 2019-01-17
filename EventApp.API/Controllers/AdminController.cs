@@ -12,6 +12,7 @@ using AutoMapper;
 using EventApp.API.Dtos.City;
 using EventApp.API.Dtos.Venue;
 using EventApp.API.Dtos.Address;
+using EventApp.API.Dtos.Event;
 
 namespace EventApp.API.Controllers
 {
@@ -296,6 +297,16 @@ namespace EventApp.API.Controllers
 
         //     return Ok(zipCode);
         // }
+
+        [HttpPost("addEvent")]
+        public async Task<IActionResult> AddEvent(EventForAddDto eventForAddDto)
+        {
+            var eventToCreate = _mapper.Map<Event>(eventForAddDto);
+
+            var createdEvent = await _repo.AddEventAsync(eventToCreate);
+
+            return NoContent();
+        }
 
     }
 }

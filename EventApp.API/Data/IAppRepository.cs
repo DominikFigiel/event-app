@@ -30,5 +30,9 @@ namespace EventApp.API.Data
         Address GetAddress(int id);
         // ZipCode GetZipCode(int id);
         // Task<bool> ZipCodeExists(string code);
+        Task<List<Event>> GetEventsByPromoter(int promoterId);
+        Task<List<Event>> GetEndedEventsByPromoter(int promoterId);
+        Task<Event> AddEventAsync(Event ev);
+        Task<List<TicketCategory>> GetEventTicketCategories(int eventId);
     }
 }

@@ -45,6 +45,30 @@ namespace EventApp.API.Controllers
             return Ok(evToReturn);
         }
 
+        [HttpGet("eventsByPromoter/{promoterId}")]
+        public async Task<IActionResult> GetEventsByPromoter(int promoterId)
+        {
+            var events = await _repo.GetEventsByPromoter(promoterId);
+            
+            return Ok(events);
+        }
+
+        [HttpGet("endedEventsByPromoter/{promoterId}")]
+        public async Task<IActionResult> GetEndedEventsByPromoter(int promoterId)
+        {
+            var events = await _repo.GetEndedEventsByPromoter(promoterId);
+            
+            return Ok(events);
+        }
+
+        [HttpGet("eventTicketCategories/{eventId}")]
+        public async Task<IActionResult> GetEventTicketCategories(int eventId)
+        {
+            var events = await _repo.GetEventTicketCategories(eventId);
+            
+            return Ok(events);
+        }
+
 
     } 
 }

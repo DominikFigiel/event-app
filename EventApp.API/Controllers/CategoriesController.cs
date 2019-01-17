@@ -64,6 +64,14 @@ namespace EventApp.API.Controllers
             return subcategories;
         }
 
+        [HttpGet("allSubcategories")]
+        public async Task<IEnumerable<Subcategory>> GetAllSubcategories()
+        {
+            var subcategories = await _context.Subcategories.Include(s => s.Category).ToListAsync();
+
+            return subcategories;
+        }
+
         // POST api/categories
         [HttpPost]
         public void Post([FromBody] string value)
