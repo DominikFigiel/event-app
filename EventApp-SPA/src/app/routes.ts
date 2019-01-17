@@ -20,6 +20,7 @@ import { PreventUnsavedChanges } from './guards/prevent-unsaved-changes';
 import { EventListResolver } from './resolvers/event-list.resolver';
 import { CategoryListResolver } from './resolvers/category-list.resolver';
 import { VenueListResolver } from './resolvers/venue-list.resolver';
+import { PromoterPanelComponent } from './components/promoter/promoter-panel/promoter-panel.component';
 
 export const appRoutes: Routes = [
     { path: '', component: HomeComponent},
@@ -45,7 +46,9 @@ export const appRoutes: Routes = [
                 resolve: {user: UserEditResolver}, canDeactivate: [PreventUnsavedChanges]},
             { path: 'admin', component: AdminPanelComponent, data: {roles: ['Administrator']},
                 resolve: {categories: CategoryListResolver, venues: VenueListResolver}},
-            { path: 'admin/:option', component: AdminPanelComponent, data: {roles: ['Administrator']}}
+            { path: 'admin/:option', component: AdminPanelComponent, data: {roles: ['Administrator']}},
+            { path: 'promoter', component: PromoterPanelComponent},
+            { path: 'promoter/:option', component: PromoterPanelComponent}
 
         ]
     },

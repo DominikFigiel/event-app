@@ -1,0 +1,64 @@
+<div class="container mt-5 mb-5">
+  <div class="row mb-5">
+    <!-- <div class="col-6">
+      <h2>Panel administracyjny</h2>
+    </div> -->
+    <div class="col-12 col-lg-4 mb-2 mb-lg-0">
+      <button type="button" 
+      [ngClass]="{ 'btn-primary active-option border-primary': managementMode(), 'btn-outline-primary': !managementMode() }"
+      class="btn btn-lg btn-block option-button"
+      [routerLink]="['/promoter/management']"
+      (click)="setManagementMode()">Zarządzanie</button>
+    </div>
+    <div class="col-12 col-lg-4 mb-2 mb-lg-0">
+      <button type="button" 
+      [ngClass]="{ 'btn-success active-option border-success': historyMode(), 'btn-outline-success': !historyMode() }"
+      class="btn btn-lg btn-block option-button"
+      [routerLink]="['/promoter/history']"
+      (click)="setHistoryMode()">Historia</button>
+    </div>
+    <div class="col-12 col-lg-4 mb-2 mb-lg-0">
+      <button type="button" 
+      [ngClass]="{ 'btn-info active-option border-info': newMode(), 'btn-outline-info': !newMode() }"
+      class="btn btn-lg btn-block option-button"
+      [routerLink]="['/promoter/new-event']"
+      (click)="setNewMode()">Nowe wydarzenie</button>
+    </div>
+  </div>
+
+  <div *ngIf="managementMode()">
+    <div class="tab-panel">
+      <tabset class="user-tabset">
+        <tab heading="Wydarzenia">
+          <div class="container mt-2">
+            lista wydarzeń tego organizatora
+          </div>
+        </tab>
+      </tabset>
+    </div>
+  </div>
+
+  <div *ngIf="historyMode()">
+    <div class="tab-panel">
+      <tabset class="user-tabset">
+        <tab heading="Archiwalne wydarzenia">
+          <div class="container mt-2">
+            lista wydarzeń archiwalnych tego organizatora
+          </div>
+        </tab>
+      </tabset>
+    </div>
+  </div>
+
+  <div *ngIf="newMode()">
+    <div class="tab-panel">
+      <tabset class="user-tabset">
+        <tab heading="Nowe wydarzenie">
+          <div class="container mt-2">
+            formularz dodawania nowego wydarzenia
+          </div>
+        </tab>
+      </tabset>
+    </div>
+  </div>
+</div>
