@@ -6,7 +6,6 @@ import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Venue } from 'src/app/models/venue';
 import { BsModalRef } from 'ngx-bootstrap';
 import { City } from 'src/app/models/city';
-import { ZipCode } from 'src/app/models/zipCode';
 
 @Component({
   selector: 'app-venue-edit-modal',
@@ -21,13 +20,11 @@ export class VenueEditModalComponent implements OnInit {
   venueDescription: any;
   venuePhotoUrl: any;
   venueCity: any;
-  venueZipCode: any;
   venueLine1: any;
   venueLine2: any;
   cities: City[];
   selectedCity: string;
   cityId: number;
-  zipCodeId: number;
 
   constructor(public bsModalRef: BsModalRef, public eventService: EventService,
     public adminService: AdminService, public alertify: AlertifyService) { }
@@ -38,7 +35,6 @@ export class VenueEditModalComponent implements OnInit {
     this.venueDescription = this.venue.description;
     this.venuePhotoUrl = this.venue.photoUrl;
     this.venueCity = this.venue.address.city.name;
-    this.venueZipCode = this.venue.address.zipCode.code;
     this.venueLine1 = this.venue.address.line1;
     this.venueLine2 = this.venue.address.line2;
     this.cityId = this.venue.address.city.id;
@@ -50,24 +46,6 @@ export class VenueEditModalComponent implements OnInit {
     this.updatedVenue.address.cityId = this.cityId;
     this.updatedVenue.address.city.id = this.cityId;
     this.updatedVenue.address.city.name = this.getCityName(this.cityId);
-    //
-      // Sprawdzam czy dany kod pocztowy istnieje w bazie
-      this.adminService.getZipCode(this.updatedVenue.address.zipCode.code).subscribe((zipCode: ZipCode) => {
-        if (zipCode !== null) {
-          console.log(zipCode.code);
-          console.log(zipCode.id);
-          this.updatedVenue.address.zipCodeId = zipCode.id;
-          this.updatedVenue.address.zipCode.id = zipCode.id;
-          this.updatedVenue.address.zipCode.code = zipCode.code;
-          console.log(JSON.stringify(this.updatedVenue.address));
-        } else {
-          console.log('null');
-          this.alertify.error('Nie ma takiego kodu w bazie');
-        }
-      }, error => {
-        this.alertify.error('Nie ma takiego kodu w bazie');
-      });
-    //
     this.updateVenue.emit(this.updatedVenue);
     this.bsModalRef.hide();
   }

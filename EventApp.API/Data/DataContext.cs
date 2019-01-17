@@ -8,7 +8,7 @@ namespace EventApp.API.Data
         public DataContext(DbContextOptions<DataContext> options) : base (options) {}
 
         public DbSet<City> Cities { get; set; }
-        public DbSet<ZipCode> ZipCodes { get; set; }
+        // public DbSet<ZipCode> ZipCodes { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Venue> Venues { get; set; }
         public DbSet<Category> Categories { get; set; }
@@ -27,9 +27,9 @@ namespace EventApp.API.Data
                 .HasIndex(c => c.Name).IsUnique()
                 .HasName("City_Name");
 
-            modelBuilder.Entity<ZipCode>()
-                .HasIndex(zc => zc.Code).IsUnique()
-                .HasName("ZipCode_Code");
+            // modelBuilder.Entity<ZipCode>()
+            //     .HasIndex(zc => zc.Code).IsUnique()
+            //     .HasName("ZipCode_Code");
 
             modelBuilder.Entity<UserRole>(userRole =>
             {

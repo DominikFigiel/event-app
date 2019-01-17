@@ -23,7 +23,7 @@ namespace EventApp.API.Data.SeedData
             this.SeedUserRoles();
             this.SeedUsers();
             this.SeedCities();
-            this.SeedZipCodes();
+            // this.SeedZipCodes();
             this.SeedAddresses();
             this.SeedVenues();
             this.SeedCategories();
@@ -103,20 +103,20 @@ namespace EventApp.API.Data.SeedData
             }
         }
 
-        public void SeedZipCodes()
-        {
-            // run only if table is empty
-            if (_context.ZipCodes.Count() == 0) {
-                var data = System.IO.File.ReadAllText("Data/SeedData/ZipCodeSeedData.json");
-                var objects = JsonConvert.DeserializeObject<List<ZipCode>>(data);
-                foreach(var zipCode in objects)
-                {
-                    _context.ZipCodes.Add(zipCode);
-                }
+        // public void SeedZipCodes()
+        // {
+        //     // run only if table is empty
+        //     if (_context.ZipCodes.Count() == 0) {
+        //         var data = System.IO.File.ReadAllText("Data/SeedData/ZipCodeSeedData.json");
+        //         var objects = JsonConvert.DeserializeObject<List<ZipCode>>(data);
+        //         foreach(var zipCode in objects)
+        //         {
+        //             _context.ZipCodes.Add(zipCode);
+        //         }
 
-                _context.SaveChanges();
-            }
-        }
+        //         _context.SaveChanges();
+        //     }
+        // }
 
         public void SeedAddresses()
         {

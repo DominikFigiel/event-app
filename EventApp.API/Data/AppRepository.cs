@@ -163,7 +163,6 @@ namespace EventApp.API.Data
             .Include(v => v.Address)
                 .ThenInclude(a => a.City)
             .Include(v => v.Address)
-                .ThenInclude(a => a.ZipCode)
             .FirstOrDefault(c => c.Id == id);
 
             return venue;
@@ -181,27 +180,26 @@ namespace EventApp.API.Data
         {
             var address = _context.Addresses
             .Include(a => a.City)
-            .Include(a => a.ZipCode)
             .FirstOrDefault(a => a.Id == id);
 
             return address;
         }
 
-        public ZipCode GetZipCode(int id)
-        {
-            var zipcode = _context.ZipCodes
-            .FirstOrDefault(a => a.Id == id);
+        // public ZipCode GetZipCode(int id)
+        // {
+        //     var zipcode = _context.ZipCodes
+        //     .FirstOrDefault(a => a.Id == id);
 
-            return zipcode;
-        }
+        //     return zipcode;
+        // }
 
-        public async Task<bool> ZipCodeExists(string code)
-        {
-            if(await _context.ZipCodes.AnyAsync(c => c.Code == code))
-                return true;
+        // public async Task<bool> ZipCodeExists(string code)
+        // {
+        //     if(await _context.ZipCodes.AnyAsync(c => c.Code == code))
+        //         return true;
 
-            return false;
-        }
+        //     return false;
+        // }
         
     }
 }

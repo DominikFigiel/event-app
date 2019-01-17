@@ -82,19 +82,6 @@ namespace EventApp.API.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "ZipCodes",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Code = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_ZipCodes", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Subcategories",
                 columns: table => new
                 {
@@ -110,6 +97,27 @@ namespace EventApp.API.Migrations
                         name: "FK_Subcategories_Categories_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Addresses",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    CityId = table.Column<int>(nullable: false),
+                    Line1 = table.Column<string>(nullable: true),
+                    Line2 = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Addresses", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Addresses_Cities_CityId",
+                        column: x => x.CityId,
+                        principalTable: "Cities",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -160,34 +168,6 @@ namespace EventApp.API.Migrations
                         name: "FK_UserRoles_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Addresses",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    CityId = table.Column<int>(nullable: false),
-                    ZipCodeId = table.Column<int>(nullable: false),
-                    Line1 = table.Column<string>(nullable: true),
-                    Line2 = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Addresses", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Addresses_Cities_CityId",
-                        column: x => x.CityId,
-                        principalTable: "Cities",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Addresses_ZipCodes_ZipCodeId",
-                        column: x => x.ZipCodeId,
-                        principalTable: "ZipCodes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -282,11 +262,6 @@ namespace EventApp.API.Migrations
                 column: "CityId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Addresses_ZipCodeId",
-                table: "Addresses",
-                column: "ZipCodeId");
-
-            migrationBuilder.CreateIndex(
                 name: "City_Name",
                 table: "Cities",
                 column: "Name",
@@ -336,12 +311,6 @@ namespace EventApp.API.Migrations
                 name: "IX_Venues_AddressId",
                 table: "Venues",
                 column: "AddressId");
-
-            migrationBuilder.CreateIndex(
-                name: "ZipCode_Code",
-                table: "ZipCodes",
-                column: "Code",
-                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -381,9 +350,6 @@ namespace EventApp.API.Migrations
 
             migrationBuilder.DropTable(
                 name: "Cities");
-
-            migrationBuilder.DropTable(
-                name: "ZipCodes");
         }
     }
 }

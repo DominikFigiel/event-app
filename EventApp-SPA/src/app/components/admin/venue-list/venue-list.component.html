@@ -19,7 +19,7 @@
             <td>{{venue.name}}</td>
             <td>{{venue.description}}</td>
             <td><img src="{{venue.photoUrl}}" alt="{{venue.name}}" width="192px" height="108px"></td>
-            <td>{{venue.address.line1}} {{venue.address.line2}} {{venue.address.city.name}} {{venue.address.zipCode.code}}</td>
+            <td>{{venue.address.line1}} {{venue.address.line2}} {{venue.address.city.name}}</td>
             <td class="text-xs-right">
               <button class="btn btn-info mr-2" (click)="editVenue(venue)">Edytuj</button>
               <button class="btn btn-danger" (click)="deleteVenueOnConfirm(venue.id)">Usuń</button></td>

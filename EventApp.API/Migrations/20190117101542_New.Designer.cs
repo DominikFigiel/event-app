@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EventApp.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20181211133947_New")]
+    [Migration("20190117101542_New")]
     partial class New
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -29,13 +29,9 @@ namespace EventApp.API.Migrations
 
                     b.Property<string>("Line2");
 
-                    b.Property<int>("ZipCodeId");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CityId");
-
-                    b.HasIndex("ZipCodeId");
 
                     b.ToTable("Addresses");
                 });
@@ -245,32 +241,11 @@ namespace EventApp.API.Migrations
                     b.ToTable("Venues");
                 });
 
-            modelBuilder.Entity("EventApp.API.Models.ZipCode", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Code");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("Code")
-                        .IsUnique()
-                        .HasName("ZipCode_Code");
-
-                    b.ToTable("ZipCodes");
-                });
-
             modelBuilder.Entity("EventApp.API.Models.Address", b =>
                 {
                     b.HasOne("EventApp.API.Models.City", "City")
                         .WithMany()
                         .HasForeignKey("CityId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("EventApp.API.Models.ZipCode", "ZipCode")
-                        .WithMany()
-                        .HasForeignKey("ZipCodeId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

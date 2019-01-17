@@ -25,7 +25,6 @@ namespace EventApp.API.Controllers
             .Include(v => v.Address)
             .ThenInclude(a => a.City)
             .Include(v => v.Address)
-            .ThenInclude(a => a.ZipCode)
             .ToListAsync();
 
             return Ok(venues);
@@ -38,7 +37,6 @@ namespace EventApp.API.Controllers
             .Include(v => v.Address)
                 .ThenInclude(a => a.City)
             .Include(v => v.Address)
-                .ThenInclude(a => a.ZipCode)
             .FirstOrDefaultAsync(v => v.Id == id);
 
             return Ok(venue);

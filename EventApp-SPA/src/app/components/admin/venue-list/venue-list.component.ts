@@ -46,7 +46,6 @@ export class VenueListComponent implements OnInit, OnChanges {
       const venueBeforeChanges = Object.assign({}, venue);
       const addressBeforeChanges = Object.assign({}, venue.address);
       const cityBeforeChanges = Object.assign({}, venue.address.city);
-      const zipCodeBeforeChanges = Object.assign({}, venue.address.zipCode);
 
       const initialState = {
         venue
@@ -54,10 +53,10 @@ export class VenueListComponent implements OnInit, OnChanges {
       console.log(JSON.stringify(venue.address));
       this.bsModalRef = this.modalService.show(VenueEditModalComponent, {initialState});
       this.bsModalRef.content.updateVenue.subscribe((updatedVenue) => {
-        // console.log('Before:' + JSON.stringify(addressBeforeChanges));
-        // console.log('After:' + JSON.stringify(venue.address));
+        console.log('Before:' + JSON.stringify(venueBeforeChanges.description));
+        console.log('After:' + JSON.stringify(venue.description));
         // console.log('City before:' + JSON.stringify(cityBeforeChanges.id));
-        if (venue.name !== venueBeforeChanges.name) {
+        if (venue.name !== venueBeforeChanges.name || venue.description !== venueBeforeChanges.description) {
           this.adminService.updateVenue(venue).subscribe(next => {
             this.alertify.success('Dane obiektu zostały zapisane.');
           }, error => {
@@ -66,7 +65,7 @@ export class VenueListComponent implements OnInit, OnChanges {
         }
 
         if (venue.address.line1 !== addressBeforeChanges.line1 || venue.address.line2 !== addressBeforeChanges.line2
-              || venue.address.city.id !== cityBeforeChanges.id || venue.address.zipCode.code !== zipCodeBeforeChanges.code) {
+              || venue.address.city.id !== cityBeforeChanges.id) {
 
           console.log('venue.address:' + JSON.stringify(venue.address));
           console.log('venue.address.id:' + JSON.stringify(venue.address.id));

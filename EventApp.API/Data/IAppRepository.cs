@@ -28,7 +28,7 @@ namespace EventApp.API.Data
         Venue GetVenue(int id);
         Task<Venue> AddVenueAsync(Venue venue);
         Address GetAddress(int id);
-        ZipCode GetZipCode(int id);
-        Task<bool> ZipCodeExists(string code);
+        // ZipCode GetZipCode(int id);
+        // Task<bool> ZipCodeExists(string code);
     }
 }
