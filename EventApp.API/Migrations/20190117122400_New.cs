@@ -129,7 +129,10 @@ namespace EventApp.API.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     StatusId = table.Column<int>(nullable: false),
-                    UserId = table.Column<int>(nullable: false)
+                    UserId = table.Column<int>(nullable: false),
+                    TotalAmount = table.Column<decimal>(nullable: false),
+                    OrderDate = table.Column<DateTime>(nullable: false),
+                    PaymentDate = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -256,6 +259,57 @@ namespace EventApp.API.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "TicketCategories",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    Price = table.Column<decimal>(nullable: false),
+                    Quantity = table.Column<int>(nullable: false),
+                    SoldUnits = table.Column<int>(nullable: false),
+                    EventId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TicketCategories", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TicketCategories_Events_EventId",
+                        column: x => x.EventId,
+                        principalTable: "Events",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "OrderTickets",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    OrderId = table.Column<int>(nullable: false),
+                    TicketCategoryId = table.Column<int>(nullable: false),
+                    SoldUnits = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_OrderTickets", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_OrderTickets_Orders_OrderId",
+                        column: x => x.OrderId,
+                        principalTable: "Orders",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_OrderTickets_TicketCategories_TicketCategoryId",
+                        column: x => x.TicketCategoryId,
+                        principalTable: "TicketCategories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Addresses_CityId",
                 table: "Addresses",
@@ -298,9 +352,24 @@ namespace EventApp.API.Migrations
                 column: "UserId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_OrderTickets_OrderId",
+                table: "OrderTickets",
+                column: "OrderId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_OrderTickets_TicketCategoryId",
+                table: "OrderTickets",
+                column: "TicketCategoryId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Subcategories_CategoryId",
                 table: "Subcategories",
                 column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TicketCategories_EventId",
+                table: "TicketCategories",
+                column: "EventId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserRoles_RoleId",
@@ -319,19 +388,25 @@ namespace EventApp.API.Migrations
                 name: "Images");
 
             migrationBuilder.DropTable(
-                name: "Orders");
+                name: "OrderTickets");
 
             migrationBuilder.DropTable(
                 name: "UserRoles");
 
             migrationBuilder.DropTable(
-                name: "Events");
+                name: "Orders");
+
+            migrationBuilder.DropTable(
+                name: "TicketCategories");
+
+            migrationBuilder.DropTable(
+                name: "Roles");
 
             migrationBuilder.DropTable(
                 name: "Statuses");
 
             migrationBuilder.DropTable(
-                name: "Roles");
+                name: "Events");
 
             migrationBuilder.DropTable(
                 name: "Subcategories");

@@ -20,6 +20,8 @@ namespace EventApp.API.Data
         public DbSet<Role> Roles { get; set; }
         public DbSet<UserRole> UserRoles { get; set; }
         public DbSet<Image> Images { get; set; }
+        public DbSet<TicketCategory> TicketCategories { get; set; }
+        public DbSet<OrderTicket> OrderTickets { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

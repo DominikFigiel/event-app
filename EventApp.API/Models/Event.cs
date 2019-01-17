@@ -20,5 +20,6 @@ namespace EventApp.API.Models
         public int UserId { get; set; }
         public Subcategory Subcategory { get; set; }
         public int SubcategoryId { get; set; }
+        public ICollection<TicketCategory> TicketCategories { get; set; }
     }
 }

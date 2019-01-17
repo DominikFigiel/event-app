@@ -123,7 +123,13 @@ namespace EventApp.API.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<DateTime>("OrderDate");
+
+                    b.Property<DateTime>("PaymentDate");
+
                     b.Property<int>("StatusId");
+
+                    b.Property<decimal>("TotalAmount");
 
                     b.Property<int>("UserId");
 
@@ -134,6 +140,26 @@ namespace EventApp.API.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("EventApp.API.Models.OrderTicket", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("OrderId");
+
+                    b.Property<int>("SoldUnits");
+
+                    b.Property<int>("TicketCategoryId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("TicketCategoryId");
+
+                    b.ToTable("OrderTickets");
                 });
 
             modelBuilder.Entity("EventApp.API.Models.Role", b =>
@@ -174,6 +200,30 @@ namespace EventApp.API.Migrations
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Subcategories");
+                });
+
+            modelBuilder.Entity("EventApp.API.Models.TicketCategory", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Description");
+
+                    b.Property<int>("EventId");
+
+                    b.Property<string>("Name");
+
+                    b.Property<decimal>("Price");
+
+                    b.Property<int>("Quantity");
+
+                    b.Property<int>("SoldUnits");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EventId");
+
+                    b.ToTable("TicketCategories");
                 });
 
             modelBuilder.Entity("EventApp.API.Models.User", b =>
@@ -286,11 +336,32 @@ namespace EventApp.API.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("EventApp.API.Models.OrderTicket", b =>
+                {
+                    b.HasOne("EventApp.API.Models.Order", "Order")
+                        .WithMany("OrderTickets")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("EventApp.API.Models.TicketCategory", "TicketCategory")
+                        .WithMany()
+                        .HasForeignKey("TicketCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("EventApp.API.Models.Subcategory", b =>
                 {
                     b.HasOne("EventApp.API.Models.Category", "Category")
                         .WithMany("Subcategories")
                         .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("EventApp.API.Models.TicketCategory", b =>
+                {
+                    b.HasOne("EventApp.API.Models.Event", "Event")
+                        .WithMany("TicketCategories")
+                        .HasForeignKey("EventId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
