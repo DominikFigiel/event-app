@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EventApp.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20190117122400_New")]
+    [Migration("20190118125845_New")]
     partial class New
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -76,6 +76,8 @@ namespace EventApp.API.Migrations
                     b.Property<DateTime>("Date");
 
                     b.Property<string>("Description");
+
+                    b.Property<bool>("Finished");
 
                     b.Property<string>("Headline");
 

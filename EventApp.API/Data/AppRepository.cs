@@ -203,9 +203,12 @@ namespace EventApp.API.Data
         // }
         public async Task<List<Event>> GetEventsByPromoter(int promoterId)
         {
-            var events = await _context.Events.Include(e => e.Venue).Include(e => e.Subcategory)
+            var events = await _context.Events
+                .Include(e => e.Venue)
+                .Include(e => e.Subcategory)
+                .Include(e => e.TicketCategories)
                     .Where(e => e.Date > DateTime.Now)
-                    .OrderByDescending(e => e.Created).ToListAsync();
+                        .OrderByDescending(e => e.Created).ToListAsync();
 
             return events;
         }
@@ -239,6 +242,13 @@ namespace EventApp.API.Data
             return ticketCategories;
         }
 
-        
+        public async Task<TicketCategory> AddTicketCategoryAsync(TicketCategory ticketCategory)
+        {
+            await _context.TicketCategories.AddAsync(ticketCategory);
+            await _context.SaveChangesAsync();
+
+            return ticketCategory;
+        }
+ 
     }
 }

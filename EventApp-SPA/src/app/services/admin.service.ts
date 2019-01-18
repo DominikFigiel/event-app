@@ -84,4 +84,12 @@ export class AdminService {
     return this.http.post(this.baseUrl + 'admin/addEvent', event);
   }
 
+  addTicketCategory(ticketCategory: any) {
+    return this.http.post(this.baseUrl + 'admin/addTicketCategory', ticketCategory);
+  }
+
+  setEventAsFinished(eventId: number) {
+    return this.http.put(this.baseUrl + 'admin/setEventAsFinished/' + eventId, eventId);
+  }
+
 }

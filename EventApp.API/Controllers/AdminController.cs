@@ -13,6 +13,7 @@ using EventApp.API.Dtos.City;
 using EventApp.API.Dtos.Venue;
 using EventApp.API.Dtos.Address;
 using EventApp.API.Dtos.Event;
+using EventApp.API.Dtos.TicketCategory;
 
 namespace EventApp.API.Controllers
 {
@@ -306,6 +307,29 @@ namespace EventApp.API.Controllers
             var createdEvent = await _repo.AddEventAsync(eventToCreate);
 
             return NoContent();
+        }
+
+        [HttpPost("addTicketCategory")]
+        public async Task<IActionResult> AddTicketCategory(TicketCategoryForAddDto ticketCategoryForAddDto)
+        {
+            var ticketCategoryToCreate = _mapper.Map<TicketCategory>(ticketCategoryForAddDto);
+
+            var createdTicketCategory = await _repo.AddTicketCategoryAsync(ticketCategoryToCreate);
+
+            return NoContent();
+        }
+
+        [HttpPut("setEventAsFinished/{eventId}")]
+        public async Task<IActionResult> SetEventAsFinished(int eventId)
+        {
+            var ev = await _repo.GetEvent(eventId);
+            
+            ev.Finished = true;
+
+            if(await _repo.SaveAll())
+                return NoContent();
+
+            throw new System.Exception($"Updating event {eventId} failed on save");
         }
 
     }

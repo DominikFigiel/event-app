@@ -62,6 +62,8 @@ import { PromoterPanelComponent } from './components/promoter/promoter-panel/pro
 import { PromoterEventListComponent } from './components/promoter/promoter-event-list/promoter-event-list.component';
 import { PromoterEndedEventListComponent } from './components/promoter/promoter-ended-event-list/promoter-ended-event-list.component';
 import { PromoterEventAddComponent } from './components/promoter/promoter-event-add/promoter-event-add.component';
+// tslint:disable-next-line:max-line-length
+import { PromoterEventTicketsSettingsComponent } from './components/promoter/promoter-event-tickets-settings/promoter-event-tickets-settings.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -108,7 +110,8 @@ export function tokenGetter() {
     PromoterPanelComponent,
     PromoterEventListComponent,
     PromoterEndedEventListComponent,
-    PromoterEventAddComponent
+    PromoterEventAddComponent,
+    PromoterEventTicketsSettingsComponent
   ],
   imports: [
     BrowserModule,

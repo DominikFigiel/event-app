@@ -14,6 +14,7 @@ namespace EventApp.API.Models
         public DateTime Date { get; set; }
         public DateTime Created { get; set; }
         public string PhotoURL { get; set; }
+        public bool Finished { get; set; }
         public bool Approved { get; set; }
         public ICollection<Image> Images { get; set; }
         public User User { get; set; }

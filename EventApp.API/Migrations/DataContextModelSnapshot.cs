@@ -75,6 +75,8 @@ namespace EventApp.API.Migrations
 
                     b.Property<string>("Description");
 
+                    b.Property<bool>("Finished");
+
                     b.Property<string>("Headline");
 
                     b.Property<string>("Name");

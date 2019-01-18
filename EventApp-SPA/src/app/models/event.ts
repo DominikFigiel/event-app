@@ -13,6 +13,7 @@ export interface Event {
     date: Date;
     created: Date;
     photoURL?: string;
+    finished: boolean;
     approved: boolean;
     images?: Image[];
     user: User;

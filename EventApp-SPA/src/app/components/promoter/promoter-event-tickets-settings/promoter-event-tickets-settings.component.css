@@ -1,0 +1,8 @@
+.finish-event-button {
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+.disable-pointer{
+    pointer-events: none;
+}

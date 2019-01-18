@@ -21,9 +21,12 @@
             <td><img src="{{event.photoURL}}" alt="{{event.name}}" width="192px" height="108px"></td>
             <td>{{event.description.slice(0,50)}}..</td>
             <td class="text-xs-right">
-              <button class="btn btn-info btn-block mr-2">Edytuj</button>
-              <button class="btn btn-success btn-block mr-2">Statystyki</button>
-              <button *ngIf="!event.ticketCategories" class="btn btn-warning btn-block mr-2"><strong>Dokończ konfigurację</strong></button>
+              <button *ngIf="event.ticketCategories && event.ticketCategories.length > 0" class="btn btn-info btn-block mr-2">Edytuj</button>
+              <button *ngIf="event.ticketCategories && event.ticketCategories.length > 0" class="btn btn-success btn-block mr-2">Statystyki</button>
+              <div class="text-center" *ngIf="!event.ticketCategories || event.ticketCategories.length < 1"><strong>Dokończ konfigurację, aby rozpocząć sprzedaż biletów</strong></div>
+              <button *ngIf="!event.ticketCategories || 1 > event.ticketCategories.length" class="btn btn-warning btn-block mr-2" [routerLink]="['/promoter/management/event/', event.id]">
+                <strong>Dokończ konfigurację</strong>
+              </button>
             </td>
           </tr>
         </tbody>
