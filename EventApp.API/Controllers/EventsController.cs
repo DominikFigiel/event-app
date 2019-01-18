@@ -69,6 +69,13 @@ namespace EventApp.API.Controllers
             return Ok(events);
         }
 
+        [HttpGet("finishedEventsToCheck")]
+        public async Task<IActionResult> GetFinishedEventsToCheck()
+        {
+            var events = await _repo.GetFinishedEventsToCheck();
+            
+            return Ok(events);
+        }
 
     } 
 }

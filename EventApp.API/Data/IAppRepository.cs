@@ -35,5 +35,7 @@ namespace EventApp.API.Data
         Task<Event> AddEventAsync(Event ev);
         Task<List<TicketCategory>> GetEventTicketCategories(int eventId);
         Task<TicketCategory> AddTicketCategoryAsync(TicketCategory ticketCategory);
+        Task<List<Event>> GetFinishedEventsToCheck();
+        
     }
 }

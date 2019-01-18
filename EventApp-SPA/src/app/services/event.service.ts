@@ -93,8 +93,12 @@ export class EventService {
     return this.http.get<Event[]>(this.baseUrl + 'events/endedEventsByPromoter/' + promoterId);
   }
 
-  GetEventTicketCategories(eventId): Observable<TicketCategory[]> {
+  getEventTicketCategories(eventId): Observable<TicketCategory[]> {
     return this.http.get<TicketCategory[]>(this.baseUrl + 'events/eventTicketCategories/' + eventId);
+  }
+
+  getFinishedEventsToCheck(): Observable<Event[]> {
+    return this.http.get<Event[]>(this.baseUrl + 'events/finishedEventsToCheck');
   }
 
 }

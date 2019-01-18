@@ -323,8 +323,34 @@ namespace EventApp.API.Controllers
         public async Task<IActionResult> SetEventAsFinished(int eventId)
         {
             var ev = await _repo.GetEvent(eventId);
-            
+
             ev.Finished = true;
+
+            if(await _repo.SaveAll())
+                return NoContent();
+
+            throw new System.Exception($"Updating event {eventId} failed on save");
+        }
+
+        [HttpPut("rejectEvent/{eventId}")]
+        public async Task<IActionResult> RejectEvent(int eventId)
+        {
+            var ev = await _repo.GetEvent(eventId);
+            
+            ev.Rejected = true;
+
+            if(await _repo.SaveAll())
+                return NoContent();
+
+            throw new System.Exception($"Updating event {eventId} failed on save");
+        }
+
+        [HttpPut("approveEvent/{eventId}")]
+        public async Task<IActionResult> ApproveEvent(int eventId)
+        {
+            var ev = await _repo.GetEvent(eventId);
+            
+            ev.Approved = true;
 
             if(await _repo.SaveAll())
                 return NoContent();

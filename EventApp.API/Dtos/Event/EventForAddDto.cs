@@ -14,6 +14,7 @@ namespace EventApp.API.Dtos.Event
         public DateTime Created { get; set; }
         public bool Finished { get; set; }
         public bool Approved { get; set; }
+        public bool Rejected { get; set; }
         public string PhotoURL { get; set; }
         public int UserId { get; set; }
 
@@ -29,6 +30,8 @@ namespace EventApp.API.Dtos.Event
             Finished = false;
 
             Approved = false;
+
+            Rejected = false;
         }
     }
 

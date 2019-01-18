@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EventApp.API.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20190118125845_New")]
+    [Migration("20190118144442_New")]
     partial class New
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -84,6 +84,8 @@ namespace EventApp.API.Migrations
                     b.Property<string>("Name");
 
                     b.Property<string>("PhotoURL");
+
+                    b.Property<bool>("Rejected");
 
                     b.Property<int>("SubcategoryId");
 

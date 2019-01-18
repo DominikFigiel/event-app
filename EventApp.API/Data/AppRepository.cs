@@ -207,7 +207,7 @@ namespace EventApp.API.Data
                 .Include(e => e.Venue)
                 .Include(e => e.Subcategory)
                 .Include(e => e.TicketCategories)
-                    .Where(e => e.Date > DateTime.Now)
+                    .Where(e => e.Date > DateTime.Now && e.Rejected == false)
                         .OrderByDescending(e => e.Created).ToListAsync();
 
             return events;
@@ -219,7 +219,7 @@ namespace EventApp.API.Data
                 .Include(e => e.Venue)
                 .Include(e => e.Subcategory)
                 .Include(e => e.TicketCategories)
-                    .Where(e => e.Date < DateTime.Now)
+                    .Where(e => e.Date < DateTime.Now || e.Rejected == true)
                         .OrderByDescending(e => e.Created).ToListAsync();
 
             return events;
@@ -249,6 +249,18 @@ namespace EventApp.API.Data
 
             return ticketCategory;
         }
- 
+
+        public async Task<List<Event>> GetFinishedEventsToCheck()
+        {
+            var events = await _context.Events
+                .Include(e => e.Venue)
+                .Include(e => e.Subcategory)
+                .Include(e => e.TicketCategories)
+                    .Where(e => e.Finished == true && e.Approved == false && e.Rejected == false)
+                        .OrderByDescending(e => e.Created).ToListAsync();
+
+            return events;
+        }
+        
     }
 }

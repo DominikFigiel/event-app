@@ -1,3 +1,4 @@
+import { EventToCheckComponent } from './components/admin/event-to-check/event-to-check.component';
 import { UserListResolver } from './resolvers/user-list.resolver';
 import { UserDetailResolver } from './resolvers/user-detail.resolver';
 import { UploadTestComponent } from './components/admin/upload-test/upload-test.component';
@@ -49,6 +50,7 @@ export const appRoutes: Routes = [
             { path: 'admin', component: AdminPanelComponent, data: {roles: ['Administrator']},
                 resolve: {categories: CategoryListResolver, venues: VenueListResolver}},
             { path: 'admin/:option', component: AdminPanelComponent, data: {roles: ['Administrator']}},
+            { path: 'admin/approval/event/:eventId', component: EventToCheckComponent, data: {roles: ['Administrator']}},
             { path: 'promoter', component: PromoterPanelComponent},
             { path: 'promoter/:option', component: PromoterPanelComponent},
             { path: 'promoter/management/event/:eventId', component: PromoterEventTicketsSettingsComponent}

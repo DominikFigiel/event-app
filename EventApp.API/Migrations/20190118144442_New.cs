@@ -212,6 +212,7 @@ namespace EventApp.API.Migrations
                     PhotoURL = table.Column<string>(nullable: true),
                     Finished = table.Column<bool>(nullable: false),
                     Approved = table.Column<bool>(nullable: false),
+                    Rejected = table.Column<bool>(nullable: false),
                     UserId = table.Column<int>(nullable: false),
                     SubcategoryId = table.Column<int>(nullable: false)
                 },

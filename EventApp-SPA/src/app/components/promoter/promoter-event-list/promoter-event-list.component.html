@@ -20,13 +20,23 @@
             <td>{{event.date | date: 'dd/MM/yyyy HH:mm'}}</td>
             <td><img src="{{event.photoURL}}" alt="{{event.name}}" width="192px" height="108px"></td>
             <td>{{event.description.slice(0,50)}}..</td>
-            <td class="text-xs-right">
-              <button *ngIf="event.ticketCategories && event.ticketCategories.length > 0" class="btn btn-info btn-block mr-2">Edytuj</button>
-              <button *ngIf="event.ticketCategories && event.ticketCategories.length > 0" class="btn btn-success btn-block mr-2">Statystyki</button>
-              <div class="text-center" *ngIf="!event.ticketCategories || event.ticketCategories.length < 1"><strong>Dokończ konfigurację, aby rozpocząć sprzedaż biletów</strong></div>
-              <button *ngIf="!event.ticketCategories || 1 > event.ticketCategories.length" class="btn btn-warning btn-block mr-2" [routerLink]="['/promoter/management/event/', event.id]">
+            <td class="text-xs-right" *ngIf="!event.rejected">
+              <div class="text-center" *ngIf="event.finished && !event.approved">
+                <button class="btn btn-primary btn-block mr-2 mb-2" disabled>Ogłoszenie oczekuje na publikację</button>
+              </div>
+              <button *ngIf="event.ticketCategories && event.ticketCategories.length > 0 && !event.approved" class="btn btn-info btn-block mr-2">Edytuj</button>
+              <button *ngIf="event.ticketCategories && event.ticketCategories.length > 0 && event.approved" class="btn btn-success btn-block mr-2">Statystyki</button>
+              <div class="text-center" *ngIf="!event.ticketCategories || event.ticketCategories.length < 1">
+                <strong>Dokończ konfigurację, aby móc opublikować wydarzenie</strong>
+              </div>
+              <button *ngIf="!event.finished && !event.approved" class="btn btn-warning btn-block mr-2" [routerLink]="['/promoter/management/event/', event.id]">
                 <strong>Dokończ konfigurację</strong>
               </button>
+            </td>
+            <td class="text-xs-right" *ngIf="event.rejected">
+              <div class="text-center">
+                <button class="btn btn-danger btn-block mr-2 mb-2" disabled>Ogłoszenie zostało odrzucone</button>
+              </div>
             </td>
           </tr>
         </tbody>

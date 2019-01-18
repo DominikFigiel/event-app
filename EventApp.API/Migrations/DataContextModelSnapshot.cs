@@ -83,6 +83,8 @@ namespace EventApp.API.Migrations
 
                     b.Property<string>("PhotoURL");
 
+                    b.Property<bool>("Rejected");
+
                     b.Property<int>("SubcategoryId");
 
                     b.Property<int>("UserId");

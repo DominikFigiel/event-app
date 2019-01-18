@@ -15,6 +15,7 @@ export interface Event {
     photoURL?: string;
     finished: boolean;
     approved: boolean;
+    rejected: boolean;
     images?: Image[];
     user: User;
     subcategory: Subcategory;

@@ -1,3 +1,4 @@
+import { AdminService } from './../../../services/admin.service';
 import { AuthService } from './../../../services/auth.service';
 import { AlertifyService } from 'src/app/services/alertify.service';
 import { Component, OnInit } from '@angular/core';
@@ -13,7 +14,7 @@ export class PromoterEventListComponent implements OnInit {
   events?: Event[];
 
   constructor(private eventService: EventService, private alertify: AlertifyService,
-    private authService: AuthService) { }
+    private authService: AuthService, private adminService: AdminService) { }
 
   ngOnInit() {
     this.loadEvents();

@@ -20,8 +20,14 @@
             <td>{{event.date | date: 'dd/MM/yyyy HH:mm'}}</td>
             <td><img src="{{event.photoURL}}" alt="{{event.name}}" width="192px" height="108px"></td>
             <td>{{event.description.slice(0,50)}}..</td>
-            <td class="text-xs-right">
+            <td class="text-xs-right" *ngIf="!event.rejected">
               <button class="btn btn-success btn-block mr-2">Statystyki</button>
+            </td>
+            <td class="text-xs-right" *ngIf="event.rejected">
+              <div class="text-center">
+                <button class="btn btn-danger btn-block mr-2 mb-2" disabled>Ogłoszenie zostało odrzucone</button>
+              </div>
+            </td>
           </tr>
         </tbody>
       </table> 

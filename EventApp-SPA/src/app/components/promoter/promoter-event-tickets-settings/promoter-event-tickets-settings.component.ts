@@ -56,7 +56,7 @@ export class PromoterEventTicketsSettingsComponent implements OnInit {
   }
 
   loadTicketCategories() {
-    this.eventService.GetEventTicketCategories(this.eventId).subscribe((ticketCategories: TicketCategory[]) => {
+    this.eventService.getEventTicketCategories(this.eventId).subscribe((ticketCategories: TicketCategory[]) => {
       this.ticketCategories = ticketCategories;
     }, error => {
       this.alertify.error(error);

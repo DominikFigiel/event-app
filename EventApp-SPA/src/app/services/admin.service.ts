@@ -76,10 +76,6 @@ export class AdminService {
     return this.http.put(this.baseUrl + 'admin/editAddress/' + address.id, address);
   }
 
-  getZipCode(code: string): Observable<ZipCode> {
-    return this.http.get<ZipCode>(this.baseUrl + 'admin/getZipCode/' + code);
-  }
-
   addEvent(event: any) {
     return this.http.post(this.baseUrl + 'admin/addEvent', event);
   }
@@ -91,5 +87,14 @@ export class AdminService {
   setEventAsFinished(eventId: number) {
     return this.http.put(this.baseUrl + 'admin/setEventAsFinished/' + eventId, eventId);
   }
+
+  rejectEvent(eventId: number) {
+    return this.http.put(this.baseUrl + 'admin/rejectEvent/' + eventId, eventId);
+  }
+
+  approveEvent(eventId: number) {
+    return this.http.put(this.baseUrl + 'admin/approveEvent/' + eventId, eventId);
+  }
+
 
 }
