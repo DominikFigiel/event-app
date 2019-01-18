@@ -84,7 +84,12 @@ namespace EventApp.API.Data
 
         public async Task<Event> GetEvent(int id)
         {
-            var ev = await _context.Events.Include(e => e.Images).Include(e => e.Venue).Include(e => e.Subcategory).ThenInclude(sc => sc.Category).FirstOrDefaultAsync(u => u.Id == id);
+            var ev = await _context.Events
+                .Include(e => e.User)
+                .Include(e => e.Images)
+                .Include(e => e.Venue)
+                .Include(e => e.Subcategory)
+                    .ThenInclude(sc => sc.Category).FirstOrDefaultAsync(u => u.Id == id);
 
             return ev;
         }
@@ -207,7 +212,7 @@ namespace EventApp.API.Data
                 .Include(e => e.Venue)
                 .Include(e => e.Subcategory)
                 .Include(e => e.TicketCategories)
-                    .Where(e => e.Date > DateTime.Now && e.Rejected == false)
+                    .Where(e => e.Date > DateTime.Now && e.UserId == promoterId && e.Rejected == false)
                         .OrderByDescending(e => e.Created).ToListAsync();
 
             return events;
@@ -219,7 +224,7 @@ namespace EventApp.API.Data
                 .Include(e => e.Venue)
                 .Include(e => e.Subcategory)
                 .Include(e => e.TicketCategories)
-                    .Where(e => e.Date < DateTime.Now || e.Rejected == true)
+                    .Where(e => e.Date < DateTime.Now || e.Rejected == true && e.UserId == promoterId)
                         .OrderByDescending(e => e.Created).ToListAsync();
 
             return events;

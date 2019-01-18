@@ -25,7 +25,11 @@
                 <button class="btn btn-primary btn-block mr-2 mb-2" disabled>Ogłoszenie oczekuje na publikację</button>
               </div>
               <button *ngIf="event.ticketCategories && event.ticketCategories.length > 0 && !event.approved" class="btn btn-info btn-block mr-2">Edytuj</button>
-              <button *ngIf="event.ticketCategories && event.ticketCategories.length > 0 && event.approved" class="btn btn-success btn-block mr-2">Statystyki</button>
+              <button *ngIf="event.approved" class="btn btn-info btn-block mr-2" disabled>Wydarzenie aktywne</button>
+              <button *ngIf="event.ticketCategories && event.ticketCategories.length > 0 && event.approved" class="btn btn-success btn-block mr-2"
+                [routerLink]="['/promoter/management/event/stats', event.id]">
+                Wyświetl statystyki
+              </button>
               <div class="text-center" *ngIf="!event.ticketCategories || event.ticketCategories.length < 1">
                 <strong>Dokończ konfigurację, aby móc opublikować wydarzenie</strong>
               </div>

@@ -66,6 +66,7 @@ import { PromoterEventAddComponent } from './components/promoter/promoter-event-
 import { PromoterEventTicketsSettingsComponent } from './components/promoter/promoter-event-tickets-settings/promoter-event-tickets-settings.component';
 import { EventsToCheckComponent } from './components/admin/events-to-check/events-to-check.component';
 import { EventToCheckComponent } from './components/admin/event-to-check/event-to-check.component';
+import { PromoterEventStatsComponent } from './components/promoter/promoter-event-stats/promoter-event-stats.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -114,8 +115,9 @@ export function tokenGetter() {
     PromoterEndedEventListComponent,
     PromoterEventAddComponent,
     PromoterEventTicketsSettingsComponent,
+    PromoterEventStatsComponent,
     EventsToCheckComponent,
-    EventToCheckComponent
+    EventToCheckComponent,
   ],
   imports: [
     BrowserModule,

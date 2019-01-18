@@ -17,5 +17,7 @@ namespace EventApp.API.Dtos.Event
         public bool Approved { get; set; }
         public bool Rejected { get; set; }
         public Subcategory Subcategory { get; set; }
+        public Models.User User { get; set; }
+
     }
 }

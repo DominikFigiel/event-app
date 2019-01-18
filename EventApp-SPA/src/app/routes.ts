@@ -1,3 +1,4 @@
+import { PromoterEventStatsComponent } from './components/promoter/promoter-event-stats/promoter-event-stats.component';
 import { EventToCheckComponent } from './components/admin/event-to-check/event-to-check.component';
 import { UserListResolver } from './resolvers/user-list.resolver';
 import { UserDetailResolver } from './resolvers/user-detail.resolver';
@@ -53,7 +54,8 @@ export const appRoutes: Routes = [
             { path: 'admin/approval/event/:eventId', component: EventToCheckComponent, data: {roles: ['Administrator']}},
             { path: 'promoter', component: PromoterPanelComponent},
             { path: 'promoter/:option', component: PromoterPanelComponent},
-            { path: 'promoter/management/event/:eventId', component: PromoterEventTicketsSettingsComponent}
+            { path: 'promoter/management/event/:eventId', component: PromoterEventTicketsSettingsComponent},
+            { path: 'promoter/management/event/stats/:eventId', component: PromoterEventStatsComponent}
 
         ]
     },
