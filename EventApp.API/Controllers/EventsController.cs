@@ -77,5 +77,21 @@ namespace EventApp.API.Controllers
             return Ok(events);
         }
 
+        [HttpGet("eventsByCategory/{categoryId}")]
+        public async Task<IActionResult> GetEventsByCategory(int categoryId)
+        {
+            var events = await _repo.GetEventsByCategory(categoryId);
+            
+            return Ok(events);
+        }
+
+        [HttpGet("eventsBySubcategory/{subcategoryId}")]
+        public async Task<IActionResult> GetEventsBySubcategory(int subcategoryId)
+        {
+            var events = await _repo.GetEventsBySubcategory(subcategoryId);
+            
+            return Ok(events);
+        }
+
     } 
 }

@@ -46,7 +46,6 @@ export class UserOrderDetailComponent implements OnInit {
   loadOrderTickets() {
     this.userService.getOrderTickets(this.orderId).subscribe((orderTickets: OrderTicket[]) => {
       this.orderTickets = orderTickets;
-      this.event = orderTickets[0].ticketCategory.event;
 
       orderTickets.forEach(element => {
         this.ticketsSoldInTotal += element.soldUnits;

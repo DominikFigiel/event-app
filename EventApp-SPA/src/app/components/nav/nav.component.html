@@ -20,6 +20,9 @@
         <li *appHasRole="['Administrator','Organizator']" class="nav-item" routerLinkActive="active">
           <a class="nav-link" [routerLink]="['/promoter']">Organizator</a>
         </li>
+        <li class="nav-item" routerLinkActive="active">
+          <a class="nav-link" [routerLink]="['/users/',authService.decodedToken?.nameid]">Moje zamówienia</a>
+        </li>
         
       </ul>
   

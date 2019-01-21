@@ -101,4 +101,12 @@ export class EventService {
     return this.http.get<Event[]>(this.baseUrl + 'events/finishedEventsToCheck');
   }
 
+  getEventsByCategory(categoryId): Observable<Event[]> {
+    return this.http.get<Event[]>(this.baseUrl + 'events/eventsByCategory/' + categoryId);
+  }
+
+  getEventsBySubcategory(categoryId): Observable<Event[]> {
+    return this.http.get<Event[]>(this.baseUrl + 'events/eventsBySubcategory/' + categoryId);
+  }
+
 }

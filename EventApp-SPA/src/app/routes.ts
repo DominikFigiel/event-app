@@ -28,6 +28,7 @@ import { PromoterEventTicketsSettingsComponent } from './components/promoter/pro
 import { EventTicketsComponent } from './components/events/event-tickets/event-tickets.component';
 import { TicketCategoryResolver } from './resolvers/ticket-category.resolver';
 import { UserOrderDetailComponent } from './components/users/user-order-detail/user-order-detail.component';
+import { EventSubcategoryComponent } from './components/events/event-subcategory/event-subcategory.component';
 
 export const appRoutes: Routes = [
     { path: '', component: HomeComponent},
@@ -43,6 +44,7 @@ export const appRoutes: Routes = [
                 resolve: {ticketCategories: TicketCategoryResolver, event: EventDetailResolver}},
             { path: 'categories', component: EventCategoryListComponent},
             { path: 'categories/:id', component: EventCategoryComponent},
+            { path: 'subcategories/:id', component: EventSubcategoryComponent},
             { path: 'cities', component: CityListComponent},
             { path: 'cities/:id', component: CityComponent},
             // { path: 'users/:id', component: UserDetailComponent},

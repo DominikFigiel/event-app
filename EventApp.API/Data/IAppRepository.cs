@@ -43,5 +43,7 @@ namespace EventApp.API.Data
         Task<Order> GetOrder(int orderId);
         Task<TicketCategory> GetTicketCategory(int ticketCategoryId);
         Task<List<OrderTicket>> GetOrderTickets(int orderId);
+        Task<List<Event>> GetEventsByCategory(int categoryId);
+        Task<List<Event>> GetEventsBySubcategory(int subcategoryId);
     }
 }

@@ -11,14 +11,16 @@
 
     <div id="collapseBasic" [collapse]="isCollapsed">
       <div class="list-group d-flex flex-row flex-wrap mt-3">
-        <a *ngFor="let subcategory of category?.subcategories" href="#" class="list-group-item col-lg-6 list-group-item-action">
-          {{subcategory.name}}
+        <a *ngFor="let subcategory of category?.subcategories" 
+          [routerLink]="['/subcategories', subcategory.id]" 
+          class="list-group-item col-lg-6 list-group-item-action">
+            {{subcategory.name}}
         </a>
       </div>
     </div>
 
   </div>
   <div class="card-header">
-    <a href="#" class="btn btn-info btn-block">Wszystkie wydarzenia z tej kategorii</a>
+    <a [routerLink]="['/categories', category.id]" class="btn btn-info btn-block">Wszystkie wydarzenia z tej kategorii</a>
   </div>
 </div>

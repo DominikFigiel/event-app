@@ -5,13 +5,13 @@ import { ActivatedRoute } from '@angular/router';
 import { Event } from 'src/app/models/event';
 
 @Component({
-  selector: 'app-event-category',
-  templateUrl: './event-category.component.html',
-  styleUrls: ['./event-category.component.css']
+  selector: 'app-event-subcategory',
+  templateUrl: './event-subcategory.component.html',
+  styleUrls: ['./event-subcategory.component.css']
 })
-export class EventCategoryComponent implements OnInit {
+export class EventSubcategoryComponent implements OnInit {
   events: Event[];
-  categoryId: number;
+  subcategoryId: number;
 
   constructor(private eventService: EventService, private alertify: AlertifyService,
     private route: ActivatedRoute) { }
@@ -22,13 +22,13 @@ export class EventCategoryComponent implements OnInit {
 
   loadCategoryId() {
     if (this.route.snapshot.params['id']) {
-      this.categoryId = this.route.snapshot.params['id'];
-      this.loadEvents(this.categoryId);
+      this.subcategoryId = this.route.snapshot.params['id'];
+      this.loadEvents(this.subcategoryId);
     }
   }
 
-  loadEvents(categoryId: number) {
-    this.eventService.getEventsByCategory(this.categoryId).subscribe((events: Event[]) => {
+  loadEvents(subcategoryId: number) {
+    this.eventService.getEventsBySubcategory(this.subcategoryId).subscribe((events: Event[]) => {
       this.events = events;
     }, error => {
       this.alertify.error(error);

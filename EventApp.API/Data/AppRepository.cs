@@ -334,6 +334,30 @@ namespace EventApp.API.Data
 
             return orderTickets;
         }
+
+        public async Task<List<Event>> GetEventsByCategory(int categoryId)
+        {
+            var events = await _context.Events
+                .Include(e => e.Venue)
+                .Include(e => e.Subcategory)
+                .Include(e => e.TicketCategories)
+                    .Where(e => e.Approved == true && e.Date > DateTime.Now && e.Subcategory.CategoryId == categoryId && e.Rejected == false)
+                        .OrderByDescending(e => e.Created).ToListAsync();
+
+            return events;
+        }
+
+        public async Task<List<Event>> GetEventsBySubcategory(int subcategoryId)
+        {
+            var events = await _context.Events
+                .Include(e => e.Venue)
+                .Include(e => e.Subcategory)
+                .Include(e => e.TicketCategories)
+                    .Where(e => e.Approved == true && e.Date > DateTime.Now && e.SubcategoryId == subcategoryId && e.Rejected == false)
+                        .OrderByDescending(e => e.Created).ToListAsync();
+
+            return events;
+        }
         
     }
 }

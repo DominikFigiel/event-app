@@ -70,6 +70,7 @@ import { PromoterEventStatsComponent } from './components/promoter/promoter-even
 import { EventTicketsComponent } from './components/events/event-tickets/event-tickets.component';
 import { TicketCategoryResolver } from './resolvers/ticket-category.resolver';
 import { UserOrderDetailComponent } from './components/users/user-order-detail/user-order-detail.component';
+import { EventSubcategoryComponent } from './components/events/event-subcategory/event-subcategory.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -122,7 +123,8 @@ export function tokenGetter() {
     EventsToCheckComponent,
     EventToCheckComponent,
     EventTicketsComponent,
-    UserOrderDetailComponent
+    UserOrderDetailComponent,
+    EventSubcategoryComponent
   ],
   imports: [
     BrowserModule,
