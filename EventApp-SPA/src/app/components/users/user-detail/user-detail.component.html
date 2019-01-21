@@ -15,7 +15,7 @@
         </div>
         <div class="card-footer">
           <div class="btn-group d-flex">
-            <button class="btn btn-success w-100">Akcja</button>
+            <button class="btn btn-success w-100" [routerLink]="['/user/edit']">Edycja danych</button>
           </div>
         </div>
       </div>
@@ -49,6 +49,8 @@
                         type="button" class="btn btn-success btn-block" (click)="successfulPayment(order?.id)">Zapłać</button>
                       <button *ngIf="!(order?.status.name == 'Unpaid')" 
                         type="button" class="btn btn-info btn-block" disabled>Opłacone</button>  
+                      <button *ngIf="!(order?.status.name == 'Unpaid')" 
+                        type="button" class="btn btn-info btn-block" [routerLink]="['/users/orders/', order?.id]">Szczegóły</button> 
                     </td>
                   </tr>
                 </tbody>

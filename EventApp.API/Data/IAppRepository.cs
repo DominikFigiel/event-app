@@ -42,6 +42,6 @@ namespace EventApp.API.Data
         Task<OrderTicket> AddOrderTicketAsync(OrderTicket orderTicket);
         Task<Order> GetOrder(int orderId);
         Task<TicketCategory> GetTicketCategory(int ticketCategoryId);
-        
+        Task<List<OrderTicket>> GetOrderTickets(int orderId);
     }
 }

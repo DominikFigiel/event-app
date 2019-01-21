@@ -1,0 +1,41 @@
+<div class="container mt-5">  
+  <h1 class="text-center text-primary">Szczegóły zamówienia biletów na wydarzenie:</h1>  
+  <h2 class="text-center text-primary">{{event?.name}}</h2>  
+  <div class="row mt-5">
+    <div class="col-lg-12 col-md-12 col-sm-12 mb-5">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Typ biletu</th>
+            <th scope="col">Cena</th>
+            <th scope="col">Zakupione bilety</th>
+            <th scope="col">Łączna kwota</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let ticket of orderTickets">
+            <td scope="row">{{ticket.id}}</td>
+            <td>{{ticket.ticketCategory?.name}}</td>
+            <td>{{ticket.ticketCategory?.price}}</td>
+            <td>{{ticket.soldUnits}}</td>
+            <td>{{ticket.soldUnits * ticket.ticketCategory?.price}}</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td class="table-dark"></td>
+            <td class="table-dark"></td>
+            <td class="table-dark">Razem:</td>
+            <td class="table-dark">Bilety: {{ticketsSoldInTotal}}</td>
+            <td class="table-dark ">Kwota: {{totalAmount}} zł</td>
+          </tr>
+        </tfoot>
+      </table> 
+      <div>
+        <button class="btn btn-info w-100 mt-5" [routerLink]="['/users', userId]">Powrót do listy zamówień</button>
+      </div>
+    </div>
+  </div>
+</div>
+  

@@ -27,6 +27,7 @@ import { PromoterPanelComponent } from './components/promoter/promoter-panel/pro
 import { PromoterEventTicketsSettingsComponent } from './components/promoter/promoter-event-tickets-settings/promoter-event-tickets-settings.component';
 import { EventTicketsComponent } from './components/events/event-tickets/event-tickets.component';
 import { TicketCategoryResolver } from './resolvers/ticket-category.resolver';
+import { UserOrderDetailComponent } from './components/users/user-order-detail/user-order-detail.component';
 
 export const appRoutes: Routes = [
     { path: '', component: HomeComponent},
@@ -50,6 +51,7 @@ export const appRoutes: Routes = [
             { path: 'uploadtest', component: UploadTestComponent},
             { path: 'userlisttest', component: UserListComponent, resolve: {users: UserListResolver}},
             { path: 'users/:id', component: UserDetailComponent, resolve: {user: UserDetailResolver}},
+            { path: 'users/orders/:id', component: UserOrderDetailComponent},
             { path: 'user/edit', component: UserEditComponent,
                 resolve: {user: UserEditResolver}, canDeactivate: [PreventUnsavedChanges]},
             { path: 'admin', component: AdminPanelComponent, data: {roles: ['Administrator']},

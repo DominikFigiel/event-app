@@ -128,5 +128,13 @@ namespace EventApp.API.Controllers
             throw new System.Exception($"Updating order {orderId} failed on save");
         }
 
+        [HttpGet("orderTickets/{orderId}")]
+        public async Task<IActionResult> GetOrderTickets(int orderId)
+        {
+            var orderTickets = await _repo.GetOrderTickets(orderId);
+            
+            return Ok(orderTickets);
+        }
+
     } 
 }

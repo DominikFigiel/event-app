@@ -70,6 +70,9 @@
                   <button class="btn btn-success w-100 mt-2" disabled>Sprzedaż zakończona</button>
                   <button class="btn btn-info w-100 mt-5" [routerLink]="['/events']">Zobacz nadchodzące wydarzenia</button>
                 </div>
+                <div *ngIf="!eventEnded()">
+                  <button class="btn btn-info w-100 mt-5" [routerLink]="['/events', event.id]">Powrót do strony wydarzenia</button>
+                </div>
               </div> 
             </tab>
           </tabset>

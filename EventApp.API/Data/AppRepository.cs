@@ -322,6 +322,18 @@ namespace EventApp.API.Data
 
             return ticketCategory;
         }
+
+        public async Task<List<OrderTicket>> GetOrderTickets(int orderId)
+        {
+            var orderTickets = await _context.OrderTickets
+                .Include(o => o.Order)
+                .Include(o => o.TicketCategory)
+                .ThenInclude(tc => tc.Event)
+                    .Where(o => o.OrderId == orderId)
+                        .OrderByDescending(o => o.Order.OrderDate).ToListAsync();
+
+            return orderTickets;
+        }
         
     }
 }

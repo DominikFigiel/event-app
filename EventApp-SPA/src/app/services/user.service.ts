@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../models/user';
 import { Order } from '../models/Order';
+import { OrderTicket } from '../models/orderTicket';
 
 // const httpOptions = {
 //   headers: new HttpHeaders({
@@ -53,6 +54,10 @@ export class UserService {
 
   successfulPayment(orderId: number) {
     return this.http.put(this.baseUrl + 'users/successfulPayment/' + orderId, orderId);
+  }
+
+  getOrderTickets(orderId: number): Observable<OrderTicket[]> {
+    return this.http.get<OrderTicket[]>(this.baseUrl + 'users/orderTickets/' + orderId);
   }
 
 }

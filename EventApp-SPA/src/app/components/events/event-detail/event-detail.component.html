@@ -44,6 +44,9 @@
             </tab>
           </tabset>
         </div>
+        <div *ngIf="!eventEnded()">
+            <button class="btn btn-info w-100 mt-5" [routerLink]="['/events']">Zobacz pozostałe wydarzenia</button>
+          </div>
       </div>
     </div>
   </div>
