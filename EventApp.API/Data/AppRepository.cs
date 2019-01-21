@@ -358,6 +358,18 @@ namespace EventApp.API.Data
 
             return events;
         }
+
+        public async Task<List<Event>> GetEventsByCity(int cityId)
+        {
+            var events = await _context.Events
+                .Include(e => e.Venue)
+                .Include(e => e.Subcategory)
+                .Include(e => e.TicketCategories)
+                    .Where(e => e.Approved == true && e.Date > DateTime.Now && e.Venue.Address.CityId == cityId && e.Rejected == false)
+                        .OrderByDescending(e => e.Created).ToListAsync();
+
+            return events;
+        }
         
     }
 }

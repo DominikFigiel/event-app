@@ -93,5 +93,13 @@ namespace EventApp.API.Controllers
             return Ok(events);
         }
 
+        [HttpGet("eventsByCity/{cityId}")]
+        public async Task<IActionResult> GetEventsByCity(int cityId)
+        {
+            var events = await _repo.GetEventsByCity(cityId);
+            
+            return Ok(events);
+        }
+
     } 
 }

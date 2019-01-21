@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { EventService } from 'src/app/services/event.service';
+import { AlertifyService } from 'src/app/services/alertify.service';
+import { ActivatedRoute } from '@angular/router';
+import { Event } from 'src/app/models/event';
 
 @Component({
   selector: 'app-city',
@@ -7,19 +11,28 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./city.component.css']
 })
 export class CityComponent implements OnInit {
-  cities: any;
+  events: Event[];
+  cityId: number;
 
-  constructor(private http: HttpClient) { }
+  constructor(private eventService: EventService, private alertify: AlertifyService,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.getCities();
+    this.loadCategoryId();
   }
 
-  getCities() {
-    this.http.get('http://localhost:5000/api/cities').subscribe(response => {
-      this.cities = response;
+  loadCategoryId() {
+    if (this.route.snapshot.params['id']) {
+      this.cityId = this.route.snapshot.params['id'];
+      this.loadEvents(this.cityId);
+    }
+  }
+
+  loadEvents(cityId: number) {
+    this.eventService.getEventsByCity(this.cityId).subscribe((events: Event[]) => {
+      this.events = events;
     }, error => {
-      console.log(error);
+      this.alertify.error(error);
     });
   }
 }
