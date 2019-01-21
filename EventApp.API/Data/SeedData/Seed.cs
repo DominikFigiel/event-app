@@ -22,6 +22,7 @@ namespace EventApp.API.Data.SeedData
         {
             this.SeedUserRoles();
             this.SeedUsers();
+            this.SeedStatuses();
             this.SeedCities();
             // this.SeedZipCodes();
             this.SeedAddresses();
@@ -44,6 +45,23 @@ namespace EventApp.API.Data.SeedData
                 foreach(var role in roles)
                 {
                     _context.Roles.AddAsync(role).Wait();
+                    _context.SaveChanges();
+                }
+            }
+        }
+
+        public void SeedStatuses()
+        {
+            if (_context.Statuses.Count() == 0) {
+                var statuses = new List<Status>
+                {
+                    new Status{Name = "Unpaid"},
+                    new Status{Name = "Paid"}
+                };
+
+                foreach(var status in statuses)
+                {
+                    _context.Statuses.AddAsync(status).Wait();
                     _context.SaveChanges();
                 }
             }

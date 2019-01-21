@@ -31,7 +31,7 @@
         <div class="dropdown-menu mt-3" *dropdownMenu>
           <a class="dropdown-item" [routerLink]="['/user/edit']"><i class="fa fa-user"></i> Edytuj profil</a>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" [routerLink]="['/user/orders']"><i class="fa fa-shopping-basket"></i> Moje zamówienia</a>
+          <a class="dropdown-item" [routerLink]="['/users/',authService.decodedToken?.nameid]"><i class="fa fa-shopping-basket"></i> Moje zamówienia</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item logout-link" (click)="logout()"><i class="fa fa-sign-out"></i> Wyloguj</a>
         </div>

@@ -16,6 +16,9 @@ export class PromoterEventStatsComponent implements OnInit {
   eventId: number;
   event: Event;
   ticketCategories: TicketCategory[];
+  ticketsSoldInTotal: number;
+  totalAmount: number;
+
 
   constructor(private route: ActivatedRoute, private eventService: EventService,
     private router: Router, private alertify: AlertifyService,
@@ -26,6 +29,8 @@ export class PromoterEventStatsComponent implements OnInit {
     this.loadUserId();
     this.loadEvent();
     this.loadTicketCategories();
+    this.ticketsSoldInTotal = 0;
+    this.totalAmount = 0;
   }
 
   loadUserId() {
@@ -54,6 +59,10 @@ export class PromoterEventStatsComponent implements OnInit {
   loadTicketCategories() {
     this.eventService.getEventTicketCategories(this.eventId).subscribe((ticketCategories: TicketCategory[]) => {
       this.ticketCategories = ticketCategories;
+      ticketCategories.forEach(element => {
+        this.ticketsSoldInTotal += element.soldUnits;
+        this.totalAmount += (element.soldUnits * element.price);
+      });
     }, error => {
       this.alertify.error(error);
     });

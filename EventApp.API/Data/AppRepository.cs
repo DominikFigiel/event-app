@@ -62,8 +62,10 @@ namespace EventApp.API.Data
 
         public async Task<PagedList<Event>> GetEvents(EventParams eventParams)
         {
-            var events = _context.Events.Include(e => e.Venue)
-                    .OrderByDescending(e => e.Created).AsQueryable();
+            var events = _context.Events
+                .Include(e => e.Venue)
+                    .Where(e => e.Approved == true && e.Date > DateTime.Now)
+                        .OrderByDescending(e => e.Created).AsQueryable();
 
             if (!string.IsNullOrEmpty(eventParams.OrderBy))
             {
@@ -265,6 +267,60 @@ namespace EventApp.API.Data
                         .OrderByDescending(e => e.Created).ToListAsync();
 
             return events;
+        }
+
+        public async Task<List<Order>> GetOrdersByUser(int userId)
+        {
+            var orders = await _context.Orders
+                .Include(o => o.Status)
+                .Include(o => o.User)
+                    .Where(o => o.UserId == userId)
+                        .OrderByDescending(o => o.OrderDate).ToListAsync();
+
+            return orders;
+        }
+
+        public async Task<List<Order>> GetUnpaidOrdersByUser(int userId)
+        {
+            var orders = await _context.Orders
+                .Include(o => o.Status)
+                .Include(o => o.User)
+                    .Where(o => o.UserId == userId && o.Status.Name.Equals("Unpaid"))
+                        .OrderByDescending(o => o.OrderDate).ToListAsync();
+
+            return orders;
+        }
+
+        public async Task<Order> AddOrderAsync(Order order)
+        {
+            await _context.Orders.AddAsync(order);
+            await _context.SaveChangesAsync();
+
+            return order;
+        }
+
+        public async Task<OrderTicket> AddOrderTicketAsync(OrderTicket orderTicket)
+        {
+            await _context.OrderTickets.AddAsync(orderTicket);
+            await _context.SaveChangesAsync();
+
+            return orderTicket;
+        }
+
+        public async Task<Order> GetOrder(int orderId)
+        {
+            var order = await _context.Orders
+                .FirstOrDefaultAsync(o => o.Id == orderId);
+
+            return order;
+        }
+
+        public async Task<TicketCategory> GetTicketCategory(int ticketCategoryId)
+        {
+            var ticketCategory = await _context.TicketCategories
+                .FirstOrDefaultAsync(tc => tc.Id == ticketCategoryId);
+
+            return ticketCategory;
         }
         
     }

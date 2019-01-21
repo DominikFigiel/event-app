@@ -78,6 +78,8 @@ export class PromoterEventAddComponent implements OnInit {
 
   addNewEvent() {
     if (this.addForm.valid) {
+      console.log(this.addForm.value);
+      console.log(this.addForm.value.name);
       this.event = Object.assign({}, this.addForm.value);
       this.adminService.addEvent(this.event).subscribe(() => {
         this.alertify.success('Wydarzenie zostało dodane.');

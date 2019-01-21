@@ -67,6 +67,8 @@ import { PromoterEventTicketsSettingsComponent } from './components/promoter/pro
 import { EventsToCheckComponent } from './components/admin/events-to-check/events-to-check.component';
 import { EventToCheckComponent } from './components/admin/event-to-check/event-to-check.component';
 import { PromoterEventStatsComponent } from './components/promoter/promoter-event-stats/promoter-event-stats.component';
+import { EventTicketsComponent } from './components/events/event-tickets/event-tickets.component';
+import { TicketCategoryResolver } from './resolvers/ticket-category.resolver';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -118,6 +120,7 @@ export function tokenGetter() {
     PromoterEventStatsComponent,
     EventsToCheckComponent,
     EventToCheckComponent,
+    EventTicketsComponent
   ],
   imports: [
     BrowserModule,
@@ -156,7 +159,8 @@ export function tokenGetter() {
     EventDetailResolver,
     AdminService,
     CategoryListResolver,
-    VenueListResolver
+    VenueListResolver,
+    TicketCategoryResolver
   ],
   entryComponents: [
      RolesModalComponent,

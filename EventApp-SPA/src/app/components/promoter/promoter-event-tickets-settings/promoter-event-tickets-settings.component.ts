@@ -79,7 +79,6 @@ export class PromoterEventTicketsSettingsComponent implements OnInit {
       this.ticketCategory = Object.assign({}, this.addForm.value);
       this.adminService.addTicketCategory(this.ticketCategory).subscribe(() => {
         this.alertify.success('Kategoria biletów została zapisana w bazie.');
-        this.addForm.reset();
         this.loadTicketCategories();
       }, error => {
         this.showErrorNotificationsFromRequest(error);

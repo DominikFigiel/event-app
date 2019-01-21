@@ -23,17 +23,72 @@
     <div class="col-sm-8">
       <div class="tab-panel">
         <tabset class="user-tabset">
-          <tab heading="Informacje ogólne">
-            <h4>Nagłowek 1</h4>
-            <p>Opis</p>
+          <tab class="mt-4 pl-4" heading="Historia zamówień">
+            <h4>Moje zakupy</h4>
+            <div>
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">Status zamówienia</th>
+                    <th scope="col">Kwota łączna</th>
+                    <th scope="col">Data zamówienia</th>
+                    <th scope="col">Data płatności</th>
+                    <th scope="col">Opcje</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let order of orders">
+                    <td *ngIf="order?.status.name == 'Unpaid'">Nieopłacone</td>
+                    <td *ngIf="!(order?.status.name == 'Unpaid')">Opłacone</td>
+                    <td>{{order?.totalAmount}} zł</td>
+                    <td>{{order?.orderDate | date: 'dd/MM/yyyy'}}</td>
+                    <td *ngIf="!(order?.status.name == 'Unpaid')">{{order?.paymentDate | date: 'dd/MM/yyyy'}}</td>
+                    <td *ngIf="order?.status.name == 'Unpaid'">Zamówienie nieopłacone</td>
+                    <td>
+                      <button *ngIf="order?.status.name == 'Unpaid'" 
+                        type="button" class="btn btn-success btn-block" (click)="successfulPayment(order?.id)">Zapłać</button>
+                      <button *ngIf="!(order?.status.name == 'Unpaid')" 
+                        type="button" class="btn btn-info btn-block" disabled>Opłacone</button>  
+                    </td>
+                  </tr>
+                </tbody>
+              </table> 
+            </div>
           </tab>
-          <tab heading="Zamówienia">
-            <h4>Nagłowek 1</h4>
-            <p>Opis</p>
-          </tab>
-          <tab heading="Obserwowane wydarzenia">
-            <h4>Nagłowek 1</h4>
-            <p>Opis</p>
+          <tab>
+            <ng-template tabHeading>Nieopłacone zamówienia
+              <span class="badge badge-pill badge-info badge-fontsize-normal">{{unpaidOrders?.length}}</span>
+            </ng-template>
+            <div *ngIf="unpaidOrders && unpaidOrders?.length < 1" class="text-center mt-4">
+              <h4>Nie masz żadnych nieopłaconych zamówień</h4>
+              <i class="fa fa-check-circle icon-success icon-15 mt-2" aria-hidden="true"></i>
+            </div>
+            <div *ngIf="unpaidOrders && unpaidOrders?.length > 0">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">Status zamówienia</th>
+                    <th scope="col">Kwota łączna</th>
+                    <th scope="col">Data zamówienia</th>
+                    <th scope="col">Data płatności</th>
+                    <th scope="col">Opcje</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let order of unpaidOrders">
+                    <td *ngIf="order?.status.name == 'Unpaid'">Nieopłacone</td>
+                    <td *ngIf="!(order?.status.name == 'Unpaid')">Opłacone</td>
+                    <td>{{order?.totalAmount}} zł</td>
+                    <td>{{order?.orderDate | date: 'dd/MM/yyyy'}}</td>
+                    <td *ngIf="!(order?.status.name == 'Unpaid')">{{order?.paymentDate | date: 'dd/MM/yyyy'}}</td>
+                    <td *ngIf="order?.status.name == 'Unpaid'">Zamówienie nieopłacone</td>
+                    <td>
+                      <button type="button" class="btn btn-success btn-block" (click)="successfulPayment(order?.id)">Zapłać</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table> 
+            </div>
           </tab>
         </tabset>
       </div>

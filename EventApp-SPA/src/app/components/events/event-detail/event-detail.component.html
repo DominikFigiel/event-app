@@ -23,7 +23,8 @@
           </div>
           <div class="card-footer">
             <div class="btn-group d-flex">
-              <button class="btn btn-success w-100">Kup bilety</button>
+              <button *ngIf="!(eventEnded())" class="btn btn-success w-100" [routerLink]="['/events/tickets/', event.id]">Kup bilety</button>
+              <button *ngIf="eventEnded()" class="btn btn-success w-100" disabled>Sprzedaż zakończona</button>
             </div>
           </div>
         </div>
@@ -35,11 +36,11 @@
               <div class="container mt-3">
                 <h4>{{event.headline}}</h4>
                 <p>{{event.description}}</p>
+                <div *ngIf="eventEnded()">
+                  <button class="btn btn-success w-100 mt-2" disabled>Sprzedaż zakończona</button>
+                  <button class="btn btn-info w-100 mt-5" [routerLink]="['/events']">Zobacz nadchodzące wydarzenia</button>
+                </div>
               </div> 
-            </tab>
-            <tab heading="Inne wydarzenia w tym miejscu">
-              <h4>Nagłowek 1</h4>
-              <p>Opis</p>
             </tab>
           </tabset>
         </div>

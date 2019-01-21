@@ -25,6 +25,8 @@ import { VenueListResolver } from './resolvers/venue-list.resolver';
 import { PromoterPanelComponent } from './components/promoter/promoter-panel/promoter-panel.component';
 // tslint:disable-next-line:max-line-length
 import { PromoterEventTicketsSettingsComponent } from './components/promoter/promoter-event-tickets-settings/promoter-event-tickets-settings.component';
+import { EventTicketsComponent } from './components/events/event-tickets/event-tickets.component';
+import { TicketCategoryResolver } from './resolvers/ticket-category.resolver';
 
 export const appRoutes: Routes = [
     { path: '', component: HomeComponent},
@@ -36,6 +38,8 @@ export const appRoutes: Routes = [
             // { path: 'welcome', component: WelcomeComponent},
             { path: 'events', component: EventListComponent, resolve: {events: EventListResolver}},
             { path: 'events/:id', component: EventDetailComponent,  resolve: {event: EventDetailResolver}},
+            { path: 'events/tickets/:id', component: EventTicketsComponent,
+                resolve: {ticketCategories: TicketCategoryResolver, event: EventDetailResolver}},
             { path: 'categories', component: EventCategoryListComponent},
             { path: 'categories/:id', component: EventCategoryComponent},
             { path: 'cities', component: CityListComponent},
