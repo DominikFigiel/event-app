@@ -4,6 +4,11 @@
 
   <hr>
   <div class="form-group">
+    <label for="venueId">Plakat promujący wydarzenie</label>
+    <input #file type="file" formControlName="image" class="form-control file-new-event" required (change)="getFiles($event)" />
+  </div>
+
+  <div class="form-group">
     <label for="subcategoryId">Podkategoria</label>
 
     <select class="form-control select-new-event" name="subcategoryId" 
@@ -66,5 +71,5 @@
 </form>
 
 
-<!-- <p>Form value: {{addForm.value | json}}</p>
-<p>Form value: {{addForm.status | json}}</p> -->
+<p>Form value: {{addForm.value | json}}</p>
+<p>Form value: {{addForm.status | json}}</p>

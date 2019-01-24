@@ -14,6 +14,10 @@ using EventApp.API.Dtos.Venue;
 using EventApp.API.Dtos.Address;
 using EventApp.API.Dtos.Event;
 using EventApp.API.Dtos.TicketCategory;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Hosting;
+using System.IO;
+using System.Net.Http.Headers;
 
 namespace EventApp.API.Controllers
 {
@@ -25,12 +29,15 @@ namespace EventApp.API.Controllers
         private readonly DataContext _context;
         public readonly IAppRepository _repo;
         private readonly IMapper _mapper;
+        private readonly IHostingEnvironment _host;
+        private readonly string[] ACCEPTED_FILE_TYPES = new[] {".jpg"};
 
-        public AdminController(DataContext context, IAppRepository repo, IMapper mapper)
+        public AdminController(DataContext context, IAppRepository repo, IMapper mapper, IHostingEnvironment host)
         {
             _context = context;
             _repo = repo;
             _mapper = mapper;
+            _host = host;
         }
 
         [HttpGet("usersWithRoles")]
@@ -306,7 +313,7 @@ namespace EventApp.API.Controllers
 
             var createdEvent = await _repo.AddEventAsync(eventToCreate);
 
-            return NoContent();
+            return Ok(createdEvent);
         }
 
         [HttpPost("addTicketCategory")]
@@ -376,6 +383,43 @@ namespace EventApp.API.Controllers
                 return NoContent();
 
             throw new System.Exception($"Updating event {eventId} failed on save");
+        }
+
+        [HttpPost("addEventImage/{eventId}"), DisableRequestSizeLimit]
+        public IActionResult UploadAssignmentFile(IFormFile filesData, int eventId)
+        {   
+            try  
+            {  
+                foreach(var file in Request.Form.Files) {
+                    // var file = Request.Form.Files[0];  
+                    string folderName = "uploads/events";
+                    string webRootPath = _host.WebRootPath;  
+                    string newPath = Path.Combine(webRootPath, folderName);  
+                    if (!Directory.Exists(newPath))  
+                    {  
+                        Directory.CreateDirectory(newPath);  
+                    }  
+                    if (file.Length > 0)  
+                    {  
+                        string fileName = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName.Trim('"');  
+                        string fullPath = Path.Combine(newPath, fileName);  
+                        using (var stream = new FileStream(fullPath, FileMode.Create))  
+                        {  
+                            file.CopyTo(stream);  
+                        }  
+                        var ev = _context.Events.FirstOrDefault(e => e.Id == eventId);
+                        ev.PhotoURL = "http://localhost:5000/uploads/events/" + fileName;
+                        _context.SaveChanges();
+                    }  
+                }
+
+                return Ok(); 
+                
+            }  
+            catch (System.Exception ex)  
+            {  
+                return Ok("Upload Failed: " + ex.Message);  
+            }  
         }
 
     }

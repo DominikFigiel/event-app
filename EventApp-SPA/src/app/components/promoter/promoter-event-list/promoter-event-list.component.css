@@ -1,0 +1,8 @@
+table td{
+    vertical-align: middle;
+}
+
+table td:last-child{
+    vertical-align: middle;
+    padding: 1.5rem 1rem;
+}

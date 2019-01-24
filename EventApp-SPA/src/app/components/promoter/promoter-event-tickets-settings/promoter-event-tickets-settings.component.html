@@ -22,7 +22,8 @@
 
       <hr>
       <div class="form-group">
-        <input type="text" 
+        <label for="category-name">Nazwa kategorii:</label>
+        <input type="text" name="category-name"
         [ngClass]="{'is-invalid': addForm.get('name').errors && addForm.get('name').touched}" 
         class="form-control" formControlName="name" placeholder="Nazwa kategorii">
         <div class="invalid-feedback">Nazwa kategorii jest wymagana.</div>
@@ -34,14 +35,16 @@
       </div> -->
 
       <div class="form-group">
-        <input type="number" [step]="0.01"
+        <label for="ticket-price">Cena biletu:</label>
+        <input type="number" [step]="0.01" name="ticket-price"
         [ngClass]="{'is-invalid': addForm.get('price').errors && addForm.get('price').touched}" 
         class="form-control" formControlName="price" placeholder="Cena biletu">
         <div class="invalid-feedback">Cena biletu jest wymagana.</div>
       </div>
 
       <div class="form-group">
-        <input type="number" 
+        <label for="ticket-quantity">Ilość biletów:</label>
+        <input type="number" name="ticket-quantity"
         [ngClass]="{'is-invalid': addForm.get('quantity').errors && addForm.get('quantity').touched}" 
         class="form-control" formControlName="quantity" placeholder="Ilość biletów dla tej kategorii">
         <div class="invalid-feedback">Ilość biletów jest wymagana.</div>

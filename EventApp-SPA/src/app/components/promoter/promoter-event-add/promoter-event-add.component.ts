@@ -1,3 +1,4 @@
+import { FileUploaderService } from './../../../services/fileUploader.service';
 import { AdminService } from './../../../services/admin.service';
 import { AlertifyService } from './../../../services/alertify.service';
 import { Component, OnInit } from '@angular/core';
@@ -23,10 +24,12 @@ export class PromoterEventAddComponent implements OnInit {
   addForm: FormGroup;
   bsConfig: Partial<BsDatepickerConfig>;
   userId: number;
+  files: FileList;
 
   constructor(private eventService: EventService, private alertify: AlertifyService,
     private fb: FormBuilder, private adminService: AdminService,
-    private bsLocale: BsLocaleService, private authService: AuthService) { }
+    private bsLocale: BsLocaleService, private authService: AuthService,
+    private fileUploader: FileUploaderService) { }
 
   ngOnInit() {
     this.userId = this.authService.decodedToken.nameid;
@@ -43,6 +46,7 @@ export class PromoterEventAddComponent implements OnInit {
 
   createAddForm() {
     this.addForm = this.fb.group({
+      image: ['', [Validators.required]],
       subcategoryId: ['', [Validators.required]],
       venueId: ['', [Validators.required]],
       name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(100)]],
@@ -52,6 +56,11 @@ export class PromoterEventAddComponent implements OnInit {
       userId: [this.userId, [Validators.required]]
     });
   }
+
+  getFiles(event: any) {
+    this.files = event.target.files;
+    console.log(event.target.files);
+}
 
   getMinDate() {
     const minDate = new Date();
@@ -81,9 +90,14 @@ export class PromoterEventAddComponent implements OnInit {
       console.log(this.addForm.value);
       console.log(this.addForm.value.name);
       this.event = Object.assign({}, this.addForm.value);
-      this.adminService.addEvent(this.event).subscribe(() => {
+      this.adminService.addEvent(this.event).subscribe((newEvent: Event) => {
         this.alertify.success('Wydarzenie zostało dodane.');
         // this.addForm.controls['name'].reset();
+        this.fileUploader.uploadEventImage(this.files, newEvent.id).subscribe(() => {
+          this.alertify.success('Plik został wysłany.');
+        }, error => {
+          this.alertify.error('Nie udało się wysłać pliku.');
+        });
       }, error => {
         this.showErrorNotificationsFromRequest(error);
       });

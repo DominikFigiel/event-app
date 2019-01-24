@@ -13,6 +13,23 @@ export class FileUploaderService {
 
   constructor(private http: HttpClient, private authService: AuthService) { }
 
+  uploadEventImage(files: any, eventId: number) {
+    if (files.length === 0) {
+      return;
+    }
+
+    const formData = new FormData();
+
+    for (const file of files) {
+      const filename = eventId + '.jpg';
+      formData.append(filename, file, filename);
+    }
+
+    return this.http.post(this.baseUrl + 'admin/addEventImage/' + eventId, formData).pipe(
+      map((response: any) => {})
+    );
+  }
+
   upload(files: any) {
     if (files.length === 0) {
       return;
