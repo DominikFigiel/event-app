@@ -46,7 +46,14 @@ namespace EventApp.API.Controllers
             var createdUser = await _repo.RegisterAsync(userToCreate, userForRegisterDto.Password);
 
             var role = _context.Roles.FirstOrDefault(x => x.Name == "Klient");
-            var userRole = new UserRole { User = createdUser, Role = role };
+            var promoterRole = _context.Roles.FirstOrDefault(x => x.Name == "Organizator");
+            var userRole = new UserRole {};
+            
+            if (userForRegisterDto.Role == "Organizator") {
+                userRole = new UserRole { User = createdUser, Role = promoterRole };
+            } else {
+                userRole = new UserRole { User = createdUser, Role = role };
+            }
 
             _context.UserRoles.AddAsync(userRole).Wait();
 

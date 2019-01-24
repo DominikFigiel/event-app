@@ -22,6 +22,7 @@ namespace EventApp.API.Dtos.User
         [Required(ErrorMessage = "Pole 'Data urodzenia' jest wymagane")]
         public DateTime DateOfBirth { get; set; }
         public DateTime RegistrationDate { get; set; }
+        public string Role { get; set; }
 
         public UserForRegisterDto()
         {
