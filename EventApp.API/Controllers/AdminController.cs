@@ -358,5 +358,25 @@ namespace EventApp.API.Controllers
             throw new System.Exception($"Updating event {eventId} failed on save");
         }
 
+        [HttpPut("promoteEvent/{eventId}")]
+        public async Task<IActionResult> PromoteEvent(int eventId)
+        {
+            IQueryable<Event> promotedEvents = _context.Events
+                .Where(e => e.Promoted == true);
+
+            foreach(Event promotedEvent in promotedEvents)
+            {
+                promotedEvent.Promoted = false;
+            }
+
+            var ev = await _repo.GetEvent(eventId);
+            ev.Promoted = true;
+
+            if(await _repo.SaveAll())
+                return NoContent();
+
+            throw new System.Exception($"Updating event {eventId} failed on save");
+        }
+
     }
 }

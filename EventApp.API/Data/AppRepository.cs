@@ -370,6 +370,30 @@ namespace EventApp.API.Data
 
             return events;
         }
+
+        public async Task<List<Event>> GetPublishedEvents()
+        {
+            var events = await _context.Events
+                .Include(e => e.Venue)
+                .Include(e => e.Subcategory)
+                .Include(e => e.TicketCategories)
+                    .Where(e => e.Approved == true && e.Date > DateTime.Now && e.Rejected == false)
+                        .OrderByDescending(e => e.Created).ToListAsync();
+
+            return events;
+        }
+
+        public async Task<Event> GetPromotedEvent()
+        {
+            var ev = await _context.Events
+                .Include(e => e.Venue)
+                .Include(e => e.Subcategory)
+                .Include(e => e.TicketCategories)
+                    .Where(e => e.Promoted == true)
+                        .FirstOrDefaultAsync();
+
+            return ev;
+        }
         
     }
 }

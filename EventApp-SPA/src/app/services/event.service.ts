@@ -113,4 +113,12 @@ export class EventService {
     return this.http.get<Event[]>(this.baseUrl + 'events/eventsByCity/' + cityId);
   }
 
+  getPublishedEvents(): Observable<Event[]> {
+    return this.http.get<Event[]>(this.baseUrl + 'events/publishedEvents');
+  }
+
+  getPromotedEvent(): Observable<Event> {
+    return this.http.get<Event>(this.baseUrl + 'events/promotedEvent');
+  }
+
 }

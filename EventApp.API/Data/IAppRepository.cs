@@ -46,5 +46,8 @@ namespace EventApp.API.Data
         Task<List<Event>> GetEventsByCategory(int categoryId);
         Task<List<Event>> GetEventsBySubcategory(int subcategoryId);
         Task<List<Event>> GetEventsByCity(int cityId);
+        Task<List<Event>> GetPublishedEvents();
+        Task<Event> GetPromotedEvent();
+        
     }
 }

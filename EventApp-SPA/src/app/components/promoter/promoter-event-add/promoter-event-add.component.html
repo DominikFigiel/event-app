@@ -6,7 +6,7 @@
   <div class="form-group">
     <label for="subcategoryId">Podkategoria</label>
 
-    <select class="form-control" name="subcategoryId" 
+    <select class="form-control select-new-event" name="subcategoryId" 
     formControlName="subcategoryId">
       <option *ngFor="let subcategory of subcategories" [ngValue]="subcategory.id">
         {{subcategory.category.name}} > {{subcategory.name}}
@@ -17,7 +17,7 @@
   <div class="form-group">
     <label for="venueId">Miejsce</label>
 
-    <select class="form-control" name="venueId" 
+    <select class="form-control select-new-event" name="venueId" 
     formControlName="venueId">
       <option *ngFor="let venue of venues" [ngValue]="venue.id">
         {{venue.name}}
@@ -66,5 +66,5 @@
 </form>
 
 
-<p>Form value: {{addForm.value | json}}</p>
-<p>Form value: {{addForm.status | json}}</p>
+<!-- <p>Form value: {{addForm.value | json}}</p>
+<p>Form value: {{addForm.status | json}}</p> -->

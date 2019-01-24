@@ -14,6 +14,7 @@ export class EventListComponent implements OnInit {
   events: Event[];
   eventParams: any = {};
   pagination: Pagination;
+  promotedEvent: Event;
 
   constructor(private eventService: EventService, private alertify: AlertifyService,
     private route: ActivatedRoute) { }
@@ -25,6 +26,7 @@ export class EventListComponent implements OnInit {
     });
 
     this.eventParams.orderBy = 'created';
+    this.loadPromotedEvent();
   }
 
   pageChanged(event: any): void {
@@ -39,6 +41,14 @@ export class EventListComponent implements OnInit {
         (res: PaginatedResult<Event[]>) => {
           this.events = res.result;
           this.pagination = res.pagination;
+    }, error => {
+      this.alertify.error(error);
+    });
+  }
+
+  loadPromotedEvent() {
+    this.eventService.getPromotedEvent().subscribe((event: Event) => {
+      this.promotedEvent = event;
     }, error => {
       this.alertify.error(error);
     });

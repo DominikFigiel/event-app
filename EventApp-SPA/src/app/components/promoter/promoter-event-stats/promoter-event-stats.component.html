@@ -18,10 +18,10 @@
           <tr *ngFor="let ticketCategory of ticketCategories">
             <td scope="row">{{ticketCategory?.id}}</td>
             <td>{{ticketCategory?.name}}</td>
-            <td>{{ticketCategory?.price}}</td>
+            <td>{{ticketCategory?.price}} zł</td>
             <td>{{ticketCategory?.quantity}}</td>
             <td>{{ticketCategory?.soldUnits}}</td>
-            <td>{{ticketCategory?.soldUnits * ticketCategory?.price}}</td>
+            <td>{{ticketCategory?.soldUnits * ticketCategory?.price}} zł</td>
           </tr>
         </tbody>
         <tfoot>
@@ -29,13 +29,15 @@
             <td class="table-dark"></td>
             <td class="table-dark"></td>
             <td class="table-dark"></td>
-            <td class="table-dark">Razem:</td>
+            <td class="table-dark">Razem</td>
             <td class="table-dark">Bilety: {{ticketsSoldInTotal}}</td>
             <td class="table-dark">Kwota: {{totalAmount}} zł</td>
           </tr>
         </tfoot>
       </table> 
-      
+      <div>
+          <button class="btn btn-info w-100 mt-5" [routerLink]="['/promoter']">Powrót do listy wydarzeń</button>
+        </div>
     </div>
   </div>
 </div>

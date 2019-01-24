@@ -17,6 +17,7 @@ namespace EventApp.API.Models
         public bool Finished { get; set; }
         public bool Approved { get; set; }
         public bool Rejected { get; set; }
+        public bool Promoted { get; set; }
         public ICollection<Image> Images { get; set; }
         public User User { get; set; }
         public int UserId { get; set; }

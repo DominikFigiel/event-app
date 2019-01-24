@@ -16,6 +16,7 @@ export interface Event {
     finished: boolean;
     approved: boolean;
     rejected: boolean;
+    promoted?: boolean;
     images?: Image[];
     user: User;
     subcategory: Subcategory;

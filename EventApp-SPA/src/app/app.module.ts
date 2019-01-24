@@ -71,6 +71,7 @@ import { EventTicketsComponent } from './components/events/event-tickets/event-t
 import { TicketCategoryResolver } from './resolvers/ticket-category.resolver';
 import { UserOrderDetailComponent } from './components/users/user-order-detail/user-order-detail.component';
 import { EventSubcategoryComponent } from './components/events/event-subcategory/event-subcategory.component';
+import { EventPromotionComponent } from './components/admin/event-promotion/event-promotion.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -124,7 +125,8 @@ export function tokenGetter() {
     EventToCheckComponent,
     EventTicketsComponent,
     UserOrderDetailComponent,
-    EventSubcategoryComponent
+    EventSubcategoryComponent,
+    EventPromotionComponent
   ],
   imports: [
     BrowserModule,

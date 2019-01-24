@@ -213,6 +213,7 @@ namespace EventApp.API.Migrations
                     Finished = table.Column<bool>(nullable: false),
                     Approved = table.Column<bool>(nullable: false),
                     Rejected = table.Column<bool>(nullable: false),
+                    Promoted = table.Column<bool>(nullable: false),
                     UserId = table.Column<int>(nullable: false),
                     SubcategoryId = table.Column<int>(nullable: false)
                 },

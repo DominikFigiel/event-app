@@ -67,7 +67,7 @@ export class PromoterEventTicketsSettingsComponent implements OnInit {
     const regex = '^\$?(\d{1,3},?(\d{3},?)*\d{3}(\.\d{1,3})?|\d{1,3}(\.\d{2})?)$';
     this.addForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(40)]],
-      description: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(40)]],
+      // description: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(40)]],
       price: ['', [Validators.required]],
       quantity: ['', [Validators.required]],
       eventId: [this.eventId, [Validators.required]]

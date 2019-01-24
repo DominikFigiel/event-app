@@ -96,5 +96,8 @@ export class AdminService {
     return this.http.put(this.baseUrl + 'admin/approveEvent/' + eventId, eventId);
   }
 
+  promoteEvent(eventId: number) {
+    return this.http.put(this.baseUrl + 'admin/promoteEvent/' + eventId, eventId);
+  }
 
 }

@@ -101,5 +101,23 @@ namespace EventApp.API.Controllers
             return Ok(events);
         }
 
+        [AllowAnonymous]
+        [HttpGet("publishedEvents")]
+        public async Task<IActionResult> GetPublishedEvents()
+        {
+            var events = await _repo.GetPublishedEvents();
+            
+            return Ok(events);
+        }
+
+        [AllowAnonymous]
+        [HttpGet("promotedEvent")]
+        public async Task<IActionResult> GetPromotedEvent()
+        {
+            var ev = await _repo.GetPromotedEvent();
+
+            return Ok(ev);
+        }
+
     } 
 }

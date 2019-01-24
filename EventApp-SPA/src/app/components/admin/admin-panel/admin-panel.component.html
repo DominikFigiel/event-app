@@ -52,17 +52,31 @@
     </div>
   </div>
   <div *ngIf="approvalMode()">
-      <div class="tab-panel">
-        <tabset class="user-tabset">
-          <tab heading="Wydarzenia">
-            <div class="container mt-2">
-              <div class="container mt-2 mb-3">
-                <h2 class="text-center text-primary">Wydarzenia oczekujące na publikację</h2>
-              </div>
-              <app-events-to-check></app-events-to-check>
+    <div class="tab-panel">
+      <tabset class="user-tabset">
+        <tab heading="Wydarzenia">
+          <div class="container mt-2">
+            <div class="container mt-2 mb-3">
+              <h2 class="text-center text-primary">Wydarzenia oczekujące na publikację</h2>
             </div>
-          </tab>
-        </tabset>
-      </div>
+            <app-events-to-check></app-events-to-check>
+          </div>
+        </tab>
+      </tabset>
     </div>
+  </div>
+  <div *ngIf="promotionMode()">
+    <div class="tab-panel">
+      <tabset class="user-tabset">
+        <tab heading="Wydarzenia">
+          <div class="container mt-2">
+            <div class="container mt-2 mb-3">
+              <h2 class="text-center text-primary">Wybierz wydarzenie, które będzie promowane</h2>
+            </div>
+            <app-event-promotion></app-event-promotion>
+          </div>
+        </tab>
+      </tabset>
+    </div>
+  </div>
 </div>
